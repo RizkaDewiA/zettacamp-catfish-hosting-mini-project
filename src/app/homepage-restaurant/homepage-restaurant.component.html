@@ -131,7 +131,7 @@
     <!-- after login for usertype -->
     <mat-sidenav-container class="user">
       <mat-sidenav [(opened)]="opened" mode="side">
-        <ul>
+        <ul class="pd-all-2">
           <li><a [routerLink]="['menu-offer']"><mat-icon class="mr-right-1">local_offer</mat-icon>Menu Highlight & Offer</a></li>
           <li *ngFor="let menu of menuAllow">
             <a [routerLink]="[menu?.slug]">
@@ -139,7 +139,7 @@
               >{{ "sub-menu." + menu?.name | translate | titlecase }}
             </a>
           </li>
-          <li>
+          <li class="pd-all-1">
             <button
               mat-flat-button
               class="logout color-secondary"

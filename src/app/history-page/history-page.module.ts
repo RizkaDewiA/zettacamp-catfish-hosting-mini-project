@@ -4,6 +4,8 @@ import { HistoryPageComponent } from './history-page.component';
 import { RouterModule, Routes } from '@angular/router';
 import { MaterialModule } from '../material/material.module';
 import { DetailHistoryComponent } from './detail-history/detail-history.component';
+import { UserHistoryComponent } from './user-history/user-history.component';
+import { AdminHistoryComponent } from './admin-history/admin-history.component';
 
 const routes : Routes = [
   {path:"", component: HistoryPageComponent}
@@ -12,7 +14,9 @@ const routes : Routes = [
 @NgModule({
   declarations: [
     HistoryPageComponent,
-    DetailHistoryComponent
+    DetailHistoryComponent,
+    UserHistoryComponent,
+    AdminHistoryComponent
   ],
   imports: [
     CommonModule,

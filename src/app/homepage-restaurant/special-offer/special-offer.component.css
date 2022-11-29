@@ -10,7 +10,10 @@ mat-card:hover {
   transform: scale(1.045);
 }
 
-mat-card { margin: 5px; padding: 5px;}
+mat-card {
+  margin: 5px;
+  padding: 5px;
+}
 
 mat-card-title {
   padding-top: 0.8rem;

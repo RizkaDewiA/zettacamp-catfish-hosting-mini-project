@@ -1,17 +1,17 @@
 export interface DetailTransaction {
-    id: string,
+    id: String,
     menu: {
-        _id:string,
-        amount: number,
-        total_recipe: number,
-        note:string,
+        _id: String,
+        amount: Number,
+        total_recipe: Number,
+        note: String,
         recipe_id: {
-            id:string,
-            image:string,
-            price: string
+            id: String,
+            image: String,
+            price: String
         }
     }
-    order_date: string,
-    order_status: string,
-    total: number
+    order_date: String,
+    order_status: String,
+    total: Number
 } 

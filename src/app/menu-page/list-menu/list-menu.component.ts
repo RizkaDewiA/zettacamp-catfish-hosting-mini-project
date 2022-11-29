@@ -44,7 +44,6 @@ export class ListMenuComponent implements OnInit, OnDestroy {
     this.subs.sink = this.serviceMenu.getAllMenuNow(this.pagination).valueChanges.subscribe((resp:any)=>{
       const menu = resp?.data;
       this.listMenu = menu?.getAllRecipesNoToken?.data_recipes;
-      this.listMenu = this.listMenu?.filter(stat => stat.status == "publish");
       this.totalSize = menu?.getAllRecipesNoToken?.count_publish;
       this.initStatusListMenu();  
     })

@@ -10,3 +10,8 @@ td:first-child {
   padding-left: 10px;
   padding-bottom: 15px;
 }
+
+.top-flex{
+  display: flex;
+  justify-content: space-between;
+}

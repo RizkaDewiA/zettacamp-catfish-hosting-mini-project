@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Apollo, gql } from 'apollo-angular';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -19,16 +20,11 @@ export class HomepageRestaurantService {
             menu_highlight
             image
             description
-            Special_offers
             available
             price
             status
             id
           }
-          count_publish
-          count_unpublish
-          count_total
-          count_deleted
         }
       }`,
       variables:{
@@ -37,6 +33,38 @@ export class HomepageRestaurantService {
         page: pagination.page
       }
     })
+  }
+
+  getMenuOffer(pagination:any, offer:boolean){
+    return this.apollo.watchQuery({
+      query: gql`
+      query GetAllRecipesNoToken($specialOffers: Boolean, $limit: Int, $page: Int) {
+        getAllRecipesNoToken(special_offers: $specialOffers, limit: $limit, page: $page) {
+          data_recipes {
+            recipe_name
+            image
+            description
+            special_offers
+            available
+            price
+            status
+            id
+          }
+        }
+      }`,
+      variables:{
+        specialOffers: offer, 
+        limit: pagination.limit, 
+        page: pagination.page
+      }
+    });
+  }
+
+  userLogout(){
+    localStorage.removeItem(environment.tokenKey);
+    localStorage.removeItem(environment.user_id);
+    localStorage.removeItem(environment.role);
+    localStorage.removeItem(environment.usertype); 
   }
   
 }

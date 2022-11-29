@@ -41,6 +41,8 @@ export class MenuManagementService {
             status
             recipe_name
             price
+            menu_highlight
+            special_offers
           }
         }
       }`,
@@ -51,27 +53,6 @@ export class MenuManagementService {
         status: status
       },
       fetchPolicy:"network-only"
-    });
-  }
-
-  getTempMenu(){
-    // console.log(pagination);
-    return this.apollo.watchQuery({
-      query: gql`
-      query GetAllRecipes{
-        getAllRecipes(page: 1, limit: 10) {
-          count
-          page
-          max_page
-          data_recipes {
-            available
-            id
-            status
-            recipe_name
-            price
-          }
-        }
-      }`
     });
   }
 
@@ -173,7 +154,7 @@ export class MenuManagementService {
     })
   }
 
-  updateStatusMenu(id:string, status:string):Observable<any>{
+  updateStatusMenu(id: String, status: String):Observable<any>{
     return this.apollo.mutate({
       mutation: gql`
       mutation UpdateRecipe($updateRecipeId: ID, $status: status_recipe) {
@@ -189,7 +170,40 @@ export class MenuManagementService {
     });
   }
 
-  deleteMenu(id:string):Observable<any>{
+  updateHighlight(id: String, highlight: Boolean):Observable<any>{
+    return this.apollo.mutate({
+      mutation: gql`
+      mutation UpdateRecipe($menuHighlight: Boolean, $updateRecipeId: ID) {
+        UpdateRecipe(menu_highlight: $menuHighlight, id: $updateRecipeId) {
+          id
+          menu_highlight
+        }
+      }`,
+      variables: {
+        updateRecipeId:id,
+        menuHighlight:highlight
+      }
+    })
+  }
+
+  updateSpecialOffer(id: String, offer: Boolean):Observable<any>{
+    return this.apollo.mutate({
+      mutation: gql `
+      mutation UpdateRecipe($updateRecipeId: ID, $specialOffers: Boolean) {
+        UpdateRecipe(id: $updateRecipeId, special_offers: $specialOffers) {
+          id
+          special_offers
+          recipe_name
+        }
+      }`,
+      variables: {
+        updateRecipeId:id,
+        specialOffers:offer
+      }
+    })
+  }
+
+  deleteMenu(id: String):Observable<any>{
     return this.apollo.mutate({
       mutation: gql`
       mutation DeleteRecipe($deleteRecipeId: ID) {

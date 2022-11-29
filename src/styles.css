@@ -9,6 +9,8 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 * {
+  padding: 0;
+  margin: 0;
   box-sizing: border-box;
 }
 
@@ -113,6 +115,14 @@ body {
   height: 100%;
 }
 /* padding */
+.pd-all-1{
+  padding: 1rem;
+}
+
+.pd-all-2{
+  padding: 2rem;
+}
+
 .pd-left-2 {
   padding-left: 2rem;
 }

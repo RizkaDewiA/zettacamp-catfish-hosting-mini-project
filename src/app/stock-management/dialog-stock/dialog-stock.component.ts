@@ -14,6 +14,7 @@ export class DialogStockComponent implements OnInit, OnDestroy {
   private subs = new SubSink();
   private id: any;
   dataStock: any;
+  addNewStock: boolean = true;
   formStock: FormGroup;
   addData: boolean = true;
   pagination: any = {

@@ -13,14 +13,14 @@
           Your Transaction Is Still in Process
         </mat-panel-description>
       </mat-expansion-panel-header>
-      <div *ngIf="pendingCart >= 1; else pendingNotice">
-        <div class="list-item" *ngFor="let item of cartListPending">
-          <div *ngFor="let order of item?.menu; let j = index">
+      <div *ngIf="tempCondition > 0; else pendingNotice">
+        <div class="list-item">
+          <div *ngFor="let order of cartListPending?.menu; let j = index">
             <div class="item mr-bottom-1 mr-top-1" *ngIf="order.recipe_id.status == 'publish'; else unpublishMenu">
               <img src="{{ order?.recipe_id?.image }}" alt="menu image" />
               <div class="item-detail">
                 <h3>{{ order?.recipe_id?.recipe_name | titlecase }}</h3>
-                <p>Rp {{ order?.recipe_id?.price }}</p>
+                <p>{{ order?.recipe_id?.price | currency: "Rp. " }}</p>
                 <p><b>note</b> : {{ order?.note }}</p>
               </div>
               <div class="amount">
@@ -49,7 +49,7 @@
               </div>
               <div class="item-total">
                 <h4>Total Price</h4>
-                <h1>Rp {{ order?.total_recipe }}</h1>
+                <h1>{{ order?.total_recipe | currency: "Rp. "}}</h1>
               </div>
               <div class="order-button">
                 <button
@@ -133,7 +133,7 @@
           </div>
         </div>
         <div class="order-bar">
-          <h1><sup>Rp</sup> {{ cartListPending[0].total }}</h1>
+          <h1>{{ cartListPending?.total | currency: "Rp. " }}</h1>
           <button
             mat-flat-button
             color="primary"
@@ -145,7 +145,10 @@
         </div>
       </div>
       <ng-template #pendingNotice>
-        <h1>No Pending Transaction</h1>
+        <div class="none">
+          <img src="../../../assets/svg/undraw_empty_cart_co35.svg" alt="image svg"/>
+          <h1>No Pending Transaction</h1>
+        </div>
       </ng-template>
     </mat-expansion-panel>
   </mat-accordion>

@@ -6,12 +6,16 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
 import { RouterModule} from '@angular/router';
 import {TranslateModule} from '@ngx-translate/core';
 import { MenuHiglightComponent } from './menu-higlight/menu-higlight.component';
+import { SpecialOfferComponent } from './special-offer/special-offer.component';
+import { HomepageUserComponent } from './homepage-user/homepage-user.component';
 
 @NgModule({
   declarations: [
     HomepageRestaurantComponent,
     LandingPageComponent,
-    MenuHiglightComponent
+    MenuHiglightComponent,
+    SpecialOfferComponent,
+    HomepageUserComponent
   ],
   imports: [
     CommonModule,
@@ -24,7 +28,9 @@ import { MenuHiglightComponent } from './menu-higlight/menu-higlight.component';
   exports:[
     HomepageRestaurantComponent,
     LandingPageComponent,
-    MenuHiglightComponent
+    HomepageUserComponent,
+    MenuHiglightComponent,
+    SpecialOfferComponent
   ]
 })
 export class HomepageRestaurantModule { }

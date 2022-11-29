@@ -1,18 +1,18 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
+import { DetailTransaction } from 'src/app/model/transaction.model';
 import { SubSink } from 'subsink';
-import { DetailHistoryComponent } from './detail-history/detail-history.component';
-import { HistoryPageService } from './history-page.service';
-import { DetailTransaction } from '../model/transaction.model';
+import { DetailHistoryComponent } from '../detail-history/detail-history.component';
+import { HistoryPageService } from '../history-page.service';
 
 @Component({
-  selector: 'app-history-page',
-  templateUrl: './history-page.component.html',
-  styleUrls: ['./history-page.component.css']
+  selector: 'app-user-history',
+  templateUrl: './user-history.component.html',
+  styleUrls: ['./user-history.component.css']
 })
-export class HistoryPageComponent implements OnInit, OnDestroy {
+export class UserHistoryComponent implements OnInit {
   private subs =  new SubSink();
   panelOpenState = false;
   statusFilter:any = [
@@ -93,5 +93,4 @@ export class HistoryPageComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.subs.unsubscribe();
   }
-
 }

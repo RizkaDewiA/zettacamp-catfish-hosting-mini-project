@@ -5,6 +5,7 @@ import Swal from 'sweetalert2';
 import { PageEvent } from '@angular/material/paginator';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogCartComponent } from '../dialog-cart/dialog-cart.component';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-list-cart',
@@ -19,6 +20,7 @@ export class ListCartComponent implements OnInit, OnDestroy {
   //Pending State
   cartListPending:any;
   pendingCart: any;
+  tempCondition:any;
 
   //Pagination
   pagination = {
@@ -40,8 +42,15 @@ export class ListCartComponent implements OnInit, OnDestroy {
 
   initCartPending(){
     const order_status = "pending";
+    const role_in = JSON.parse(localStorage.getItem(environment.role));
     this.subs.sink = this.serviceCart?.getAllCartStatus(this.pagination, order_status)?.valueChanges?.subscribe((resp:any)=>{
-        this.cartListPending = resp?.data?.getAllTransaction?.data_transaction?.filter((stat)=>stat.status == "active");
+        this.cartListPending = resp?.data?.getAllTransaction?.data_transaction?.filter((stat)=>stat?.status == "active");
+        this.cartListPending.forEach(element => {
+          if(element.user_id.role == role_in){
+            this.cartListPending = element;
+            this.tempCondition = element.menu.length;
+          }
+        });
         this.pendingCart = resp?.data?.getAllTransaction?.count_pending;
     });
   }

@@ -3,7 +3,7 @@
     <mat-form-field class="mr-bottom-1" appearance="fill" class="mr-right-1">
       <mat-label>Menu Name</mat-label>
       <input type="text" matInput [formControl]="filterMenuName" [(ngModel)]="menuNameFilter" placeholder="search menu here"/>
-      <button *ngIf="menuNameFilter" matSuffix mat-icon-button (click)="stockNameFilter=''">
+      <button *ngIf="menuNameFilter" matSuffix mat-icon-button (click)="menuNameFilter=''">
         clear
       </button>
     </mat-form-field>
@@ -25,10 +25,7 @@
         <ng-container matColumnDef="detail-menu">
           <th mat-header-cell *matHeaderCellDef>Detail Ingredients</th>
           <td mat-cell *matCellDef="let element">
-                <button mat-flat-button color="detail" *ngIf="element?.status != 'deleted'; else deletedItem" (click)="openDetailDialog(element?.id)">More Detail</button>
-                <ng-template #deletedItem>
-                  <button mat-flat-button disabled = "true">More Detail</button>
-                </ng-template>
+                <button mat-flat-button color="detail" (click)="openDetailDialog(element?.id)" matTooltip="Detail Menu">More Detail</button>
           </td>
         </ng-container>
 
@@ -36,20 +33,45 @@
         <th mat-header-cell *matHeaderCellDef>Available</th>
         <td mat-cell *matCellDef="let element">{{ element?.available }}</td>
       </ng-container>
+
+      <ng-container matColumnDef="menu-highlight">
+        <th mat-header-cell *matHeaderCellDef>Menu Higlight</th>
+        <td mat-cell *matCellDef="let element">
+          <mat-slide-toggle 
+            [matTooltip] = "element.menu_highlight==true?'Active Highlight':'Non Active Highlight'" 
+            [checked] = "element.menu_highlight"
+            (change)="onUpdateHighlight(element.id, $event)"
+            [disabled]="element.status == 'publish'"></mat-slide-toggle>
+        </td>
+      </ng-container>
   
       <ng-container matColumnDef="price">
         <th mat-header-cell *matHeaderCellDef>Price</th>
         <td mat-cell *matCellDef="let element">{{ element?.price }}</td>
       </ng-container>
 
+      <ng-container matColumnDef="special-offer">
+        <th mat-header-cell *matHeaderCellDef>Special Offer</th>
+        <td mat-cell *matCellDef="let element">
+          <mat-slide-toggle 
+            [matTooltip] = "element.special_offers==true?'Active Offers':'Non Active Offers'" 
+            [checked] = "element.special_offers"
+            (change)="onUpdateOffer(element.id, $event)"
+            [disabled]="element.status == 'publish'"></mat-slide-toggle>
+        </td>
+      </ng-container>
 
       <ng-container matColumnDef="status">
         <th mat-header-cell *matHeaderCellDef>Status</th>
         <td mat-cell *matCellDef="let element">
             <div class="status-button">
-                <button mat-flat-button *ngIf="element?.status == 'publish'" color="publish" (click)="updateStatus(element.id, element.recipe_name, element.status)">{{element.status | titlecase}}</button>
-                <button mat-flat-button *ngIf="element?.status == 'unpublish'" color="unpublish" (click)="updateStatus(element.id, element.recipe_name,element.status)">{{element.status | titlecase}}</button>
-                <button mat-flat-button *ngIf="element?.status == 'deleted'" disabled = "true">Deleted</button>
+                <button 
+                  mat-flat-button 
+                  [matTooltip] = "element.status == 'publish'?'Menu is publish':'Menu is unpublish'" 
+                  [color]="element.status == 'publish'? 'publish' : 'unpublish'" 
+                  (click)="updateStatus(element.id, element.recipe_name, element.status)">
+                  {{element.status | titlecase}}
+                </button>
             </div>
         </td>
       </ng-container>
@@ -57,37 +79,28 @@
       <ng-container matColumnDef="actions" class="actions">
         <th mat-header-cell *matHeaderCellDef>Action</th>
         <td mat-cell *matCellDef="let element">
-          <mat-list class="actions-button" *ngIf="element.status == 'unpublish'; else disabledButton">
+          <mat-list class="actions-button">
             <mat-list-item>
-              <button mat-flat-button color="primary" matTooltip="Edit" (click)="openDialogMenu(element?.id)" [disabled]="element?.status == 'deleted'">
+              <button mat-flat-button color="primary" matTooltip="Edit" (click)="openDialogMenu(element?.id)" [disabled]="element?.status == 'publish'">
                 <mat-icon>edit</mat-icon>
               </button>
             </mat-list-item>
             <mat-list-item>
-              <button mat-flat-button color="warn" matTooltip="Delete" (click)="deleteMenu(element?.id, element?.recipe_name)" [disabled]="element?.status == 'deleted'">
+              <button mat-flat-button color="warn" matTooltip="Delete" (click)="deleteMenu(element?.id, element?.recipe_name)" [disabled]="element?.status == 'publish'">
                 <mat-icon>delete</mat-icon>
               </button>
             </mat-list-item>
           </mat-list>
-          <ng-template #disabledButton>
-            <mat-list class="actions-button">
-              <mat-list-item>
-                <button mat-flat-button color="primary" matTooltip="Edit" (click)="openDialogMenu(element?.id)" [disabled]="true">
-                  <mat-icon>edit</mat-icon>
-                </button>
-              </mat-list-item>
-              <mat-list-item>
-                <button mat-flat-button color="warn" matTooltip="Delete" (click)="deleteMenu(element?.id, element?.recipe_name)" [disabled]="true">
-                  <mat-icon>delete</mat-icon>
-                </button>
-              </mat-list-item>
-            </mat-list>
-          </ng-template>
         </td>
       </ng-container>
   
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" [attr.colspan]="displayedColumns.length">
+          No data matching the filter.
+        </td>
+      </tr>
     </table>
     <mat-paginator [length]="totalSize" [pageSizeOptions]="[10]" [pageSize]="pagination?.limit" [pageIndex]="pagination?.page-1" (page)="handlePage($event)"></mat-paginator>
   </div>

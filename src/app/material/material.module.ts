@@ -19,6 +19,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatSlideToggleModule} from '@angular/material/slide-toggle';
+
 
 import { ReactiveFormsModule } from '@angular/forms';
 
@@ -45,6 +47,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatDividerModule,
     MatExpansionModule,
     MatTabsModule,
+    MatSlideToggleModule,
   ],
   exports: [
     MatIconModule,
@@ -66,6 +69,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatDividerModule,
     MatExpansionModule,
     MatTabsModule,
+    MatSlideToggleModule
   ],
 })
 export class MaterialModule {}

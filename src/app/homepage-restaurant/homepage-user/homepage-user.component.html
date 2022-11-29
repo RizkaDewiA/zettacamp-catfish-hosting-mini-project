@@ -1,0 +1,36 @@
+<div class="width-80 dp-block">
+    <div class="banner mr-top-1">
+        <div class="cover-up">
+            <h1>Welcome To Indonesian Cuisine</h1>
+            <h2>Look What We Have</h2>
+        </div>
+    </div>
+    <div class="mr-top-1 mr-bottom-1">
+        <h1>Menu Highlight</h1>
+        <div class="width-80 dp-block-1-2">
+            <div class="highlight" *ngIf="menuHighlight?.length > 0; else noneMenuHighlight">
+                <app-menu-higlight *ngFor="let item of menuHighlight" [itemMenu]="item" class="card mr-bottom-2" ></app-menu-higlight>
+            </div>
+            <ng-template #noneMenuHighlight class="none">
+                <div class="none">
+                    <img src="../../../assets/svg/undraw_empty_re_opql.svg" alt="image svg"/>
+                    <h1>None Menu Highlight</h1>
+                </div>
+            </ng-template>
+        </div>
+        <h1>Special Offer</h1>
+        <div class="width-80 dp-block-1-2">
+            <div class="highlight" *ngIf="menuOffer?.length > 0; else noneMenuOffer">
+                <app-special-offer  *ngFor="let item of menuOffer" [itemMenu]="item" class="card mr-bottom-2"></app-special-offer>
+            </div>
+            <ng-template #noneMenuOffer>
+                <div class="none">
+                    <img src="../../../assets/svg/undraw_empty_re_opql.svg" alt="image svg"/>
+                    <h1>None Menu Special Offer</h1>
+                </div>
+            </ng-template>
+        </div>
+    </div>
+</div>
+
+

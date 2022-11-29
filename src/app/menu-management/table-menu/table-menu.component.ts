@@ -17,13 +17,17 @@ import { MenuManagementService } from '../menu-management.service';
 export class TableMenuComponent implements OnInit, OnDestroy {
   private subs = new SubSink();
   dataMenu:any = [];
-  displayedColumns: string[] = ['recipe_name', 'detail-menu','available', 'price','status', 'actions'];
+  displayedColumns: string[] = ['recipe_name', 'detail-menu','available', 'menu-highlight', 'price', 'special-offer','status', 'actions'];
   dataSource =  new MatTableDataSource(this.dataMenu);
   pagination = {
     page: 1,
     limit: 10
   }
   totalSize = 0;
+
+  //checked
+  checked_highlight:boolean;
+  checked_offer: boolean;
 
   //filter name
   filterMenuName: any = new FormControl('');
@@ -45,6 +49,7 @@ export class TableMenuComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.getData();
     this.searchMenu();
+    console.log(this.checked_highlight);
   }
 
   getData(){
@@ -142,6 +147,44 @@ export class TableMenuComponent implements OnInit, OnDestroy {
       }
     })
   }
+
+  onUpdateHighlight(id:string, status:any){
+    this.subs.sink = this.serviceMenu.updateHighlight(id, status.checked).subscribe(()=>{
+      if(status.checked == true){
+        Swal.fire(
+          'Success!',
+          'Your Menu Highlight is Activated!',
+          'success'
+        );
+      }else{
+        Swal.fire(
+          'Success!',
+          'Your Menu Highlight is Not Activated!',
+          'success'
+        );
+      }
+    });
+    
+  }
+  
+  onUpdateOffer(id:string, status:any){
+    this.subs.sink = this.serviceMenu.updateSpecialOffer(id, status.checked).subscribe(()=>{
+      if(status.checked == true){
+        Swal.fire(
+          'Success!',
+          'Your Special Offer is Activated!',
+          'success'
+        );
+      }else{
+        Swal.fire(
+          'Success!',
+          'Your Special Offer is Not Activated!',
+          'success'
+        );
+      }
+    });
+  }
+
 
   deleteMenu(id:string, name:string){
     Swal.fire({

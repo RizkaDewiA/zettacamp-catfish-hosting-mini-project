@@ -4,6 +4,7 @@ import { CartPageGuard } from './guard/cart-page.guard';
 import { MenuManagementGuard } from './guard/menu-management.guard';
 import { StockManagementGuard } from './guard/stock-management.guard';
 import { HomepageRestaurantComponent } from './homepage-restaurant/homepage-restaurant.component';
+import { HomepageUserComponent } from './homepage-restaurant/homepage-user/homepage-user.component';
 import { LandingPageComponent } from './homepage-restaurant/landing-page/landing-page.component';
 import { MenuHiglightComponent } from './homepage-restaurant/menu-higlight/menu-higlight.component';
 
@@ -33,7 +34,7 @@ const routes: Routes = [
     path: 'main-page',
     component: HomepageRestaurantComponent,
     children: [
-      { path: '', redirectTo: 'menu-page', pathMatch: 'full' },
+      { path: '', redirectTo: 'menu-management', pathMatch: 'full' },
       {
         path: 'menu-page',
         loadChildren: () =>
@@ -77,7 +78,7 @@ const routes: Routes = [
       },
       {
         path: 'menu-offer',
-        component: MenuHiglightComponent
+        component: HomepageUserComponent
       }
     ],
   },

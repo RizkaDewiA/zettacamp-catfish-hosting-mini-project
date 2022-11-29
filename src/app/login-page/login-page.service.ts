@@ -18,6 +18,7 @@ export class LoginPageService {
         login (email: "${email}", password: "${password}"){
           token,
           role,
+          id,
           usertype{
             name
             icon_name
@@ -35,9 +36,10 @@ export class LoginPageService {
   }
 
   userLogin(data:any){
+    console.log(data);
     localStorage.setItem(environment.tokenKey, JSON.stringify(data.login.token));
+    localStorage.setItem(environment.user_id, JSON.stringify(data.login.id));
     localStorage.setItem(environment.role, JSON.stringify(data.login.role));
     localStorage.setItem(environment.usertype, JSON.stringify(data.login.usertype));
   }
-
 }

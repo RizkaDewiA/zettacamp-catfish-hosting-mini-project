@@ -80,6 +80,13 @@ export class CartPageService {
             order_status
             order_date
             total
+            user_id {
+              _id
+              role
+              password
+              last_name
+              first_name
+            }
           }
         }
       }`,
@@ -216,7 +223,8 @@ export class CartPageService {
             }
           }
         }
-      }`
+      }`,
+      fetchPolicy: "network-only"
     })
   }
 }

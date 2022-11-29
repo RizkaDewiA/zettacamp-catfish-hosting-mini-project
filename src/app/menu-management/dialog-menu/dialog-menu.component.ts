@@ -14,6 +14,7 @@ export class DialogMenuComponent implements OnInit, OnDestroy {
   private subs = new SubSink();
   private id:any;
   dataMenu:any;
+  addNewMenu: boolean = true;
   formMenu: FormGroup;
   allIngredients: any;
   addDataMenu:boolean = true;
@@ -45,6 +46,7 @@ export class DialogMenuComponent implements OnInit, OnDestroy {
     if(this.data){
       this.id = this.data;
       this.getOnePatchMenu(this.id);
+      this.addNewMenu = false;
     } else {
       this.id == null;
       this.addNewIngredients();

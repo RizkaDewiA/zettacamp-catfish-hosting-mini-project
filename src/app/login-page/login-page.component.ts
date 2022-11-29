@@ -74,6 +74,13 @@ export class LoginPageComponent implements OnInit, OnDestroy {
               'Check Again Your Email & Password',
               'error'
             )
+          } else {
+            console.log(error.message)
+            Swal.fire(
+              'Something Happend!',
+              error.message,
+              'error'
+            )
           }
         }
       });
