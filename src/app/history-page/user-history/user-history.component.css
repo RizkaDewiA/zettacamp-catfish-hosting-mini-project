@@ -105,3 +105,8 @@
 .mat-flat-button.mat-details{
     background-color: #FFEB3B;
 }
+
+img{
+    width: 100px;
+    height: 100px;
+}

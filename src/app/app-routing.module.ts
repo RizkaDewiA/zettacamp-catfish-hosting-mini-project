@@ -87,6 +87,9 @@ const routes: Routes = [
     loadChildren: () =>
       import('./login-page/login-page.module').then((m) => m.LoginPageModule),
   },
+  {
+    path:'**', component:HomepageRestaurantComponent
+  }
 ];
 
 @NgModule({

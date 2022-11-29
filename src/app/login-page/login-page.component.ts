@@ -49,17 +49,19 @@ export class LoginPageComponent implements OnInit, OnDestroy {
     if(this.loginForm.valid){
       this.subs.sink = this.serviceLogin.loginUser(payload.email, payload.password).subscribe({
         next: (resp) => {
-          if(resp) {
-            this.router.navigate(['main-page']).then(()=>{
-              Swal.fire({
-                position: 'center',
-                icon: 'success',
-                title: 'Welcome Back ' + payload.email.substring(0, payload.email.lastIndexOf("@")).toUpperCase(),
-                showConfirmButton: false,
-                timer: 1500
-              })
-            });
-          }
+          console.log(resp);
+          this.router.navigate(['main-page'])
+          // if(resp) {
+          //   this.router.navigate(['main-page']).then(()=>{
+          //     Swal.fire({
+          //       position: 'center',
+          //       icon: 'success',
+          //       title: 'Welcome Back ' + payload.email.substring(0, payload.email.lastIndexOf("@")).toUpperCase(),
+          //       showConfirmButton: false,
+          //       timer: 1500
+          //     })
+          //   });
+          // }
         },
         error: (error)=>{
           if(error.message == "user tidak ditemukan atau email salah"){

@@ -12,7 +12,11 @@
             <th>Total Price Each Item</th>
         </tr>
         <tr *ngFor="let menu of detailsTrans?.menu">
-            <td><img class="image-transaction" src="{{menu?.recipe_id?.image}}" alt="image menu"/></td>
+            <td *ngIf="menu?.recipe_id?.image != ''; else menuImageNone" ><img class="image-transaction" src="{{menu?.recipe_id?.image}}" alt="image menu"/></td>
+          <ng-template #menuImageNone>
+            <td><img class="dp-block" src="https://images.unsplash.com/photo-1534939561126-855b8675edd7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
+            alt="menu image"/></td>
+          </ng-template>
             <td>{{menu?.recipe_id?.recipe_name}}</td>
             <td>{{menu?.note}}</td>
             <td>{{menu?.recipe_id?.price}}</td>

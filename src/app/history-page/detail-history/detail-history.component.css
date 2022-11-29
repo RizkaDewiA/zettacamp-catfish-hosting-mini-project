@@ -22,3 +22,8 @@ th,td{
     padding: 5px 40px;
     font-weight: 500;
 }
+
+img{
+    width: 100px;
+    height: 100px;
+}

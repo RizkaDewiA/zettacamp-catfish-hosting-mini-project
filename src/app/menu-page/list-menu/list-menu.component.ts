@@ -65,6 +65,10 @@ export class ListMenuComponent implements OnInit, OnDestroy {
     }
   }
 
+  imageHasBeenLoaded(data){
+    console.log(data);
+  }
+
   addToCart(id:string){
     const dialogRef = this.dialog.open(DialogDetailMenuComponent, {data:id});
     dialogRef.afterClosed().subscribe(()=>{

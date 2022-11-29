@@ -102,5 +102,5 @@
         </td>
       </tr>
     </table>
-    <mat-paginator [length]="totalSize" [pageSizeOptions]="[10]" [pageSize]="pagination?.limit" [pageIndex]="pagination?.page-1" (page)="handlePage($event)"></mat-paginator>
+    <mat-paginator [length]="totalSize" [pageSizeOptions]="[10]" [pageSize]="pagination?.limit" [pageIndex]="pagination?.page-1" (page)="handlePage($event)" [showFirstLastButtons]="true"></mat-paginator>
   </div>

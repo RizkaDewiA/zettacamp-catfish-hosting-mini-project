@@ -16,7 +16,11 @@
         <ng-container *ngFor="let order of item?.menu; let j = index">
           <div *ngIf="j < indexToShow[i]" class="pad-left-right">
             <div class="item mr-bottom-1 mr-top-1">
-              <img src="{{ order?.recipe_id?.image }}" alt="menu image" />
+              <img *ngIf="order?.recipe_id?.image != ''; else menuImageNone" [src]="order?.recipe_id?.image" alt="menu image" />
+              <ng-template #menuImageNone>
+                <img src="https://images.unsplash.com/photo-1534939561126-855b8675edd7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
+                  alt="menu image"/>
+              </ng-template>
               <div class="item-detail">
                 <h3>{{ order?.recipe_id?.recipe_name | titlecase }}</h3>
                 <p>Rp {{ order?.recipe_id?.price }}</p>

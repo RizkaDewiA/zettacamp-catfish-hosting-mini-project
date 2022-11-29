@@ -66,6 +66,10 @@ export class UserHistoryComponent implements OnInit {
     });
   }
 
+  imageHasBeenLoaded(data){
+    console.log(data);
+  }
+
   filteredStatus(){
     this.statusTransFilter.valueChanges.subscribe((value)=>{
       if(value == "none"){
