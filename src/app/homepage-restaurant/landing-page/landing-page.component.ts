@@ -13,6 +13,10 @@ export class LandingPageComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  menuPage(){
+    this.router.navigate(['/menu-page']);
+  }
+
   loginPage(){
     this.router.navigate(['/login-page']);
   }

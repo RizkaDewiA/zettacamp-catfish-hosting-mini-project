@@ -21,6 +21,7 @@
 .home-button button {
     color: white;
     border-radius: 2rem;
+    padding: 0.2rem 3rem;
 }
 
 .home-button button .arrow{
