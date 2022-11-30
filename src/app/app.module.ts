@@ -12,6 +12,7 @@ import { GraphQLModule } from './graphql.module';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { RegisterPageModule } from './register-page/register-page.module';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
     HomepageRestaurantModule,
     LoginPageModule,
     RouterModule,
+    RegisterPageModule,
     GraphQLModule,
     HttpClientModule,
     TranslateModule.forRoot({
