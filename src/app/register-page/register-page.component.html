@@ -1,0 +1,108 @@
+<div  *ngIf="registerreload; else registerPage" class="flex-container container-full-all color-trinary loading">
+    <mat-spinner></mat-spinner>
+  </div>
+  <ng-template #registerPage>
+    <div class="height-100 color-primary">
+      <div class="full-width language">
+        <a [routerLink]="['/home-page']" class="back"><mat-icon>arrow_back</mat-icon>Home Page</a>
+        <a *ngIf="currentLanguage" (click)="changeLanguage(currentLanguage)"><img [src]="srcImages"></a>
+      </div>
+      <div class="container-100">
+        <div class="flex-container mr-top-1 mr-bottom-1">
+          <mat-card>
+            <mat-card-title>Register</mat-card-title>
+            <div class="p-grid p-justify-around p-col-12">
+              <div class="p-col-4">
+                <mat-card-content>
+                  <svg class="banner-login">
+                    <mask id="svgmask3">
+                      <circle fill="#FFFFFF" cx="75" cy="75" r="75"></circle>
+                      <circle fill="#FFFFFF" cx="75" cy="240" r="75"></circle>
+                      <circle fill="#FFFFFF" cx="220" cy="160" r="75"></circle>
+                    </mask>
+                    <image
+                      xlink:href="https://images.unsplash.com/photo-1534939561126-855b8675edd7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
+                      mask="url(#svgmask3)"
+                    ></image>
+                  </svg>
+                </mat-card-content>
+              </div>
+              <div class="p-col-5">
+                <mat-card-content>
+                  <form
+                    class="flex-form"
+                    [formGroup]="registerForm"
+                  >
+                  <mat-form-field appearance="outline">
+                    <mat-label>First Name</mat-label>
+                    <input
+                      matInput
+                      formControlName="firstName"
+                      required
+                    />
+                    <mat-error *ngIf="this.registerForm.get('firstName').invalid">This Field Is Required</mat-error>
+                  </mat-form-field>
+                  <mat-form-field appearance="outline">
+                    <mat-label>Last Name</mat-label>
+                    <input
+                      matInput
+                      formControlName="lastName"
+                      required
+                    />
+                    <mat-error *ngIf="this.registerForm.get('lastName').invalid">This Field Is Required</mat-error>
+                  </mat-form-field>
+                  <mat-form-field appearance="outline">
+                    <mat-label>Username</mat-label>
+                    <input
+                      matInput
+                      formControlName="userName"
+                      required
+                    />
+                    <mat-error *ngIf="this.registerForm.get('userName').invalid">This Field Is Required</mat-error>
+                  </mat-form-field>
+                    <mat-form-field appearance="outline">
+                      <mat-label>{{"title.title-email" | translate | titlecase}}</mat-label>
+                      <input
+                        matInput
+                        placeholder="pat@gmail.com"
+                        formControlName="email"
+                        required
+                      />
+                      <mat-error *ngIf="this.registerForm.get('email').invalid">You Must Fill This Field With Your Email</mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                      <mat-label>{{"title.title-password" | translate | titlecase}}</mat-label>
+                      <input
+                        matInput
+                        formControlName="password"
+                        [type]="hide ? 'password' : 'text'"
+                      />
+                      <mat-error *ngIf="this.registerForm.get('password').invalid">You Must Fill This Field With Your Password</mat-error>
+                      <button
+                        mat-icon-button
+                        matSuffix
+                        (click)="hide = !hide"
+                        [attr.aria-label]="'Hide password'"
+                        [attr.aria-pressed]="hide"
+                      >
+                        <mat-icon>{{
+                          hide ? "visibility_off" : "visibility"
+                        }}</mat-icon>
+                      </button>
+                    </mat-form-field>
+                    <mat-card-actions align="center">
+                      <button mat-flat-button class="color-rest login-button" (click)="onSubmit()">Register</button>
+                    </mat-card-actions>
+                  </form>
+                  <mat-card-actions align="center">
+                      <a [routerLink]="['/login-page']">I Have Account</a>
+                  </mat-card-actions>
+                </mat-card-content>
+              </div>
+            </div>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+  

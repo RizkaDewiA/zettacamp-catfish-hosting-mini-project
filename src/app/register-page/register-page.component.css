@@ -1,0 +1,81 @@
+/* card-login */
+.flex-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  mat-card {
+    width: 60%;
+  }
+  
+  /* form */
+  .flex-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  mat-card-title {
+    text-align: center;
+    padding: 2rem;
+  }
+  
+  .banner-login {
+    width: 600px;
+    height: 400px;
+  }
+  
+  image {
+    width: 350px;
+  }
+  
+  .login-button {
+    padding: 2px 5rem;
+  }
+  
+  .loading ::ng-deep .mat-progress-spinner circle,
+  .mat-spinner circle {
+    stroke: #c21010;
+  }
+  
+  .language{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 3px 20px;
+    background-color: white;
+}
+  
+  .language a img {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .language a{
+      cursor: pointer;
+  }
+  
+  .back{
+    display: flex;
+    justify-content: flex-start;
+    width: 25%;
+    color: black;
+    font-size: 1.2rem;
+    padding: 20px;
+    align-items: center;
+    text-decoration: none;
+  }
+  
+  .back:hover{
+    transform: scale(1.09);
+    font-weight: 500;
+  }
+  
+  .back mat-icon {
+    padding-right: 50px;
+  }
+
+  mat-form-field{
+    font-size: 0.8rem;
+  }
+  
