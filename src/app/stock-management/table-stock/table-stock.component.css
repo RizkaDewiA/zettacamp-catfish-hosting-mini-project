@@ -1,11 +1,24 @@
 table {
-    width: 100%;
+  width: 100%;
 }
 
-th, td{
-    width:20%;
+th,
+td {
+  width: 20%;
 }
 
-.actions-button{
-    display: flex;
+.actions-button {
+  display: flex;
+}
+
+.th-center {
+  text-align: center;
+}
+
+.th-left {
+  text-align: left;
+}
+
+.th-right {
+  text-align: right;
 }

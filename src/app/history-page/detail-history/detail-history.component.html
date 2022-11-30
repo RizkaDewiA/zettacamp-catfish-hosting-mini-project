@@ -1,5 +1,6 @@
 <h2 mat-dialog-title>Code Transaction : order-{{detailsTrans?.id | uppercase}}-menu</h2>
 <mat-dialog-content class="width-abs-400">
+    <p>Customer : {{detailsTrans?.user_id?.last_name}} {{detailsTrans?.user_id?.first_name}}</p>
     <p>Order Date : {{detailsTrans?.order_date}}</p>
     <p>Order Menu : </p>
     <table class="mr-bottom-1">

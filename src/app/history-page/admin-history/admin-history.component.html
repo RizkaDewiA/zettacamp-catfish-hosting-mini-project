@@ -1,1 +1,74 @@
-<p>admin-history works!</p>
+<div class="container-80 dp-block-1-2">
+    <h1 class="label">History Transaction</h1>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <ng-container matColumnDef="last_name">
+        <th class="option" mat-header-cell *matHeaderCellDef>
+            <mat-form-field class="mr-bottom-1" appearance="fill" class="mr-right-1">
+                <mat-label>Last Name</mat-label>
+                <input type="text" matInput [formControl]="filterTransName" [(ngModel)]="transNameFilter" placeholder="search menu here"/>
+                <button *ngIf="transNameFilter" matSuffix mat-icon-button (click)="transNameFilter=''">
+                  clear
+                </button>
+              </mat-form-field>
+        </th>
+        <td mat-cell *matCellDef="let element">{{ element.user_id.last_name | titlecase }}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="order_date">
+        <th class="th-center" mat-header-cell *matHeaderCellDef>Order Date</th>
+        <td class="th-center" mat-cell *matCellDef="let element">{{ element.order_date }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="order_total">
+        <th class="th-center" mat-header-cell *matHeaderCellDef>Total Order</th>
+        <td class="th-center" mat-cell *matCellDef="let element">{{ element.menu.length }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="total_price">
+        <th class="th-center" mat-header-cell *matHeaderCellDef>Total Price</th>
+        <td class="th-center" mat-cell *matCellDef="let element">{{ element.total }}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="status" floatLabel="never">
+        <th class="th-center pad-tb-10 option" mat-header-cell *matHeaderCellDef>
+            <mat-form-field appearance="fill" floatLabel="never">
+                <mat-label >Status</mat-label>
+                <mat-select [formControl]="statusTransFilter">
+                  <mat-option *ngFor="let status of statusFilter" [value]="status.value">
+                    {{status.viewValue}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+        </th>
+        <td class="th-center" mat-cell *matCellDef="let element">
+          <mat-icon [ngStyle]="{color:'green'}" *ngIf="element.order_status == 'success'" matTooltip="active">done</mat-icon>
+          <mat-icon [ngStyle]="{color:'red'}" *ngIf="element.order_status === 'failed'" matTooltip="deleted">close</mat-icon>
+        </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="details_order">
+        <th class="th-center" mat-header-cell *matHeaderCellDef>Details Order</th>
+        <td class="th-center" mat-cell *matCellDef="let element">
+            <button
+              mat-flat-button
+              color="details"
+              class="pad-tb-lr-5-35"
+              (click)="detailsTransaction(element)"
+            >
+              Details
+            </button>
+        </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" [attr.colspan]="displayedColumns.length">
+          No data matching the filter.
+        </td>
+      </tr>
+    </table>
+    <mat-paginator [length]="totalSize" [pageSizeOptions]="[10]" [pageSize]="pagination?.limit" [pageIndex]="pagination?.page-1" (page)="handlePage($event)" [showFirstLastButtons]="true"></mat-paginator>
+  </div>
+  

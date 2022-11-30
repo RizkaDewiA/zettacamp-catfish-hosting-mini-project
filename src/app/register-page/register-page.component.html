@@ -51,15 +51,6 @@
                     />
                     <mat-error *ngIf="this.registerForm.get('lastName').invalid">This Field Is Required</mat-error>
                   </mat-form-field>
-                  <mat-form-field appearance="outline">
-                    <mat-label>Username</mat-label>
-                    <input
-                      matInput
-                      formControlName="userName"
-                      required
-                    />
-                    <mat-error *ngIf="this.registerForm.get('userName').invalid">This Field Is Required</mat-error>
-                  </mat-form-field>
                     <mat-form-field appearance="outline">
                       <mat-label>{{"title.title-email" | translate | titlecase}}</mat-label>
                       <input

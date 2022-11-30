@@ -63,6 +63,8 @@ export class UserHistoryComponent implements OnInit {
       this.cartList.forEach(()=>{
         this.indexToShow.push(1);
       })
+
+      console.log(resp);
     });
   }
 

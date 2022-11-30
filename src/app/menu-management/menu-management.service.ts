@@ -43,6 +43,7 @@ export class MenuManagementService {
             price
             menu_highlight
             special_offers
+            discount
           }
         }
       }`,
@@ -154,7 +155,7 @@ export class MenuManagementService {
     })
   }
 
-  updateStatusMenu(id: String, status: String):Observable<any>{
+  updateStatusMenu(id: string, status: string):Observable<any>{
     return this.apollo.mutate({
       mutation: gql`
       mutation UpdateRecipe($updateRecipeId: ID, $status: status_recipe) {
@@ -170,7 +171,7 @@ export class MenuManagementService {
     });
   }
 
-  updateHighlight(id: String, highlight: Boolean):Observable<any>{
+  updateHighlight(id: string, highlight: boolean):Observable<any>{
     return this.apollo.mutate({
       mutation: gql`
       mutation UpdateRecipe($menuHighlight: Boolean, $updateRecipeId: ID) {
@@ -186,24 +187,27 @@ export class MenuManagementService {
     })
   }
 
-  updateSpecialOffer(id: String, offer: Boolean):Observable<any>{
+  updateSpecialOffer(id: string, offer: boolean, discount: number):Observable<any>{
+    console.log(discount);
     return this.apollo.mutate({
       mutation: gql `
-      mutation UpdateRecipe($updateRecipeId: ID, $specialOffers: Boolean) {
-        UpdateRecipe(id: $updateRecipeId, special_offers: $specialOffers) {
+      mutation UpdateRecipe($updateRecipeId: ID, $specialOffers: Boolean, $discount: Int) {
+        UpdateRecipe(id: $updateRecipeId, special_offers: $specialOffers, discount: $discount) {
           id
           special_offers
           recipe_name
+          discount
         }
       }`,
       variables: {
         updateRecipeId:id,
-        specialOffers:offer
+        specialOffers:offer,
+        discount: discount
       }
     })
   }
 
-  deleteMenu(id: String):Observable<any>{
+  deleteMenu(id: string):Observable<any>{
     return this.apollo.mutate({
       mutation: gql`
       mutation DeleteRecipe($deleteRecipeId: ID) {

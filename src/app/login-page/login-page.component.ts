@@ -49,8 +49,6 @@ export class LoginPageComponent implements OnInit, OnDestroy {
     if(this.loginForm.valid){
       this.subs.sink = this.serviceLogin.loginUser(payload.email, payload.password).subscribe({
         next: (resp) => {
-          console.log(resp);
-          this.router.navigate(['main-page'])
           if(resp) {
             this.router.navigate(['main-page']).then(()=>{
               Swal.fire({

@@ -24,7 +24,10 @@ const routes : Routes = [
     MaterialModule
   ],
   exports: [
-    HistoryPageComponent
+    HistoryPageComponent,
+    UserHistoryComponent,
+    AdminHistoryComponent,
+    DetailHistoryComponent
   ]
 })
 export class HistoryPageModule { }

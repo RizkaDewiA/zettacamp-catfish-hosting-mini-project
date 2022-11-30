@@ -1,3 +1,6 @@
-<app-user-history></app-user-history>
+<app-admin-history *ngIf="showHistoryAdmin; else showHistoryUser"></app-admin-history>
+<ng-template #showHistoryUser>
+    <app-user-history></app-user-history>
+</ng-template>
 
 

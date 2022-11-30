@@ -1,0 +1,14 @@
+<h2 mat-dialog-title>Update Discount : {{data?.name | titlecase}}</h2>
+<mat-dialog-content>
+    <mat-form-field class="full-width mr-bottom-1" appearance="fill">
+        <mat-label>Amount</mat-label>
+        <input type="number" matInput [formControl] = "formDiscount" />
+        <mat-error *ngIf="this.formDiscount.invalid">
+          This field is required !
+        </mat-error>
+      </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close color="warn">Cancel</button>
+    <button mat-flat-button color="primary" (click)="onSubmit()">Submit</button>
+  </mat-dialog-actions>

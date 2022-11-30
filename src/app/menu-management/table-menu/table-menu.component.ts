@@ -3,9 +3,11 @@ import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { stringifyForDisplay } from '@apollo/client/utilities';
 import { SubSink } from 'subsink';
 import Swal from 'sweetalert2';
 import { DetailMenuComponent } from '../detail-menu/detail-menu.component';
+import { DialogDiscountComponent } from '../dialog-discount/dialog-discount.component';
 import { DialogMenuComponent } from '../dialog-menu/dialog-menu.component';
 import { MenuManagementService } from '../menu-management.service';
 
@@ -167,22 +169,18 @@ export class TableMenuComponent implements OnInit, OnDestroy {
     
   }
   
-  onUpdateOffer(id:string, status:any){
-    this.subs.sink = this.serviceMenu.updateSpecialOffer(id, status.checked).subscribe(()=>{
-      if(status.checked == true){
-        Swal.fire(
-          'Success!',
-          'Your Special Offer is Activated!',
-          'success'
-        );
-      }else{
-        Swal.fire(
-          'Success!',
-          'Your Special Offer is Not Activated!',
-          'success'
-        );
-      }
-    });
+  onUpdateOffer(id:string, status:any, amount: number, foodName:string){
+    if(status.checked == true){
+      this.dialog.open(DialogDiscountComponent, {data:{id_food:id, status:status.checked, defaultAmount:amount, name:foodName}});
+    }else if(status.checked == false){
+      this.subs.sink = this.serviceMenu.updateSpecialOffer(id, status.checked, amount).subscribe(()=>{
+          Swal.fire(
+            'Success!',
+            'Your Special Offer is Not Activated!',
+            'success'
+          );
+      });
+    }
   }
 
 

@@ -1,0 +1,46 @@
+table {
+  width: 100%;
+}
+
+th,
+td {
+  width: 15%;
+}
+
+.w-75 {
+  width: 75px;
+}
+
+.w-100 {
+  width: 100px;
+}
+
+.th-center {
+  text-align: center;
+}
+
+.th-left {
+  text-align: left;
+}
+
+.th-right {
+  text-align: right;
+}
+
+.mat-flat-button.mat-details{
+    background-color: #FFEB3B;
+}
+
+.label{
+    text-align: center;
+    padding: 1rem 0;
+}
+
+.pad-tb-10{
+    padding: 10px 0;
+}
+
+.option ::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
+    background-color: transparent; 
+    color: black;
+}

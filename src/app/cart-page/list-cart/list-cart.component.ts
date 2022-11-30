@@ -94,12 +94,20 @@ export class ListCartComponent implements OnInit, OnDestroy {
               ),
               this.initCartPending();
             },
-            error: ()=>{
-              Swal.fire(
-                'Error!',
-                'Your cart cannot be order it.',
-                'error'
-              )
+            error: (error)=>{
+              if(error.message == "menu is unpublish not order now"){
+                Swal.fire(
+                  'Error!',
+                  'Food Item Has Been Unpublish, Please Delete It!',
+                  'error'
+                )
+              } else {
+                Swal.fire(
+                  'Error!',
+                  'Your cart cannot be order it.',
+                  'error'
+                )
+              }
               this.initCartPending();
             }
           });

@@ -42,14 +42,48 @@ export class RegisterPageComponent implements OnInit {
     this.registerForm = this.fb.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
-      userName: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(8), UserNameValidator.noWhiteSpace]],
+      // userName: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(8), UserNameValidator.noWhiteSpace]],
       email: ['', [Validators.required]],
-      password: ['', [Validators.required]]
+      password: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(8)]]
     })
   }
 
   onSubmit(){
-    
+    const payload = this.registerForm.value;
+    if(this.registerForm.valid){
+      Swal.fire({
+        title: 'Do You Want To Create Account ?',
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, create account '
+      }).then((result)=>{
+        if(result.isConfirmed){
+          this.subs.sink = this.serviceRegister.createNewUser(payload).subscribe({
+            next: (resp) => {
+              if(resp) {
+                Swal.fire({
+                  position: 'center',
+                  icon: 'success',
+                  title: 'You Account Has Been Create, You Can Login Now',
+                  showConfirmButton: true,
+                }).then(()=>{
+                  this.router.navigate(['/login-page']);
+                });
+              }
+            },
+            error: (error)=>{
+                Swal.fire(
+                  'Something Happend!',
+                  error.message,
+                  'error'
+                )
+            }
+          });
+        }
+      })
+    }
   }
 
   changeLanguage(lang:any) {
@@ -67,5 +101,4 @@ export class RegisterPageComponent implements OnInit {
   ngOnDestroy(): void {
     this.subs.unsubscribe();
   }
-
 }

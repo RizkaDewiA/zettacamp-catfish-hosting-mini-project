@@ -6,6 +6,7 @@ import { TableMenuComponent } from './table-menu/table-menu.component';
 import { DialogMenuComponent } from './dialog-menu/dialog-menu.component';
 import { MaterialModule } from '../material/material.module';
 import { DetailMenuComponent } from './detail-menu/detail-menu.component';
+import { DialogDiscountComponent } from './dialog-discount/dialog-discount.component';
 
 const routes : Routes = [
   {path:"", component:MenuManagementComponent}
@@ -16,7 +17,8 @@ const routes : Routes = [
     MenuManagementComponent,
     TableMenuComponent,
     DialogMenuComponent,
-    DetailMenuComponent
+    DetailMenuComponent,
+    DialogDiscountComponent,
   ],
   imports: [
     CommonModule,
@@ -26,7 +28,8 @@ const routes : Routes = [
   exports: [
     MenuManagementComponent,
     TableMenuComponent,
-    DialogMenuComponent
+    DialogMenuComponent,
+    DialogDiscountComponent
   ]
 })
 export class MenuManagementModule { }
