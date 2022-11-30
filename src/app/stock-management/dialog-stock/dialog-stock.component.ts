@@ -119,7 +119,7 @@ export class DialogStockComponent implements OnInit, OnDestroy {
               });
             },
           });
-      } else if(updatedValue.stock < 1){
+      } else if(updatedValue.stock < 0){
         Swal.fire({
           title: 'Error!',
           text: 'Stock Cannot Minus!',

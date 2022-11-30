@@ -6,6 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { HttpClient } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { HttpLoaderFactory } from '../app.module';
 
 const routes : Routes = [
   {path:"", component:LoginPageComponent}
@@ -18,7 +19,7 @@ const routes : Routes = [
     CommonModule,
     MaterialModule,
     RouterModule.forChild(routes),
-    TranslateModule.forRoot({
+    TranslateModule.forChild({
       loader: {
         provide: TranslateLoader,
         useFactory: HttpLoaderFactory,
@@ -32,8 +33,4 @@ const routes : Routes = [
   ]
 })
 export class LoginPageModule { }
-
-export function HttpLoaderFactory(http: HttpClient){
-  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
-}
 

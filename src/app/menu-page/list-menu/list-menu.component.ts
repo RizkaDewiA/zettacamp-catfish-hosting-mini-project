@@ -4,7 +4,7 @@ import { SubSink } from 'subsink';
 import { DialogDetailMenuComponent } from '../dialog-detail-menu/dialog-detail-menu.component';
 import { MenuPageService } from '../menu-page.service';
 import { PageEvent } from '@angular/material/paginator';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -23,11 +23,17 @@ export class ListMenuComponent implements OnInit, OnDestroy {
   totalSize = 0;
   cartForm: FormGroup;
 
+   //filter name
+   filterMenuByName: any = new FormControl('');
+   menuByNameFilter = '';
+   resultMenuFilter:any;
+
   constructor(private serviceMenu:MenuPageService, private dialog:MatDialog, private fb:FormBuilder) { }
 
   ngOnInit(): void {
     this.getDataMenu();
     this.getCounterQuan();
+    this.searchMenu();
   }
 
   getCounterQuan(){
@@ -41,11 +47,17 @@ export class ListMenuComponent implements OnInit, OnDestroy {
   }
 
   getDataMenu(){
-    this.subs.sink = this.serviceMenu.getAllMenuNow(this.pagination).valueChanges.subscribe((resp:any)=>{
-      const menu = resp?.data;
-      this.listMenu = menu?.getAllRecipesNoToken?.data_recipes;
-      this.totalSize = menu?.getAllRecipesNoToken?.count_publish;
-      this.initStatusListMenu();  
+    this.subs.sink = this.serviceMenu.getAllMenuNow(this.pagination, this.resultMenuFilter).valueChanges.subscribe({
+      next: (resp:any)=>{
+        const menu = resp?.data;
+        this.listMenu = menu?.getAllRecipesNoToken?.data_recipes;
+        this.totalSize = menu?.getAllRecipesNoToken?.count_publish;
+        this.initStatusListMenu();  
+        console.log(this.listMenu)
+      },
+      error: (error:any)=>{
+        this.menulist = false;
+      }
     })
   }
 
@@ -65,8 +77,12 @@ export class ListMenuComponent implements OnInit, OnDestroy {
     }
   }
 
-  imageHasBeenLoaded(data){
-    console.log(data);
+  searchMenu(){
+    this.filterMenuByName.valueChanges.subscribe((result)=>{
+      console.log(result);
+      this.resultMenuFilter = result.toLowerCase();
+      this.getDataMenu();
+    })
   }
 
   addToCart(id:string){

@@ -9,11 +9,11 @@ export class MenuPageService {
 
   constructor(private apollo:Apollo) { }
 
-  getAllMenuNow(pagination){
+  getAllMenuNow(pagination:any, filterMenu:any){
     return this.apollo.watchQuery({
       query: gql`
-      query GetAllRecipesNoToken($limit: Int, $status: status_recipe, $page: Int) {
-        getAllRecipesNoToken(limit: $limit, status: $status, page: $page) {
+      query GetAllRecipesNoToken($limit: Int, $status: status_recipe, $page: Int, $recipeName: String) {
+        getAllRecipesNoToken(limit: $limit, status: $status, page: $page, recipe_name: $recipeName) {
           data_recipes {
             id
             description
@@ -24,6 +24,7 @@ export class MenuPageService {
             recipe_name
             special_offers
             menu_highlight
+            discount
           }
           count_publish
         }
@@ -31,6 +32,7 @@ export class MenuPageService {
       variables:{
         page: pagination.page,
         limit: pagination.limit,
+        recipeName: filterMenu,
         status: 'publish',
       },
       fetchPolicy:"network-only"

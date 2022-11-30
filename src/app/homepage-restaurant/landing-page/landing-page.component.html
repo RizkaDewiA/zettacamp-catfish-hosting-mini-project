@@ -1,24 +1,37 @@
-<div class="home height-60 color-trinary">
-  <div class="home-welcome">
-    <h2>Welcome To Indonesian Cuisine</h2>
-    <p>
-      We Have Many Variety Indonesian Food From Sabang To Merauke. You Can
-      Choose and Order It without Worry. Please Come And Join Us.
-    </p>
-    <div class="home-button">
-      <button mat-flat-button class="color-secondary" (click)="loginPage()">
-        {{"home-page.order-now" | translate | titlecase}} <mat-icon>arrow_forward</mat-icon>
-      </button>
+<div class="home">
+  <div class="cover full-width height-90">
+    <div class="home-welcome">
+      <h2>Welcome To Indonesian Cuisine</h2>
+      <p>
+        We Have Many Variety Indonesian Food From Sabang To Merauke. You Can
+        Choose and Order It without Worry. Please Come And Join Us.
+      </p>
+      <div class="home-button">
+        <button mat-flat-button class="color-secondary" (click)="loginPage()">
+          {{"home-page.order-now" | translate | titlecase}} <mat-icon>arrow_forward</mat-icon>
+        </button>
+      </div>
+    </div>
+    <div class="highlight-mode">
+      <button (click)="onLeft('highlight')" matSuffix mat-icon-button class=""><mat-icon>keyboard_arrow_left</mat-icon></button>
+      <div class="width-60 scrolling-wrapper  mr-right-1 mr-left-1" id="highlight">
+        <app-menu-higlight *ngFor="let item of menuHighlight" [itemMenu]="item" class="card mr-bottom-2" ></app-menu-higlight>
+      </div>
+      <button (click)="onRight('highlight')" matSuffix mat-icon-button class="mr-left-1"><mat-icon>keyboard_arrow_right</mat-icon></button>
     </div>
   </div>
-  <div class="home-img">
-    <img
-      src="https://images.unsplash.com/photo-1626497862618-4aa68df390fd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1025&q=80"
-      alt="img-landing"
-    />
+</div>
+<div class="height-90 color-primary offer">
+  <h2>Special Offer</h2>
+  <div class="offer-mode">
+    <button (click)="onLeft('offer')" matSuffix mat-icon-button class=""><mat-icon>keyboard_arrow_left</mat-icon></button>
+    <div class="width-70 scrolling-wrapper  mr-right-1 mr-left-1" id="offer">
+        <app-special-offer  *ngFor="let item of menuOffer" [itemMenu]="item"></app-special-offer>
+    </div>
+    <button (click)="onRight('offer')" matSuffix mat-icon-button class="mr-left-1"><mat-icon>keyboard_arrow_right</mat-icon></button>
   </div>
 </div>
-<div class="height-80 color-primary">
+<div class="height-80 color-trinary">
   <div class="dp-block width-80">
     <div class="achieve height-80">
       <div class="order">
@@ -40,52 +53,6 @@
     </div>
   </div>
 </div>
-<div class="height-80 color-trinary">
-  <div class="dp-block width-80 best-menu">
-    <h2>Our Bests Menu</h2>
-    <div class="card">
-      <mat-card>
-        <img
-          class="dp-block"
-          mat-card-img
-          src="https://images.unsplash.com/photo-1534939561126-855b8675edd7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
-          alt="food-img"
-        />
-        <mat-card-title>Pecel Lele</mat-card-title>
-        <mat-card-content class="dp-block"
-          >Indonesian Cuisine That Many People Like It How Deep The Flavour
-          Touches Your Tounge And Make It You Feel Journey in
-          Indonesian.</mat-card-content
-        >
-      </mat-card>
-      <mat-card>
-        <img
-          class="dp-block"
-          mat-card-img
-          src="https://images.unsplash.com/photo-1534939561126-855b8675edd7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
-          alt="food-img"
-        />
-        <mat-card-title>Gado-Gado</mat-card-title>
-        <mat-card-content class="dp-block"
-          >Indonesian Cuisine That Many People Like It How Deep The Flavour
-          Touches Your Tounge And Make It You Feel Journey in
-          Indonesian.</mat-card-content
-        >
-      </mat-card>
-      <mat-card>
-        <img
-          class="dp-block"
-          mat-card-img
-          src="https://images.unsplash.com/photo-1534939561126-855b8675edd7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
-          alt="food-img"
-        />
-        <mat-card-title>Sate Ayam</mat-card-title>
-        <mat-card-content class="dp-block"
-          >Indonesian Cuisine That Many People Like It How Deep The Flavour
-          Touches Your Tounge And Make It You Feel Journey in
-          Indonesian.</mat-card-content
-        >
-      </mat-card>
-    </div>
-  </div>
+<div>
+  <app-about-page></app-about-page>
 </div>

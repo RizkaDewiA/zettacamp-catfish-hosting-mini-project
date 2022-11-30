@@ -21,13 +21,7 @@ const routes: Routes = [
         loadChildren: () =>
           import('./menu-page/menu-page.module').then((m) => m.MenuPageModule),
       },
-      {
-        path: 'about-page',
-        loadChildren: () =>
-          import('./about-page/about-page.module').then(
-            (m) => m.AboutPageModule
-          ),
-      },
+      { path: '**', redirectTo: "landing-page", pathMatch:"full"}
     ],
   },
   {
@@ -79,6 +73,9 @@ const routes: Routes = [
       {
         path: 'menu-offer',
         component: HomepageUserComponent
+      },
+      {
+        path:'**', redirectTo:"menu-offer", pathMatch:"full"
       }
     ],
   },
@@ -88,7 +85,12 @@ const routes: Routes = [
       import('./login-page/login-page.module').then((m) => m.LoginPageModule),
   },
   {
-    path:'**', component:HomepageRestaurantComponent
+    path: 'register-page',
+    loadChildren: () =>
+      import('./register-page/register-page.module').then((m) => m.RegisterPageModule),
+  },
+  {
+    path:'**', redirectTo:"home-page", pathMatch:"full"
   }
 ];
 

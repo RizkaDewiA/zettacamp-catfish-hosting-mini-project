@@ -1,7 +1,17 @@
 <div class="width-60 dp-block-1-2">
+  <mat-form-field class="mr-bottom-1" appearance="fill" class="mr-right-1">
+    <mat-label>Menu Name</mat-label>
+    <input type="text" matInput [formControl]="filterMenuByName" [(ngModel)]="menuByNameFilter" placeholder="search menu here"/>
+    <button *ngIf="menuByNameFilter" matSuffix mat-icon-button (click)="menuByNameFilter=''">
+      clear
+    </button>
+  </mat-form-field>
   <div *ngIf="menulist; else menuListNone">
     <div class="flex-container" >
       <mat-card *ngFor="let item of listMenu; let i = index">
+        <div class="label-tag" *ngIf="item?.special_offers == true">
+          <p> discount up to {{item?.discount}} %</p>
+        </div>
         <div [ngClass]="item?.available == 0 ? 'greyout' : ''">
           <img *ngIf="item.image != ''; else menuImageNone" class="dp-block" [src]="item?.image" alt="menu image" />
           <ng-template #menuImageNone>
@@ -13,7 +23,7 @@
         <div class="group-item">
           <div class="price-item">
             <mat-card-subtitle>price</mat-card-subtitle>
-            <h2>Rp {{ item?.price }}</h2>
+            <h2> {{ item?.price | currency:"Rp. " }}</h2>
           </div>
           <div class="avail-item">
             <mat-card-subtitle>available</mat-card-subtitle>

@@ -1,22 +1,52 @@
 <mat-card>
-    <div [ngClass]="itemMenu?.available == 0 ? 'greyout' : ''">
+  <div class="label-tag">
+    <p> discount up to {{itemMenu?.discount}} %</p>
+  </div>
+  <div [ngClass]="itemMenu?.available == 0 ? 'greyout' : ''">
+    <img
+      *ngIf="itemMenu?.image != ''; else menuImageNone"
+      class="dp-block-1-2"
+      src="{{ itemMenu?.image }}"
+      alt="menu image"
+    />
+    <ng-template #menuImageNone>
       <img
-        *ngIf="itemMenu?.image != ''; else menuImageNone"
         class="dp-block"
-        src="{{ itemMenu?.image }}"
+        src="https://images.unsplash.com/photo-1534939561126-855b8675edd7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
         alt="menu image"
       />
-      <ng-template #menuImageNone>
-        <img
-          class="dp-block"
-          src="https://images.unsplash.com/photo-1534939561126-855b8675edd7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
-          alt="menu image"
-        />
-      </ng-template>
+    </ng-template>
+  </div>
+  <mat-card-title>{{ itemMenu?.recipe_name | titlecase }}</mat-card-title>
+  <div class="group-item">
+    <div class="price-item">
+      <mat-card-subtitle>price</mat-card-subtitle>
+      <h2>{{ itemMenu?.price | currency: "Rp. " }}</h2>
     </div>
-    <mat-card-title>{{ itemMenu?.recipe_name | titlecase }}</mat-card-title>
-    <mat-card-content>
-      {{ itemMenu?.description }}
-    </mat-card-content>
-  </mat-card>
-  
+    <div class="avail-item">
+      <mat-card-subtitle>available</mat-card-subtitle>
+      <h2>{{ itemMenu?.available }}</h2>
+    </div>
+  </div>
+  <mat-card-actions
+    align="center"
+    *ngIf="itemMenu?.available > 0; else stockRunOut"
+  >
+    <button
+      mat-flat-button
+      color="addcart"
+      class="add-cart"
+      (click)="addToCart(itemMenu?.id)"
+    >
+      <mat-icon>add_shopping_cart</mat-icon>
+    </button>
+  </mat-card-actions>
+  <ng-template #stockRunOut>
+    <mat-card-actions align="center">
+      <button mat-flat-button class="add-cart" disabled="true">
+        <mat-icon>add_shopping_cart</mat-icon>
+      </button>
+      <p class="top">out of stock</p>
+    </mat-card-actions>
+  </ng-template>
+</mat-card>

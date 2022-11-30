@@ -1,14 +1,30 @@
 /* home */
 .home{
+    background-image: url("https://images.unsplash.com/photo-1626497862618-4aa68df390fd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1025&q=80");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100%;
+}
+
+.cover{
     display: flex;
+    background-color: rgba(255, 253, 227, 0.8);
+    overflow-x: hidden;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .home-welcome{
-    padding: 10rem ;
+    margin: 0 10rem;
 }
 
-.home-img img{
-    width: 700px;
+.home-welcome h2{
+    font-size: 2rem;
+}
+
+.home-welcome p{
+    width: 300px;
+    font-size: 1rem;
 }
 
 .home-button {
@@ -29,10 +45,9 @@
     align-self: center;
 }
 
-
 /* achieve */
 .achieve {
-    color: white;
+    color: black;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
@@ -66,33 +81,43 @@
     font-weight: 300;
 }
 
-.card {
-    display: flex;
-    justify-content: space-around;
-    margin: 2rem 0;
-}
-
-mat-card {
-    width: 300px;
-    height: 400px;
-}
-
-mat-card img{
-    width: 50%;
-    margin-bottom: 1.5rem;
-}
-
-mat-card-title {
-    text-align: center;
-    margin-bottom: 1.5rem;
-}
-
-mat-card-content {
-    width: 80%;
-    text-align: justify;
-   line-height: 1.3rem;
-}
-
 .home-button button:hover{
     color: black;
+}
+
+.scrolling-wrapper{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow-x: scroll;
+    overflow-y: hidden;
+}
+
+.scrolling-wrapper::-webkit-scrollbar{
+    display: none;
+}
+
+.highlight-mode, .offer-mode{
+    display: flex;
+    align-items: center;
+}
+
+.highlight-mode button{
+    background-color: #c21010;
+    color: white;
+}
+
+.offer-mode button{
+    background-color: #fffde3;
+}
+
+.offer-mode{
+    justify-content: center;
+}
+
+.offer h2{
+    text-align: center;
+    font-size: 2rem;
+    padding: 2rem 0;
+    color: white;
 }

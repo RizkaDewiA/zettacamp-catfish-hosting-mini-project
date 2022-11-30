@@ -8,6 +8,7 @@ import {TranslateModule} from '@ngx-translate/core';
 import { MenuHiglightComponent } from './menu-higlight/menu-higlight.component';
 import { SpecialOfferComponent } from './special-offer/special-offer.component';
 import { HomepageUserComponent } from './homepage-user/homepage-user.component';
+import { AboutPageModule } from '../about-page/about-page.module';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { HomepageUserComponent } from './homepage-user/homepage-user.component';
     RouterModule,
     TranslateModule.forChild({
       extend: true
-    })
+    }),
+    AboutPageModule
   ],
   exports:[
     HomepageRestaurantComponent,

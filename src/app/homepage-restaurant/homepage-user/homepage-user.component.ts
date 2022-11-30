@@ -13,6 +13,7 @@ export class HomepageUserComponent implements OnInit {
     page: 1,
     limit: 100
   }
+
   highlight:boolean = true;
   offer:boolean = true;
   menuHighlight:any;
@@ -28,7 +29,7 @@ export class HomepageUserComponent implements OnInit {
     this.subs.sink = this.serviceHighOffer.getMenuOffer(this.pagination, this.offer).valueChanges.subscribe((res)=>{
       this.menuOffer = res?.data;
       this.menuOffer = this.menuOffer?.getAllRecipesNoToken.data_recipes.filter((stat)=>stat.status == 'publish');
-    })
+    });
   }
 
   ngOnDestroy(): void {

@@ -49,6 +49,7 @@ export class HomepageRestaurantService {
             price
             status
             id
+            discount
           }
         }
       }`,

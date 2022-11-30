@@ -3,12 +3,11 @@
 </div>
 <ng-template #loginPage>
   <div class="height-100 color-primary">
-
     <div class="full-width language">
+      <a [routerLink]="['/home-page']" class="back"><mat-icon>arrow_back</mat-icon>Home Page</a>
       <a *ngIf="currentLanguage" (click)="changeLanguage(currentLanguage)"><img [src]="srcImages"></a>
     </div>
     <div class="container-100">
-      <a [routerLink]="['/home-page']" class="back"><mat-icon>arrow_back</mat-icon>Home Page</a>
       <div class="flex-container mr-top-1">
         <mat-card>
           <mat-card-title>{{"home-page.login" | translate | titlecase}}</mat-card-title>
@@ -68,6 +67,9 @@
                     <button mat-flat-button class="color-rest login-button" (click)="onSubmit()">{{"home-page.login" | translate | titlecase}}</button>
                   </mat-card-actions>
                 </form>
+                <!-- <mat-card-actions align="center">
+                  <a [routerLink]="['/register-page']">Dont Have Account?</a>
+                </mat-card-actions> -->
               </mat-card-content>
             </div>
           </div>
