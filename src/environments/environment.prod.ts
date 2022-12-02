@@ -1,6 +1,6 @@
 export const environment = {
   production: false,
-  apiUrl: 'https://f1cf-114-142-168-11.ap.ngrok.io/',
+  apiUrl: 'https://tired-petticoat-slug.cyclic.app',
   tokenKey: 'token',
   user_id: 'user_id',
   role: 'role',
