@@ -4,7 +4,7 @@
 <ng-template #loginPage>
   <div class="height-100 color-primary">
     <div class="full-width language">
-      <a [routerLink]="['/home-page']" class="back"><mat-icon>arrow_back</mat-icon>Home Page</a>
+      <a [routerLink]="['/home-page']" class="back"><mat-icon>arrow_back</mat-icon>{{"home-page.home" | translate | titlecase}}</a>
       <a *ngIf="currentLanguage" (click)="changeLanguage(currentLanguage)"><img [src]="srcImages"></a>
     </div>
     <div class="container-100">
@@ -34,23 +34,22 @@
                   [formGroup]="loginForm"
                 >
                   <mat-form-field appearance="outline">
-                    <mat-label>{{"title.title-email" | translate | titlecase}}</mat-label>
+                    <mat-label>{{"title.email" | translate | titlecase}}</mat-label>
                     <input
                       matInput
-                      placeholder="pat@example.com"
                       formControlName="email"
                       required
                     />
-                    <mat-error *ngIf="this.loginForm.get('email').invalid">You Must Fill This Field With Your Email</mat-error>
+                    <mat-error *ngIf="this.loginForm.get('email').invalid">{{"mat-error.fill-email" | translate | titlecase}}</mat-error>
                   </mat-form-field>
                   <mat-form-field appearance="outline">
-                    <mat-label>{{"title.title-password" | translate | titlecase}}</mat-label>
+                    <mat-label>{{"title.password" | translate | titlecase}}</mat-label>
                     <input
                       matInput
                       formControlName="password"
                       [type]="hide ? 'password' : 'text'"
                     />
-                    <mat-error *ngIf="this.loginForm.get('password').invalid">You Must Fill This Field With Your Password</mat-error>
+                    <mat-error *ngIf="this.loginForm.get('password').invalid">{{"mat-error.fill-password" | translate | titlecase}}</mat-error>
                     <button
                       mat-icon-button
                       matSuffix
@@ -66,9 +65,12 @@
                   <mat-card-actions align="center">
                     <button mat-flat-button class="color-rest login-button" (click)="onSubmit()">{{"home-page.login" | translate | titlecase}}</button>
                   </mat-card-actions>
+                  <mat-card-actions class="forgot-pass" align="center">
+                    <a (click)="forgotPassword()">{{"other.text-3" | translate | titlecase}} ?</a>
+                  </mat-card-actions>
                 </form>
                 <mat-card-actions align="center">
-                  <a [routerLink]="['/register-page']">Dont Have Account?</a>
+                  <a [routerLink]="['/register-page']">{{"title.route-register" | translate | titlecase}}</a>
                 </mat-card-actions>
               </mat-card-content>
             </div>

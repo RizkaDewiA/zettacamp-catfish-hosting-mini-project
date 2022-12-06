@@ -13,10 +13,12 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { RegisterPageModule } from './register-page/register-page.module';
+import { CurrReplacePipe } from './pipe/curr-replace.pipe';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CurrReplacePipe,
   ],
   imports: [
     BrowserModule,

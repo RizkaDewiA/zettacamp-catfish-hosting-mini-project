@@ -4,6 +4,8 @@ html,
 body {
   height: 100%;
 }
+
+
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
@@ -14,11 +16,19 @@ body {
   box-sizing: border-box;
 }
 
+.no-overflow::-webkit-scrollbar{
+  display: none;
+}
 /* dp-block */
 
 .dp-block {
   display: block;
   margin: 0 auto;
+}
+
+.dp-block-1{
+  display: block;
+  margin: 1rem;
 }
 
 .dp-block-1-2 {
@@ -139,6 +149,18 @@ body {
   padding-left: 2rem;
 }
 
+.pd-left-right-1{
+  padding: 0 1rem;
+}
+
+.pd-left-right-2{
+  padding: 0 2rem;
+}
+
+.pd-bottom-1{
+  padding-bottom: 1rem;
+}
+
 /* margin */
 .mr-right-1 {
   margin-right: 1rem;
@@ -169,7 +191,7 @@ body {
 }
 
 .mr-bottom-2 {
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
 }
 
 .mr-top-1{

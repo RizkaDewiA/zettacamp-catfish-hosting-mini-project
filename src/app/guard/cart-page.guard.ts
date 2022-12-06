@@ -24,7 +24,7 @@ export class CartPageGuard implements CanActivate {
     | UrlTree {
     const token = localStorage.getItem(environment.tokenKey);
     const role = JSON.parse(localStorage.getItem(environment.role));
-    if (token !== null && ( role == 'admin' || role=='user') ) {
+    if (token !== null && ( role=='user') ) {
       return true;
     } else {
       this.router.navigate(['main-page']);

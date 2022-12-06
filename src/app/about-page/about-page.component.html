@@ -1,17 +1,17 @@
-<div class="about-container">
+<div [ngClass]="role==null ? 'about-container': null">
     <div class="height-100 about-page">
-        <h1>About Our Restaurant</h1>
+        <h1>{{"about.title-restaurant" | translate | titlecase}}</h1>
         <div class="width-80 dp-block-1-2">
             <div class="flex-container">
                 <mat-card class="a">
-                    <h2>Our Story</h2>
-                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Exercitationem harum perferendis natus sequi aspernatur quia, corrupti fuga veniam quis. Consequatur aspernatur, doloremque quisquam ipsam alias atque ratione fuga optio dignissimos!</p>
-                    <h2>Our Contacts</h2>
+                    <h2>{{"about.title-story" | translate | titlecase}}</h2>
+                    <p>{{"about.text" | translate}}</p>
+                    <h2>{{"about.title-contacts" | translate | titlecase}}</h2>
                     <p class="flex"><img class="pd-right-1" src="https://cdn-icons-png.flaticon.com/512/819/819814.png" alt="icon map">Jalan Merdeka, payungan, Indonesia</p>
                     <p class="flex"><img class="pd-right-1" src="https://cdn-icons-png.flaticon.com/512/3677/3677194.png" alt="icon call"> 01232101256</p>
                 </mat-card>
                 <mat-card class="b">
-                    <h2>Our Stores</h2>
+                    <h2>{{"about.title-stores" | translate | titlecase}}</h2>
                     <img class="dp-block" src="https://cdn-icons-png.flaticon.com/512/5399/5399569.png" alt="maps-img">
                 </mat-card>
             </div>

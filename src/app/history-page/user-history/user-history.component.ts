@@ -16,9 +16,9 @@ export class UserHistoryComponent implements OnInit {
   private subs =  new SubSink();
   panelOpenState = false;
   statusFilter:any = [
-    {viewValue: "All", value: "none"},
-    {viewValue: "Success", value:"success"},
-    {viewValue: "Failed", value:"failed"}
+    {viewValue: "all", value: "none"},
+    {viewValue: "success", value:"success"},
+    {viewValue: "failed", value:"failed"}
   ]
 
   statusTransFilter = new FormControl('');

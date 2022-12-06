@@ -8,7 +8,8 @@ export const environment = {
   tokenKey: 'token',
   user_id: 'user_id',
   role: 'role',
-  usertype: 'usertype'
+  usertype: 'usertype',
+  currentLanguage : 'currentLanguage'
 };
 
 

@@ -1,26 +1,26 @@
 <div class="container-80 dp-block-1-2">
   <div class="search-filter">
     <mat-form-field class="mr-bottom-1" appearance="fill">
-      <mat-label>Stock Name</mat-label>
-      <input type="text" matInput [formControl]="filterStockName" [(ngModel)]="stockNameFilter" placeholder="search stock here"/>
+      <mat-label>{{"filter.stock" | translate | titlecase}}</mat-label>
+      <input type="text" matInput [formControl]="filterStockName" [(ngModel)]="stockNameFilter" placeholder="{{ 'filter.stock-placeholder' | translate | titlecase}}"/>
       <button *ngIf="stockNameFilter" matSuffix mat-icon-button (click)="stockNameFilter=''">
-        clear
+        {{"filter.clear-btn" | translate | titlecase}}
       </button>
     </mat-form-field>
   </div>
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
     <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef>Name</th>
+      <th mat-header-cell *matHeaderCellDef>{{"table.name" | translate | titlecase}}</th>
       <td mat-cell *matCellDef="let element">{{ element.name | titlecase }}</td>
     </ng-container>
 
     <ng-container matColumnDef="stock">
-      <th class="th-center" mat-header-cell *matHeaderCellDef>Stock</th>
+      <th class="th-center" mat-header-cell *matHeaderCellDef>{{"table.stock" | translate | titlecase}}</th>
       <td class="th-center" mat-cell *matCellDef="let element">{{ element.stock }}</td>
     </ng-container>
 
     <ng-container matColumnDef="status">
-      <th class="th-center" mat-header-cell *matHeaderCellDef>Status</th>
+      <th class="th-center" mat-header-cell *matHeaderCellDef>{{"table.status" | translate | titlecase}}</th>
       <td class="th-center" mat-cell *matCellDef="let element">
         <mat-icon [ngStyle]="{color:'green'}" *ngIf="element.status == 'active'" matTooltip="active">done</mat-icon>
         <mat-icon [ngStyle]="{color:'red'}" *ngIf="element.status === 'deleted'" matTooltip="deleted">close</mat-icon>
@@ -28,7 +28,7 @@
     </ng-container>
 
     <ng-container matColumnDef="actions" class="actions">
-      <th mat-header-cell *matHeaderCellDef>Action</th>
+      <th mat-header-cell *matHeaderCellDef>{{"table.action" | translate | titlecase}}</th>
       <td mat-cell *matCellDef="let element">
         <mat-list class="actions-button">
           <mat-list-item>
@@ -50,7 +50,7 @@
 
     <tr class="mat-row" *matNoDataRow>
       <td class="mat-cell" [attr.colspan]="displayedColumns.length">
-        No data matching the filter.
+        {{"table.message-notfound" | translate | titlecase}}
       </td>
     </tr>
   </table>

@@ -1,24 +1,345 @@
 {
-    "home-page": {
-        "home" : "beranda",
-        "menu" : "menu kami",
-        "about" : "tentang kami",
-        "login" : "masuk",
-        "order-now": "pesan sekarang",
-        "see-our-menu": "lihat menu kami"
-    },
-    "title":{
-        "title-medsos": "media sosial kami",
-        "title-email": "masukkan email kamu",
-        "title-password": "masukkan password kamu",
-        "title-logout": "keluar"
-    },
-    "sub-menu": {
-        "Menu": "menu",
-        "About": "tentang kami",
-        "Cart": "keranjang",
-        "Menu Management": "menu manajemen",
-        "Stock Management": "stok manajemen",
-        "History":"riwayat"
-    }
+  "home-page": {
+    "home": "beranda",
+    "menu": "menu kami",
+    "about": "tentang kami",
+    "login": "masuk",
+    "order-now": "pesan sekarang",
+    "see-our-menu": "lihat menu kami"
+  },
+  "title": {
+    "medsos": "media sosial kami",
+    "email": "masukkan email anda",
+    "password": "masukkan kata sandi anda",
+    "logout": "keluar",
+    "register": "buat akun baru",
+    "firstname": "nama depan",
+    "lastname": "nama belakang",
+    "register-btn": "buat akun",
+    "route-login": "saya punya akun",
+    "route-register": "saya tidak punya akun",
+    "welcome": "selamat datang di indonesian cuisine",
+    "announce": "lihatlah apa yang kami miliki"
+  },
+  "home":{
+    "text":"Kami Memiliki Banyak Variasi Makanan Indonesia Dari Sabang Sampai Merauke. Anda Dapat Memilih dan Memesan Tanpa Khawatir. Silahkan Datang Dan Bergabung Dengan Kami.",
+    "order":"Pemesanan Terikirm",
+    "google":"Rating Google",
+    "receipt":"Resi Kami",
+    "natural":"Produk Natural Kami Pakai"
+  },
+  "sub-menu": {
+    "Menu": "menu",
+    "About": "tentang kami",
+    "Cart": "keranjang",
+    "Menu Management": "menu manajemen",
+    "Stock Management": "stok manajemen",
+    "History": "riwayat",
+    "Menu highlight & Special offer": "sorot menu & penawaran spesial"
+  },
+  "about": {
+    "title-restaurant": "tentang restaurant kami",
+    "title-story": "cerita kami",
+    "title-stores": "toko kami",
+    "title-contacts": "kontak kami",
+    "text":"kami sudah berdiri sejak 5 tahun lalu. kami menyediakan resep indonesia dengan makanan khas nusantara. kami menggunakan rempah rempah asli dari tanah air indonesia yang ditanam dengan sepenuh hati dan dihidangkan dengan segenap hati."
+  },
+  "cart": {
+    "title-purchase": "menu pembelian anda",
+    "title-status": "tertunda",
+    "title-transaction": "transaksi anda masih dalam proses",
+    "note": "catatan",
+    "amount": "jumlah",
+    "total-price-item": "total harga barang",
+    "total-price": "total harga",
+    "order-btn": "pesan sekarang",
+    "status-transaction": "tidak ada transaksi tertunda"
+  },
+  "cart-dialog": {
+    "title-dialog": "edit catatan",
+    "error-message": "bagian ini diperlukan",
+    "cancel-btn": "batalkan",
+    "submit-btn": "simpan"
+  },
+  "stock-manage": {
+    "add-btn": "tambahkan",
+    "add-stock": "tambah stok baru",
+    "edit-stock": "edit stok",
+    "submit-btn": "kirim",
+    "name-stock": "nama stok",
+    "amount-stock": "jumlah",
+    "cancel-btn": "batalkan"
+  },
+  "filter": {
+    "stock": "nama stock",
+    "menu": "nama menu",
+    "clear-btn": "hapus",
+    "stock-placeholder" : "cari stok disini",
+    "menu-placeholder": "cari menu disini",
+    "status-menu": "status menu",
+    "lastname": "nama akhiran",
+    "status": "status",
+    "status-transac": "status transaksi"
+  },
+  "table": {
+    "name": "nama",
+    "stock": "stok",
+    "status": "status",
+    "action": "tindakan",
+    "message-notfound": "tidak ada data yang sama dengan filter",
+    "image": "gambar",
+    "note": "catatan",
+    "price": "harga",
+    "amount": "jumlah",
+    "total-item": "total setiap item",
+    "total": "total harga",
+    "detail-ingred": "detail bahan",
+    "available": "tersedia",
+    "highlight": "sorot menu",
+    "offer": "penawaran istimewa"
+  },
+  "user-history": {
+    "title": "riwayat transaksi",
+    "sl-btn": "tampilkan sedikit",
+    "sm-btn": "tampilkan lebih",
+    "no-trans": "tidak ada transkasi",
+    "details-btn": "detail"
+  },
+  "admin-history": {
+    "date": "tanggal pesan",
+    "total": "total pesanan",
+    "price": "total harga",
+    "details": "detail pesanan",
+    "balance": "pemasukan"
+  },
+  "dialog-details": {
+    "order-stat": "status pesanan",
+    "customer": "konsumen",
+    "order-date": "tanggal pesanan",
+    "order-menu": "menu pesanan",
+    "code": "kode transaksi",
+    "close-btn": "tutup"
+  },
+  "stock-update": {
+    "title": "Diperbaharui",
+    "text": "Stok Telah Diperbaharui",
+    "confrim-btn": "Ok"
+  },
+  "stock-added": {
+    "title": "Berhasil",
+    "text": "Stok Telah Berhasil Ditambahkan",
+    "confrim-btn": "Ok"
+  },
+  "stock-minus": {
+    "title": "Gagal!",
+    "text": "Stok Tidak Boleh Kurang!",
+    "confrim-btn": "Ok"
+  },
+  "stock-invalid": {
+    "title": "Gagal!",
+    "text": "Stok Salah",
+    "confrim-btn": "Oke"
+  },
+  "alert-error":{
+    "title": "Kesalahan!",
+    "confrim-btn": "Oke"
+  },
+  "delete-confrim": {
+    "title":"Apakah anda yakin ingin menghapus stok ini?",
+    "text":"Anda tidak akan dapat mengembalikan ini!",
+    "cancel-btn": "Batalkan",
+    "confrim-btn": "Ya, Hapus Saja"
+  },
+  "delete-success": {
+    "title":"Terhapus!",
+    "text-1":"Stok anda",
+    "text-2":"telah berhasil dihapus"
+  },
+  "delete-fail": {
+    "title":"Kesalahan!",
+    "text-1":"Stock anda",
+    "text-2":"tidak bisa dihapus"
+  },
+  "menu-manage": {
+    "add-btn": "tambahkan",
+    "add-menu": "tambah menu baru",
+    "edit-menu": "edit menu",
+    "submit-btn": "kirim",
+    "name": "nama",
+    "descrip": "deskripsi",
+    "image": "photo",
+    "price": "harga",
+    "status": "status",
+    "title-ingred": "bahan",
+    "ingred-name": "nama bahan",
+    "quantity": "banyak bahan",
+    "cancel-btn": "batalkan",
+    "publish": "diterbitkan",
+    "unpublish": "tidak diterbitkan",
+    "more-detail": "lebih detail",
+    "close-btn": "tutup",
+    "quantity-used": "jumlah yang digunakan",
+    "title-discount": "perbaharui diskon",
+    "amount": "jumlah"
+  },
+  "status": {
+    "active":"aktif",
+    "success":"berhasil",
+    "failed":"gagal"
+  },
+  "menu-update": {
+    "title": "Diperbaharui",
+    "text": "Menu Telah Diperbaharui",
+    "confrim-btn": "Oke"
+  },
+  "menu-added": {
+    "title": "Berhasil",
+    "text": "Menu Telah Ditambahkan",
+    "confrim-btn": "Oke"
+  },
+  "menu-invalid": {
+    "title": "Gagal!",
+    "text": "Menu Tidak Sah",
+    "confrim-btn": "Oke"
+  },
+  "delete-confrim-menu": {
+    "title":"Apakah anda yakin ingin menghapus menu ini?",
+    "text":"Anda tidak akan dapat mengembalikan ini!",
+    "cancel-btn": "Batalkan",
+    "confrim-btn": "Ya, Hapus Saja"
+  },
+  "delete-success-menu": {
+    "title":"Terhapus!",
+    "text-1":"Menu anda",
+    "text-2":"telah berhasil dihapus"
+  },
+  "delete-fail-menu": {
+    "title":"Gagal!",
+    "text-1":"Menu anda",
+    "text-2":"tidak bisa dihapus"
+  },
+  "update-highlight": {
+    "title": "Berhasil!",
+    "text-activated": "Sorot Menu Telah Aktif!",
+    "text-noactivated": "Sorot Menu Tidak Aktif!"
+  },
+  "update-offer": {
+    "title": "Berhasil!",
+    "text-activated": "Penawaran Spesial Telah Aktif!",
+    "text-noactivated": "Penawaran Spesial Tidak Aktif!"
+  },
+  "discount-invalid": {
+    "title": "Gagal!",
+    "text": "Diskon tidak sah",
+    "confrim-btn": "Oke"
+  },
+  "update-status": {
+    "title": "Ubah Status",
+    "text": "Apakah Anda Yakin Akan Mengubah Status Menjadi",
+    "confrim-btn": "Ya, Ubah Status",
+    "publish": "Diterbitkan",
+    "unpublish": "Tidak Diterbitkan",
+    "change": "Perubahan Berhasil!",
+    "text-1": "Menu anda",
+    "text-2": "telah"
+  },
+  "menu-list": {
+    "disc-title": "diskon sampai",
+    "notif-no": "tidak ada list makanan",
+    "notif-soldout": "habis",
+    "title-buy": "berapa banyak yang akan anda beli?",
+    "message": "pesan"
+  },
+  "alert-menu": {
+    "title": "Berhasil!",
+    "text": "Menu anda berhasil ditambahkan"
+  },
+  "alert-login": {
+    "title": "Masuk terlebih dahulu",
+    "text": "Anda tidak memiliki izin, tolong masuk dahulu",
+    "confrim-btn": "Ya, Masuk",
+    "cancel-btn": "Batalkan"
+  },
+  "alert-menu-fail": {
+    "title": "Oh tidak.....",
+    "text": "Anda harus mengisi jumlah pesanan"
+  },
+  "alert-saldo": {
+    "title" : "Cek Saldo",
+    "text" : "Saldo anda telah mencapai batas"
+  },
+  "profile": {
+    "firstname": "nama depan",
+    "lastname": "nama akhir",
+    "email": "email",
+    "balance": "saldo",
+    "status":"status"
+  },
+  "confrim-order": {
+    "title": "Apakah anda yakin ingin memesan makanan?",
+    "text":"Anda tidak akan dapat mengembalikan ini!",
+    "order-btn": "Ya, aku pesan!",
+    "cancel-btn": "Batalkan",
+    "title-success": "Berhasil!",
+    "title-error": "Gagal!",
+    "text-success": "Makananmu telah berhasil dipesan",
+    "text-error-1": "Item makananmu expired, segera dihapus",
+    "text-error-2": "Makananmu tidak bisa diorder",
+    "title-delete": "Apakah anda yakin ingin menghapus makanan ini?",
+    "text-1": "Makanan mu"
+  },
+  "mat-error": {
+    "fill-email": "anda harus mengisinya dengan email anda",
+    "fill-password": "anda harus mengisinya dengan kata sandi anda"
+  },
+  "option-stat": {
+    "all": "semua",
+    "success": "berhasil",
+    "failed": "gagal"
+  },
+  "none":{
+    "highlight": "tidak ada sorot menu",
+    "offer": "tidak ada penawaran spesial"
+  },
+  "logout":{
+    "title": "Apa anda yakin?",
+    "text": "Anda ingin keluar",
+    "confirm-btn": "Ya, keluar",
+    "cancel-btn": "Batalkan"
+  },
+  "login-first": {
+    "title": "Masuk Dahulu",
+    "text": "Anda tidak memiliki izin, tolong untuk masuk terlebih dahulu",
+    "confirm-btn": "Ya, masuk",
+    "cancel-btn": "Batalkan"
+  },
+  "email-message": {
+    "title": "Email anda tidak ditemukan",
+    "text": "Periksa kembali email anda"
+  },
+  "pass-message": {
+    "title": "Email & kata sandi anda salah",
+    "text": "Periksa kembali email & kata sandi anda"
+  },
+  "other": {
+    "text-1":"Selamat Datang Kembali",
+    "text-2":"Sesuatu telah terjadi!",
+    "text-3":"lupa kata sandi"
+  },
+  "validation":{
+    "success": "Behasil!",
+    "error": "Gagal!",
+    "email":"Validasi email anda sukses",
+    "password": "Kata sandi anda telah diatur ulang",
+    "check-email": "periksa email",
+    "text-email": "tolong isi email anda dibawah ini",
+    "next-btn": "selanjutnya",
+    "reset": "mengatur ulang kata sandi",
+    "text-pass": "tolong isi kata sandi anda",
+    "reset-btn": "atur ulang kata sandi"
+  },
+  "shared":{
+    "text-1": "telah ditambahkan ke keranjang",
+    "cart-btn": "lihat kerancang"
+  }
 }

@@ -1,11 +1,8 @@
 <div class="home">
   <div class="cover full-width height-90">
     <div class="home-welcome">
-      <h2>Welcome To Indonesian Cuisine</h2>
-      <p>
-        We Have Many Variety Indonesian Food From Sabang To Merauke. You Can
-        Choose and Order It without Worry. Please Come And Join Us.
-      </p>
+      <h2>{{"title" | translate | titlecase}}</h2>
+      <p>{{"home.text" | translate}}</p>
       <div class="home-button">
         <button mat-flat-button class="color-secondary" (click)="loginPage()">
           {{"home-page.order-now" | translate | titlecase}} <mat-icon>arrow_forward</mat-icon>
@@ -36,19 +33,19 @@
     <div class="achieve height-80">
       <div class="order">
         <h1>10.000</h1>
-        <p>Order Was Deliverd</p>
+        <p>{{"home.order" | translate}}</p>
       </div>
       <div class="score">
         <h1>4.9<img src="/assets/img/star.png" /></h1>
-        <p>Google Score</p>
+        <p>{{"home.google" | translate}}</p>
       </div>
       <div class="receipt">
         <h1>1000</h1>
-        <p>Receipt We Have</p>
+        <p>{{"home.receipt" | translate}}</p>
       </div>
       <div class="natural">
         <h1>100%</h1>
-        <p>Natural Product We Use</p>
+        <p>{{"home.natural" | translate}}</p>
       </div>
     </div>
   </div>

@@ -6,6 +6,9 @@ import { MaterialModule } from '../material/material.module';
 import { DetailHistoryComponent } from './detail-history/detail-history.component';
 import { UserHistoryComponent } from './user-history/user-history.component';
 import { AdminHistoryComponent } from './admin-history/admin-history.component';
+import { HttpClient } from '@angular/common/http';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { HttpLoaderFactory } from '../app.module';
 
 const routes : Routes = [
   {path:"", component: HistoryPageComponent}
@@ -21,7 +24,15 @@ const routes : Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    MaterialModule
+    MaterialModule,
+    TranslateModule.forChild({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient],
+      },
+      defaultLanguage: 'en',
+    }),
   ],
   exports: [
     HistoryPageComponent,

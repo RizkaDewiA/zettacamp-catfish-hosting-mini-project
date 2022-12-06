@@ -101,3 +101,7 @@ img {
   font-weight: 500;
   padding: 0.5rem 0;
 }
+
+::ng-deep .my-custom-container-class{
+  width: 1000px;
+}

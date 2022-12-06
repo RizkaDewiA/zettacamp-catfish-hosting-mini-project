@@ -1,13 +1,19 @@
 <div class="container-80 dp-block-1-2">
-    <h1 class="label">History Transaction</h1>
+  <div class="top-level mr-bottom-2">
+    <h1 class="label">{{"user-history.title" | translate | titlecase}}</h1>
+    <mat-card class="balance-card">
+      <mat-card-subtitle>{{"admin-history.balance" | translate | titlecase}}</mat-card-subtitle>
+      <mat-card-title>Rp {{balanceAdmin}}</mat-card-title>
+    </mat-card>
+  </div>
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
       <ng-container matColumnDef="last_name">
         <th class="option" mat-header-cell *matHeaderCellDef>
-            <mat-form-field class="mr-bottom-1" appearance="fill" class="mr-right-1">
-                <mat-label>Last Name</mat-label>
-                <input type="text" matInput [formControl]="filterTransName" [(ngModel)]="transNameFilter" placeholder="search menu here"/>
+            <mat-form-field class="mr-bottom-1" class="mr-right-1">
+                <mat-label>{{"filter.lastname" | translate | titlecase}}</mat-label>
+                <input type="text" matInput [formControl]="filterTransName" [(ngModel)]="transNameFilter" placeholder="search last name here"/>
                 <button *ngIf="transNameFilter" matSuffix mat-icon-button (click)="transNameFilter=''">
-                  clear
+                  {{"filter.clear-btn" | translate | titlecase}}
                 </button>
               </mat-form-field>
         </th>
@@ -15,27 +21,27 @@
       </ng-container>
   
       <ng-container matColumnDef="order_date">
-        <th class="th-center" mat-header-cell *matHeaderCellDef>Order Date</th>
+        <th class="th-center" mat-header-cell *matHeaderCellDef>{{"admin-history.date" | translate | titlecase}}</th>
         <td class="th-center" mat-cell *matCellDef="let element">{{ element.order_date }}</td>
       </ng-container>
 
       <ng-container matColumnDef="order_total">
-        <th class="th-center" mat-header-cell *matHeaderCellDef>Total Order</th>
+        <th class="th-center" mat-header-cell *matHeaderCellDef>{{"admin-history.total" | translate | titlecase}}</th>
         <td class="th-center" mat-cell *matCellDef="let element">{{ element.menu.length }}</td>
       </ng-container>
 
       <ng-container matColumnDef="total_price">
-        <th class="th-center" mat-header-cell *matHeaderCellDef>Total Price</th>
+        <th class="th-center" mat-header-cell *matHeaderCellDef>{{"admin-history.price" | translate | titlecase}}</th>
         <td class="th-center" mat-cell *matCellDef="let element">{{ element.total }}</td>
       </ng-container>
   
-      <ng-container matColumnDef="status" floatLabel="never">
+      <ng-container matColumnDef="status">
         <th class="th-center pad-tb-10 option" mat-header-cell *matHeaderCellDef>
-            <mat-form-field appearance="fill" floatLabel="never">
-                <mat-label >Status</mat-label>
+            <mat-form-field>
+                <mat-label >{{"filter.status" | translate | titlecase}}</mat-label>
                 <mat-select [formControl]="statusTransFilter">
                   <mat-option *ngFor="let status of statusFilter" [value]="status.value">
-                    {{status.viewValue}}
+                    {{"option-stat"+status.viewValue | translate | titlecase}}
                   </mat-option>
                 </mat-select>
               </mat-form-field>
@@ -47,7 +53,7 @@
       </ng-container>
   
       <ng-container matColumnDef="details_order">
-        <th class="th-center" mat-header-cell *matHeaderCellDef>Details Order</th>
+        <th class="th-center" mat-header-cell *matHeaderCellDef>{{"admin-history.details" | translate | titlecase}}</th>
         <td class="th-center" mat-cell *matCellDef="let element">
             <button
               mat-flat-button
@@ -55,7 +61,7 @@
               class="pad-tb-lr-5-35"
               (click)="detailsTransaction(element)"
             >
-              Details
+            {{"user-history.details-btn" | translate | titlecase}}
             </button>
         </td>
       </ng-container>
@@ -65,7 +71,7 @@
   
       <tr class="mat-row" *matNoDataRow>
         <td class="mat-cell" [attr.colspan]="displayedColumns.length">
-          No data matching the filter.
+          {{"table.message-notfound" | translate | titlecase}}
         </td>
       </tr>
     </table>

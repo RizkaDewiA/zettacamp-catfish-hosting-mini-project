@@ -75,3 +75,11 @@ image {
 .back mat-icon {
   padding-right: 50px;
 }
+
+.forgot-pass a{
+  cursor: pointer;
+}
+
+.forgot-pass a:hover{
+  color: #c21010;
+}

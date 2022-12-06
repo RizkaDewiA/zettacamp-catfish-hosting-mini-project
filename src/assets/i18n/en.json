@@ -1,24 +1,350 @@
 {
-    "home-page": {
-        "home" : "home",
-        "menu" : "menu",
-        "about" : "about",
-        "login" : "login",
-        "order-now": "order now",
-        "see-our-menu": "see our menu"
-    },
-    "title":{
-        "title-medsos": "our media social",
-        "title-email": "enter your email",
-        "title-password": "enter your password",
-        "title-logout": "logout"
-    },
-    "sub-menu": {
-        "Menu": "menu",
-        "About": "about",
-        "Cart": "cart",
-        "Menu Management": "menu management",
-        "Stock Management": "stock management",
-        "History":"history"
-    }
+  "home-page": {
+    "home": "home",
+    "menu": "menu",
+    "about": "about",
+    "login": "login",
+    "order-now": "order now",
+    "see-our-menu": "see our menu"
+  },
+  "title": {
+    "medsos": "our media social",
+    "email": "enter your email",
+    "password": "enter your password",
+    "logout": "logout",
+    "register": "create new account",
+    "firstname": "first name",
+    "lastname": "last name",
+    "register-btn": "create account",
+    "route-login": "i have account",
+    "route-register": "i dont have account",
+    "welcome": "welcome to indonesian cuisine",
+    "announce": "look what we have"
+  },
+  "home":{
+    "text":"We Have Many Variety Indonesian Food From Sabang To Merauke. You Can Choose and Order It without Worry. Please Come And Join Us.",
+    "order":"Order Was Deliverd",
+    "google":"Google Score",
+    "receipt":"Receipt We Have",
+    "natural":"Natural Product We Use"
+  },
+  "sub-menu": {
+    "Menu": "menu",
+    "About": "about",
+    "Cart": "cart",
+    "Menu Management": "menu management",
+    "Stock Management": "stock management",
+    "History": "history",
+    "Menu highlight & Special offer": "menu higlight & special offer"
+  },
+  "about": {
+    "title-restaurant": "about our restaurant",
+    "title-story": "our story",
+    "title-stores": "our stores",
+    "title-contacts": "our contacts",
+    "text":"we have been established since 5 years ago. we provide Indonesian recipes with typical Indonesian food. We use authentic spices from Indonesia which are wholeheartedly served and served with tenderness."
+  },
+  "cart": {
+    "title-purchase": "your purchase menu",
+    "title-status": "pending",
+    "title-transaction": "your transaction is still in process",
+    "note": "note",
+    "amount": "amount",
+    "total-price-item": "total price item",
+    "total-price": "total price",
+    "order-btn": "order now",
+    "status-transaction": "no pending transaction"
+  },
+  "cart-dialog": {
+    "title-dialog": "edit note cart",
+    "error-message": "this field is required",
+    "cancel-btn": "cancel",
+    "submit-btn": "submit"
+  },
+  "stock-manage": {
+    "add-btn": "add",
+    "add-stock": "add new stock",
+    "edit-stock": "edit stock",
+    "submit-btn": "submit",
+    "name-stock": "stock name",
+    "amount-stock": "amount",
+    "cancel-btn": "cancel"
+  },
+  "filter": {
+    "stock": "stock name",
+    "menu": "menu name",
+    "clear-btn": "clear",
+    "stock-placeholder": "serach stock here",
+    "menu-placeholder": "search menu here",
+    "status-menu": "status menu",
+    "lastname": "lastname",
+    "status": "status",
+    "status-transac": "status transaction"
+  },
+  "table": {
+    "name": "name",
+    "stock": "stock",
+    "status": "status",
+    "action": "action",
+    "message-notfound": "no data matching the filter",
+    "image": "image",
+    "note": "note",
+    "price": "price",
+    "amount": "amount",
+    "total-item": "total price each item",
+    "total": "total price",
+    "detail-ingred": "detail ingredients",
+    "available": "available",
+    "highlight": "menu highlight",
+    "offer": "special offer"
+  },
+  "user-history": {
+    "title": "history transaction",
+    "sl-btn": "show less",
+    "sm-btn": "show more",
+    "no-trans": "no transaction",
+    "details-btn": "details"
+  },
+  "admin-history": {
+    "date": "order date",
+    "total": "total order",
+    "price": "total price",
+    "details": "details order",
+    "balance": "income"
+  },
+  "dialog-details": {
+    "order-stat": "order status",
+    "customer": "customer",
+    "order-date": "order date",
+    "order-menu": "order menu",
+    "code": "code transaction",
+    "close-btn": "close"
+  },
+  "stock-update": {
+    "title": "Updated",
+    "text": "Stock Has Been Updated",
+    "confrim-btn": "Oke"
+  },
+  "stock-added": {
+    "title": "Success",
+    "text": "Stock Has Been Added",
+    "confrim-btn": "Oke"
+  },
+  "stock-minus": {
+    "title": "Error!",
+    "text": "Stock Cannot Minus!",
+    "confrim-btn": "Oke"
+  },
+  "stock-invalid": {
+    "title": "Error!",
+    "text": "Stock Invalid",
+    "confrim-btn": "Oke"
+  },
+  "alert-error":{
+    "title": "Error!",
+    "confrim-btn": "Oke"
+  },
+  "delete-confrim": {
+    "title":"Are you sure want to delete this stock?",
+    "text":"You won't be able to revert this!",
+    "cancel-btn": "Cancel",
+    "confrim-btn": "Yes, delete it"
+  },
+  "delete-success": {
+    "title":"Deleted!",
+    "text-1":"Your stock",
+    "text-2":"has been deleted"
+  },
+  "delete-fail": {
+    "title":"Error!",
+    "text-1":"Your stock",
+    "text-2":"cannot be deleted"
+  },
+  "menu-manage": {
+    "add-btn": "add",
+    "add-menu": "add new menu",
+    "edit-menu": "edit menu",
+    "submit-btn": "submit",
+    "name": "nama",
+    "descrip": "description",
+    "image": "image",
+    "price": "price",
+    "status": "status",
+    "title-ingred": "ingredients",
+    "ingred-name": "ingredients name",
+    "quantity": "quantity",
+    "cancel-btn": "cancel",
+    "publish": "publish",
+    "unpublish": "unpublish",
+    "more-detail": "more details",
+    "close-btn": "close",
+    "quantity-used": "quantity used",
+    "title-discount": "update discount",
+    "amount": "amount"
+  },
+  "status": {
+    "active":"active",
+    "success":"success",
+    "failed":"failed"
+  },
+  "menu-update": {
+    "title": "Updated",
+    "text": "Menu Has Been Updated",
+    "confrim-btn": "Oke"
+  },
+  "menu-added": {
+    "title": "Success",
+    "text": "Menu Has Been Added",
+    "confrim-btn": "Oke"
+  },
+  "menu-invalid": {
+    "title": "Error!",
+    "text": "Menu Invalid",
+    "confrim-btn": "Oke"
+  },
+  "delete-confrim-menu": {
+    "title":"Are you sure want to delete this menu?",
+    "text":"You won't be able to revert this!",
+    "cancel-btn": "Cancel",
+    "confrim-btn": "Yes, delete it"
+  },
+  "delete-success-menu": {
+    "title":"Deleted!",
+    "text-1":"Your menu",
+    "text-2":"has been deleted"
+  },
+  "delete-fail-menu": {
+    "title":"Error!",
+    "text-1":"Your menu",
+    "text-2":"cannot be deleted"
+  },
+  "update-highlight": {
+    "title": "Success!",
+    "text-activated": "Your Menu Highlight is Activated!",
+    "text-noactivated": "Your Menu Highlight is Not Activated!"
+  },
+  "update-offer": {
+    "title": "Success!",
+    "text-activated": "Your Special Offer is Activated!",
+    "text-noactivated": "Your Special Offer is Not Activated!"
+  },
+  "discount-invalid": {
+    "title": "Error!",
+    "text": "Discount Invalid",
+    "confrim-btn": "Oke"
+  },
+  "update-status": {
+    "title": "Change Status",
+    "text": "Are You Sure Want To Change Status To",
+    "confrim-btn": "Yes, Change Status",
+    "publish": "Publish",
+    "unpublish": "Unpublish",
+    "change": "Change Success!",
+    "text-1": "Your menu",
+    "text-2": "has been"
+  },
+  "menu-list": {
+    "disc-title": "discount up to",
+    "notif-no": "no food list",
+    "notif-soldout": "sold out",
+    "title-buy": "how many you want to buy?",
+    "message": "message"
+  },
+  "alert-menu": {
+    "title": "Success!",
+    "text": "Your menu have been added to cart"
+  },
+  "alert-login": {
+    "title": "Login First",
+    "text": "You dont have permission, please login first",
+    "confrim-btn": "Yes, Login",
+    "cancel-btn": "Cancel"
+  },
+  "alert-menu-fail": {
+    "title": "Oops...",
+    "text": "You have to fill the quantity"
+  },
+  "alert-saldo": {
+    "title" : "Check saldo",
+    "text" : "Your saldo reach limit"
+  },
+  "profile": {
+    "firstname": "firstname",
+    "lastname": "lastname",
+    "email": "email",
+    "balance": "saldo",
+    "status":"status"
+  },
+  "confrim-order": {
+    "title": "Are you sure want to order this food?",
+    "text":"You won't be able to revert this!",
+    "order-btn": "Yes, i order it!",
+    "cancel-btn": "Cancel",
+    "title-success": "Success!",
+    "title-error": "Error!",
+    "text-success": "Your food has been order it",
+    "text-error-1": "Food item has been unpublish, please delete it!",
+    "text-error-2": "Your food cannot be order it",
+    "title-delete": "Are you sure want to delete this food?",
+    "text-1": "Your food"
+  },
+  "mat-error": {
+    "fill-email": "you must fill this field with your email",
+    "fill-password": "you must fill this field with your password"
+  },
+  "option-stat": {
+    "all": "all",
+    "success": "sucess",
+    "failed": "failed"
+  },
+  "none":{
+    "highlight": "none menu highlight",
+    "offer": "none menu special offer"
+  },
+  "logout":{
+    "title": "Are you sure?",
+    "text": "You want to logout",
+    "confirm-btn": "Yes, logout",
+    "cancel-btn": "Cancel"
+  },
+  "login-first": {
+    "title": "Login first",
+    "text": "You dont have permission, please login first",
+    "confirm-btn": "Yes, login",
+    "cancel-btn": "Cancel"
+  },
+  "email-message": {
+    "title": "Your email not found",
+    "text": "Check again your email"
+  },
+  "pass-message": {
+    "title": "Your email & password wrong",
+    "text": "Check again your email & password"
+  },
+  "other": {
+    "text-1":"Welcome Back",
+    "text-2":"Something happend!",
+    "text-3":"forgot password"
+  },
+  "validation":{
+    "success": "Success!",
+    "error": "Error!",
+    "email":"Your email validation success",
+    "password": "Your password has been reset",
+    "check-email": "check email",
+    "text-email": "please enter your email first in below",
+    "next-btn": "next",
+    "reset": "reset password",
+    "text-pass": "please enter your new password",
+    "reset-btn": "reset password"
+  },
+  "shared":{
+    "text-1": "has been added to cart",
+    "cart-btn": "see cart"
+  },
+  "register":{
+    "title-1":"Do You Want To Create Account ?",
+    "title-2":"Your Account Has Been Create, You Can Login Now",
+    "confrim-btn":"Yes, create account"
+  }
 }

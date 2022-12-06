@@ -6,6 +6,7 @@ import { PageEvent } from '@angular/material/paginator';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogCartComponent } from '../dialog-cart/dialog-cart.component';
 import { environment } from 'src/environments/environment';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-list-cart',
@@ -34,7 +35,7 @@ export class ListCartComponent implements OnInit, OnDestroy {
   indexToShowSuccess = [];
   indexToShowFailed = [];
 
-  constructor(private serviceCart:CartPageService, private dialog:MatDialog) { }
+  constructor(private serviceCart:CartPageService, private dialog:MatDialog, private translate:TranslateService) { }
 
   ngOnInit(): void {
     this.initCartPending();
@@ -76,35 +77,43 @@ export class ListCartComponent implements OnInit, OnDestroy {
 
   orderNow(){
       Swal.fire({
-        title: 'Are you sure want to order this cart?',
-        text: "You won't be able to revert this!",
+        title: this.translate.instant("confrim-order.title"),
+        text: this.translate.instant("confrim-order.text"),
         icon: 'question',
+        cancelButtonText: this.translate.instant("confrim-order.cancel-btn"),
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, i order it!'
+        confirmButtonText: this.translate.instant("confrim-order.order-btn")
       }).then((result) => {
         if (result.isConfirmed) {
           this.subs.sink = this.serviceCart.orderCart().subscribe({
             next: ()=>{
               Swal.fire(
-                'Success!',
-                'Your cart has been order it.',
+                this.translate.instant("confrim-order.title-success"),
+                this.translate.instant("confrim-order.text-success"),
                 'success'
               ),
               this.initCartPending();
             },
             error: (error)=>{
-              if(error.message == "menu is unpublish not order now"){
+              console.log(error);
+              if(error.message.includes('unpublish')){
                 Swal.fire(
-                  'Error!',
-                  'Food Item Has Been Unpublish, Please Delete It!',
+                  this.translate.instant("confrim-order.title-error"),
+                  this.translate.instant("confrim-order.text-error-1"),
                   'error'
                 )
-              } else {
+              } else if(error.message.includes('less')){
                 Swal.fire(
-                  'Error!',
-                  'Your cart cannot be order it.',
+                  this.translate.instant("alert-saldo.title"),
+                  this.translate.instant("alert-saldo.text"),
+                  'error'
+                )
+              }else{
+                Swal.fire(
+                  this.translate.instant("confrim-order.title-error"),
+                  this.translate.instant("confrim-order.text-error-2"),
                   'error'
                 )
               }
@@ -119,34 +128,34 @@ export class ListCartComponent implements OnInit, OnDestroy {
     const dialogRef = this.dialog.open(DialogCartComponent, {data: {id_recipe:idRecipe}});
     dialogRef.afterClosed().subscribe(()=>{
       this.initCartPending();
-    })
-    // console.log(idRecipe);
+    });
   }
 
   deleteCart(id:string, name:string){
     Swal.fire({
-      title: 'Are you sure want to delete this cart?',
-      text: "You won't be able to revert this!",
+      title: this.translate.instant("confrim-order.title-delete"),
+      text: this.translate.instant("confrim-order.text"),
       icon: 'warning',
       showCancelButton: true,
+      showCloseButton: this.translate.instant("delete-confrim-menu.cancel-btn"),
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!'
+      confirmButtonText: this.translate.instant("delete-confrim-menu.confrim-btn")
     }).then((result) => {
       if (result.isConfirmed) {
         this.subs.sink = this.serviceCart.deleteCart(id).subscribe({
           next: ()=>{
             Swal.fire(
-              'Deleted!',
-              'Your cart '+ name +' has been deleted.',
+              this.translate.instant("delete-success-menu.title"),
+              this.translate.instant("confrim-order.text-1")+ ' ' + name + ' ' + this.translate.instant("delete-success-menu.text-2"),
               'success'
             ),
             this.initCartPending();
           },
           error: ()=>{
             Swal.fire(
-              'Error!',
-              'Your cart '+ name +' cannot be deleted.',
+              this.translate.instant("delete-fail-menu.title"),
+              this.translate.instant("confrim-order.text-1") + ' ' + name + ' ' + this.translate.instant("delete-fail-menu.text-2"),
               'error'
             )
             this.initCartPending();

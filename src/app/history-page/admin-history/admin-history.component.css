@@ -40,7 +40,12 @@ td {
     padding: 10px 0;
 }
 
-.option ::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
-    background-color: transparent; 
-    color: black;
+.top-level {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.balance-card {
+  width: 300px;
 }

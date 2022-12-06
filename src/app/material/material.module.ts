@@ -20,6 +20,8 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatBadgeModule} from '@angular/material/badge';
 
 
 import { ReactiveFormsModule } from '@angular/forms';
@@ -48,6 +50,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatExpansionModule,
     MatTabsModule,
     MatSlideToggleModule,
+    MatSnackBarModule,
+    MatBadgeModule
   ],
   exports: [
     MatIconModule,
@@ -69,7 +73,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatDividerModule,
     MatExpansionModule,
     MatTabsModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatSnackBarModule,
+    MatBadgeModule
   ],
 })
 export class MaterialModule {}

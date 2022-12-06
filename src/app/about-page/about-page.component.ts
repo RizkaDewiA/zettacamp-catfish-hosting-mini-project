@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-about-page',
@@ -6,10 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./about-page.component.css']
 })
 export class AboutPageComponent implements OnInit {
-
+  role:any = null;
   constructor() { }
 
   ngOnInit(): void {
+    this.role = JSON.parse(localStorage.getItem(environment.role));
   }
 
 }

@@ -110,4 +110,16 @@ export class HistoryPageService {
       fetchPolicy: 'network-only',
     });
   }
+
+  getBalanceAdmin(){
+    return this.apollo.watchQuery({
+      query: gql`
+      query IncomingAdmin {
+        incomingAdmin {
+          balanceAdmin
+        }
+      }`,
+      fetchPolicy: 'network-only'
+    });
+  }
 }

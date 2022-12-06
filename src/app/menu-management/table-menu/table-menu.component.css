@@ -16,7 +16,7 @@ th {
 }
 
 .status-button button {
-  width: 100px;
+  width: 140px;
 }
 
 /* publis-unpublish button syling */
@@ -46,3 +46,5 @@ th {
 .th-right {
   text-align: right;
 }
+
+

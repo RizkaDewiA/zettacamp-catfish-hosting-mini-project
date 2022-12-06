@@ -3,7 +3,7 @@ import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { stringifyForDisplay } from '@apollo/client/utilities';
+import { TranslateService } from '@ngx-translate/core';
 import { SubSink } from 'subsink';
 import Swal from 'sweetalert2';
 import { DetailMenuComponent } from '../detail-menu/detail-menu.component';
@@ -46,7 +46,7 @@ export class TableMenuComponent implements OnInit, OnDestroy {
   statusMenuFilter = new FormControl('');
   status:any;
 
-  constructor(private serviceMenu:MenuManagementService, public dialog:MatDialog) { }
+  constructor(private serviceMenu:MenuManagementService, public dialog:MatDialog, private translate:TranslateService) { }
 
   ngOnInit(): void {
     this.getData();
@@ -111,41 +111,30 @@ export class TableMenuComponent implements OnInit, OnDestroy {
   }
 
   updateStatus(id:string, name:string, status:string){
-    let textStatus: any;
-    if(status == 'publish'){
-      textStatus = 'Unpublish'
-    } else {
-      textStatus = 'Publish'
+    let tempStatus:any;
+    if(status == "publish"){
+      tempStatus = "unpublish"
+    }else if(status == "unpublish"){
+      tempStatus = "publish"
     }
+
     Swal.fire({
-      title: 'Change Status',
-      text: 'Are You Sure Want To Change Status To ' + textStatus + ' ?',
+      title: this.translate.instant('update-status.title'),
+      text: this.translate.instant('update-status.text') + ' ' + this.translate.instant('update-status.'+ tempStatus) + ' ?',
       icon: 'question',
-      confirmButtonText: 'Yes, Change Status',
+      confirmButtonText: this.translate.instant('update-status.confrim-btn'),
       showCancelButton: true
     }).then((result)=>{
       if(result.isConfirmed){
-        if(status=="publish"){
-          const tempStatus = "unpublish";
           this.subs.sink = this.serviceMenu?.updateStatusMenu(id, tempStatus)?.subscribe(()=>{
             Swal.fire(
-              'Change Success!',
-              'Your Menu ' + name + ' Has Been ' + tempStatus,
+              this.translate.instant('update-status.change'),
+              this.translate.instant('update-status.text-1') + ' ' + name + ' ' + this.translate.instant('update-status.text-2') + ' ' + this.translate.instant('menu-manage.'+ tempStatus),
               'success'
             )
             this.getData();
           });
-        } else if(status=="unpublish"){
-          const tempStatus = "publish";
-          this.subs.sink = this.serviceMenu?.updateStatusMenu(id, tempStatus)?.subscribe(()=>{
-            Swal.fire(
-              'Change Success!',
-              'Your Menu ' + name + ' Has Been ' + tempStatus,
-              'success'
-            )
-            this.getData();
-          });
-        }
+
       }
     })
   }
@@ -154,14 +143,14 @@ export class TableMenuComponent implements OnInit, OnDestroy {
     this.subs.sink = this.serviceMenu.updateHighlight(id, status.checked).subscribe(()=>{
       if(status.checked == true){
         Swal.fire(
-          'Success!',
-          'Your Menu Highlight is Activated!',
+          this.translate.instant('update-highlight.title'),
+          this.translate.instant('update-highlight.text-activated'),
           'success'
         );
       }else{
         Swal.fire(
-          'Success!',
-          'Your Menu Highlight is Not Activated!',
+          this.translate.instant('update-highlight.title'),
+          this.translate.instant('update-highlight.text-noactivated'),
           'success'
         );
       }
@@ -175,8 +164,8 @@ export class TableMenuComponent implements OnInit, OnDestroy {
     }else if(status.checked == false){
       this.subs.sink = this.serviceMenu.updateSpecialOffer(id, status.checked, amount).subscribe(()=>{
           Swal.fire(
-            'Success!',
-            'Your Special Offer is Not Activated!',
+            this.translate.instant('update-offer.title'),
+            this.translate.instant('update-offer.text-noactivated'),
             'success'
           );
       });
@@ -186,28 +175,29 @@ export class TableMenuComponent implements OnInit, OnDestroy {
 
   deleteMenu(id:string, name:string){
     Swal.fire({
-      title: 'Are you sure want to delete this menu?',
-      text: "You won't be able to revert this!",
+      title: this.translate.instant('delete-confrim-menu.title'),
+      text: this.translate.instant('delete-confrim-menu.text'),
       icon: 'warning',
       showCancelButton: true,
+      cancelButtonText: this.translate.instant('delete-confrim-menu.cancel-btn'),
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!'
+      confirmButtonText: this.translate.instant('delete-confrim-menu.confrim-btn')
     }).then((result) => {
       if (result.isConfirmed) {
         this.subs.sink = this.serviceMenu.deleteMenu(id).subscribe({
           next: ()=>{
             Swal.fire(
-              'Deleted!',
-              'Your stock '+ name +' has been deleted.',
+              this.translate.instant('delete-success-menu.title'),
+              this.translate.instant('delete-success-menu.text-1') + ' ' + name + ' ' + this.translate.instant('delete-success-menu.text-2'),
               'success'
             ),
             this.getData();
           },
           error: ()=>{
             Swal.fire(
-              'Error!',
-              'Your stock '+ name +' cannot be deleted.',
+              this.translate.instant('delete-fail-menu.title'),
+              this.translate.instant('delete-fail-menu.text-1') + ' ' + name + ' ' + this.translate.instant('delete-fail-menu.text-2'),
               'error'
             )
           }

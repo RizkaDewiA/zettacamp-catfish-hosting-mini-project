@@ -7,6 +7,7 @@ import { DialogStockComponent } from '../dialog-stock/dialog-stock.component';
 import { PageEvent } from '@angular/material/paginator';
 import Swal from 'sweetalert2';
 import { FormControl } from '@angular/forms';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-table-stock',
@@ -30,7 +31,7 @@ export class TableStockComponent implements OnInit, OnDestroy {
   stockNameFilter = '';
   resultFilter:any;
   
-  constructor(private serviceStock:StockManagementService, public dialog:MatDialog) { }
+  constructor(private serviceStock:StockManagementService, public dialog:MatDialog, private translate:TranslateService) { }
 
   ngOnInit(): void {
     this.getData();
@@ -74,28 +75,29 @@ export class TableStockComponent implements OnInit, OnDestroy {
 
   deleteStock(id:string, name:string){
     Swal.fire({
-      title: 'Are you sure want to delete this stock?',
-      text: "You won't be able to revert this!",
+      title: this.translate.instant('delete-confrim.title'),
+      text: this.translate.instant('delete-confrim.text'),
       icon: 'warning',
       showCancelButton: true,
+      cancelButtonText: this.translate.instant('delete-confrim.cancel-btn'),
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!'
+      confirmButtonText: this.translate.instant('delete-confrim.confrim-btn')
     }).then((result) => {
       if (result.isConfirmed) {
         this.subs.sink = this.serviceStock.deleteStock(id).subscribe({
           next: ()=>{
             Swal.fire(
-              'Deleted!',
-              'Your stock '+ name +' has been deleted.',
+              this.translate.instant('delete-success.title'),
+              this.translate.instant('delete-success.text-1') +' '+ name +' '+ this.translate.instant('delete-success.text-2'),
               'success'
             ),
             this.getData();
           },
           error: ()=>{
             Swal.fire(
-              'Error!',
-              'Your stock '+ name +' cannot be deleted.',
+              this.translate.instant('delete-fail.title'),
+              this.translate.instant('delete-fail.text-1') +' '+ name +' '+ this.translate.instant('delete-fail.text-2'),
               'error'
             )
           }

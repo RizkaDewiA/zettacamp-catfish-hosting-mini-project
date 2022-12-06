@@ -1,5 +1,3 @@
-
-
 export interface RecipeMenu {
     id: String,
     status: statusIngred,

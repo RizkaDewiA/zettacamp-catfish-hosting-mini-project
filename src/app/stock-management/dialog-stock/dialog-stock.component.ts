@@ -4,6 +4,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { SubSink } from 'subsink';
 import { StockManagementService } from '../stock-management.service';
 import Swal from 'sweetalert2';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-dialog-stock',
@@ -27,7 +28,8 @@ export class DialogStockComponent implements OnInit, OnDestroy {
     @Inject(MAT_DIALOG_DATA) public data: any,
     private serviceStock: StockManagementService,
     private fb: FormBuilder,
-    private dialogRef: MatDialogRef<DialogStockComponent>
+    private dialogRef: MatDialogRef<DialogStockComponent>,
+    private translate:TranslateService
   ) {}
 
   ngOnInit(): void {
@@ -62,36 +64,36 @@ export class DialogStockComponent implements OnInit, OnDestroy {
           .subscribe({
             next: () => {
               Swal.fire({
-                title: 'Updated',
-                text: 'Data Has Been Updated',
+                title: this.translate.instant('stock-update.title'),
+                text: this.translate.instant('stock-update.text'),
                 icon: 'success',
-                confirmButtonText: 'Ok',
+                confirmButtonText: this.translate.instant('stock-update.confrim-btn'),
               }).then(() => {
                 this.dialogRef.close();
               });
             },
             error: (error) => {
               Swal.fire({
-                title: 'Error!',
+                title: this.translate.instant('alert-error.title'),
                 text: error.message,
                 icon: 'error',
-                confirmButtonText: 'OK',
+                confirmButtonText: this.translate.instant('alert-error.confrim-btn'),
               });
             },
           });
       } else if(updatedValue.stock < 1){
         Swal.fire({
-          title: 'Error!',
-          text: 'Stock Cannot Minus!',
+          title: this.translate.instant('stock-minus.title'),
+          text: this.translate.instant('stock-minus.text'),
           icon: 'error',
-          confirmButtonText: 'OK',
+          confirmButtonText: this.translate.instant('stock-minus.confrim-btn'),
         });
       } else {
         Swal.fire({
-          title: 'Error!',
-          text: 'Stock Invalid!',
+          title: this.translate.instant('stock-invalid.title'),
+          text: this.translate.instant('stock-invalid.text'),
           icon: 'error',
-          confirmButtonText: 'OK',
+          confirmButtonText: this.translate.instant('stock-invalid.confrim-btn'),
         });
       }
     } else {
@@ -102,36 +104,36 @@ export class DialogStockComponent implements OnInit, OnDestroy {
           .subscribe({
             next: () => {
               Swal.fire({
-                title: 'Success',
-                text: 'Data Has Been Added',
+                title: this.translate.instant('stock-added.title'),
+                text: this.translate.instant('stock-added.text'),
                 icon: 'success',
-                confirmButtonText: 'Ok',
+                confirmButtonText: this.translate.instant('stock-added.confrim-btn'),
               }).then(() => {
                 this.dialogRef.close();
               });
             },
             error: (error) => {
               Swal.fire({
-                title: 'Error!',
+                title: this.translate.instant('alert-error.title'),
                 text: error.message,
                 icon: 'error',
-                confirmButtonText: 'OK',
+                confirmButtonText: this.translate.instant('alert-error.confrim-btn'),
               });
             },
           });
       } else if(updatedValue.stock < 0){
         Swal.fire({
-          title: 'Error!',
-          text: 'Stock Cannot Minus!',
+          title: this.translate.instant('stock-minus.title'),
+          text: this.translate.instant('stock-minus.text'),
           icon: 'error',
-          confirmButtonText: 'OK',
+          confirmButtonText: this.translate.instant('stock-minus.confrim-btn'),
         });
       }else {
         Swal.fire({
-          title: 'Error!',
-          text: 'Stock Invalid!',
+          title: this.translate.instant('stock-invalid.title'),
+          text: this.translate.instant('stock-invalid.text'),
           icon: 'error',
-          confirmButtonText: 'OK',
+          confirmButtonText: this.translate.instant('stock-invalid.confrim-btn'),
         });
       }
     }

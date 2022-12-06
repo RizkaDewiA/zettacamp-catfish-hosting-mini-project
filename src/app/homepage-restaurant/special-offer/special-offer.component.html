@@ -1,6 +1,6 @@
 <mat-card>
   <div class="label-tag">
-    <p> discount up to {{itemMenu?.discount}} %</p>
+    <p> {{"menu-list.disc-title" | translate | titlecase}} {{itemMenu?.discount}} %</p>
   </div>
   <div [ngClass]="itemMenu?.available == 0 ? 'greyout' : ''">
     <img
@@ -20,11 +20,12 @@
   <mat-card-title>{{ itemMenu?.recipe_name | titlecase }}</mat-card-title>
   <div class="group-item">
     <div class="price-item">
-      <mat-card-subtitle>price</mat-card-subtitle>
+      <mat-card-subtitle>{{"table.price" | translate | titlecase}}</mat-card-subtitle>
       <h2>{{ itemMenu?.price | currency: "Rp. " }}</h2>
+      <ng-template></ng-template>
     </div>
     <div class="avail-item">
-      <mat-card-subtitle>available</mat-card-subtitle>
+      <mat-card-subtitle>{{"table.available" | translate | titlecase}}</mat-card-subtitle>
       <h2>{{ itemMenu?.available }}</h2>
     </div>
   </div>
@@ -46,7 +47,7 @@
       <button mat-flat-button class="add-cart" disabled="true">
         <mat-icon>add_shopping_cart</mat-icon>
       </button>
-      <p class="top">out of stock</p>
+      <p class="top">{{"menu-list.notif-soldout" | translate | titlecase}}</p>
     </mat-card-actions>
   </ng-template>
 </mat-card>

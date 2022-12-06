@@ -5,6 +5,8 @@ import { SubSink } from 'subsink';
 import { MenuPageService } from '../menu-page.service';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-dialog-detail-menu',
@@ -15,31 +17,33 @@ export class DialogDetailMenuComponent implements OnInit, OnDestroy {
   private subs = new SubSink();
   detailMenu: any;
   cartForm: FormGroup;
+  role:any;
 
   constructor(
     private serviceMenu: MenuPageService,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private fb: FormBuilder,
     private dialogRef:MatDialogRef<DialogDetailMenuComponent>,
-    private route:Router
+    private route:Router,
+    private translate: TranslateService
   ) {}
 
   ngOnInit(): void {
-    this.subs.sink = this.serviceMenu
-      .getOneMenu(this.data)
-      .subscribe({
+    this.role = JSON.parse(localStorage?.getItem(environment.role));
+    this.subs.sink = this.serviceMenu?.getOneMenu(this.data)?.subscribe({
         next: (resp) => {
-        this.detailMenu = resp.data.getOneRecipes;},
+        this.detailMenu = resp?.data?.getOneRecipes;},
         error: (error)=>{
-          if(error.message){
+          if(error?.message){
             Swal.fire({
-              title: 'Login First',
-              text: "You dont have permission, please login first",
+              title: this.translate.instant('alert-login.title'),
+              text: this.translate.instant('alert-login.text'),
               icon: 'warning',
               showCancelButton: true,
+              cancelButtonText: this.translate.instant('alert-login.cancel-btn'),
               confirmButtonColor: '#3085d6',
               cancelButtonColor: '#d33',
-              confirmButtonText: 'Yes, Login'
+              confirmButtonText: this.translate.instant('alert-login.confrim-btn')
             }).then((result) => {
               if (result.isConfirmed) {
                 this.route.navigate(['login-page']);
@@ -55,7 +59,7 @@ export class DialogDetailMenuComponent implements OnInit, OnDestroy {
   }
 
   getCounterQuan() {
-    this.cartForm = this.fb.group({
+    this.cartForm = this.fb?.group({
       quantity: [null, [Validators.min(1)]],
       message: [''],
     });
@@ -63,30 +67,44 @@ export class DialogDetailMenuComponent implements OnInit, OnDestroy {
 
   addToCart(id: string) {
     const quanValue = this.cartForm?.value;
-    if (quanValue?.quantity != null && this.cartForm.valid) {
-      Swal.fire({
-        icon: 'success',
-        title: 'Success!',
-        text: 'Your Menu Have Been Added To Cart',
-      }).then(()=>{
-        const menuOrder = {
-          recipe_id : id,
-          amount: quanValue.quantity,
-          note: quanValue.message
+    if (quanValue?.quantity != null && this.cartForm?.valid) {
+      const menuOrder = {
+        recipe_id : id,
+        amount: quanValue?.quantity,
+        note: quanValue?.message
+      }
+      this.subs.sink = this.serviceMenu?.addCart(menuOrder)?.subscribe({
+        next: ()=>{
+          Swal.fire(
+            this.translate?.instant('alert-menu.title'),
+            this.translate?.instant('alert-menu.text'),
+            'success',
+          ).then(()=>{
+            this.dialogRef?.close({data:this.detailMenu});
+          });
+        },
+        error: (error)=>{
+          Swal.fire(
+            this.translate?.instant('alert-menu-fail.title'),
+            error?.message ,
+            'error',
+          );
         }
-        this.subs.sink = this.serviceMenu.addCart(menuOrder).subscribe();
-        this.dialogRef.close();
-      });
+      });  
     } else {
-      Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'You Have To Fill The Quantity',
-      });
+      Swal.fire(
+        this.translate?.instant('alert-menu-fail.title'),
+        this.translate?.instant('alert-menu-fail.text'),
+        'error',
+      );
     }
   }
 
+  cancelButton(){
+    this.dialogRef?.close();
+  }
+
   ngOnDestroy(): void {
-    this.subs.unsubscribe();
+    this.subs?.unsubscribe();
   }
 }

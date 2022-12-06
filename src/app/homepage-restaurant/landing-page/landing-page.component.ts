@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { SubSink } from 'subsink';
 import { HomepageRestaurantService } from '../homepage-restaurant.service';
@@ -8,7 +8,7 @@ import { HomepageRestaurantService } from '../homepage-restaurant.service';
   templateUrl: './landing-page.component.html',
   styleUrls: ['./landing-page.component.css','../homepage-restaurant.component.css']
 })
-export class LandingPageComponent implements OnInit {
+export class LandingPageComponent implements OnInit, OnDestroy {
   private subs = new SubSink();
   pagination = {
     page: 1,
@@ -44,6 +44,10 @@ export class LandingPageComponent implements OnInit {
 
   loginPage(){
     this.router.navigate(['/login-page']);
+  }
+
+  ngOnDestroy(): void {
+    this.subs.unsubscribe();
   }
 
 }

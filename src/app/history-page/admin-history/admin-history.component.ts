@@ -28,20 +28,23 @@ export class AdminHistoryComponent implements OnInit {
   status:any;
 
   statusFilter:any = [
-    {viewValue: "All", value: "none"},
-    {viewValue: "Success", value:"success"},
-    {viewValue: "Failed", value:"failed"}
+    {viewValue: "all", value: "none"},
+    {viewValue: "success", value:"success"},
+    {viewValue: "failed", value:"failed"}
   ]
 
   filterTransName: any = new FormControl('');
   transNameFilter = '';
   resultNameFilter:any;
+
+  balanceAdmin:any;
   
   constructor(private serviceHistory:HistoryPageService, public dialog:MatDialog) { }
 
   ngOnInit(): void {
     this.getDataHistory();
     this.filteredStatusName();
+    this.getBalance();
   }
 
   getDataHistory(){
@@ -62,21 +65,29 @@ export class AdminHistoryComponent implements OnInit {
     });
   }
 
+  getBalance(){
+    this.subs.sink = this.serviceHistory.getBalanceAdmin().valueChanges.subscribe((resp)=>{
+      this.balanceAdmin = resp?.data;
+      this.balanceAdmin = this.balanceAdmin?.incomingAdmin.balanceAdmin;
+      // console.log(this.balanceAdmin);
+    })
+  }
+
   handlePage(page: PageEvent){
     this.pagination = {
-      page: page.pageIndex + 1,
-      limit: page.pageSize,
+      page: page?.pageIndex + 1,
+      limit: page?.pageSize,
     }
     this.getDataHistory();
   }
 
   filteredStatusName(){
     this.filterTransName.valueChanges.subscribe((result)=>{
-      this.resultNameFilter = result.toLowerCase();
+      this.resultNameFilter = result?.toLowerCase();
       this.getDataHistory();
     });
 
-    this.statusTransFilter.valueChanges.subscribe((value)=>{
+    this.statusTransFilter?.valueChanges.subscribe((value)=>{
       if(value == "none"){
         this.status = null;
         this.getDataHistory();

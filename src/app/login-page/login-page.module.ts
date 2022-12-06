@@ -7,13 +7,17 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { HttpClient } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpLoaderFactory } from '../app.module';
+import { PasswordDialogComponent } from './password-dialog/password-dialog.component';
+import { ValidationDialogComponent } from './validation-dialog/validation-dialog.component';
 
 const routes : Routes = [
   {path:"", component:LoginPageComponent}
 ]
 @NgModule({
   declarations: [
-    LoginPageComponent
+    LoginPageComponent,
+    PasswordDialogComponent,
+    ValidationDialogComponent
   ],
   imports: [
     CommonModule,
@@ -29,7 +33,9 @@ const routes : Routes = [
     }),
   ],
   exports: [
-    LoginPageComponent
+    LoginPageComponent,
+    PasswordDialogComponent,
+    ValidationDialogComponent
   ]
 })
 export class LoginPageModule { }

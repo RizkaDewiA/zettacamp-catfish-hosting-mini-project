@@ -7,6 +7,9 @@ import { DialogMenuComponent } from './dialog-menu/dialog-menu.component';
 import { MaterialModule } from '../material/material.module';
 import { DetailMenuComponent } from './detail-menu/detail-menu.component';
 import { DialogDiscountComponent } from './dialog-discount/dialog-discount.component';
+import { HttpClient } from '@angular/common/http';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { HttpLoaderFactory } from '../app.module';
 
 const routes : Routes = [
   {path:"", component:MenuManagementComponent}
@@ -24,6 +27,14 @@ const routes : Routes = [
     CommonModule,
     MaterialModule,
     RouterModule.forChild(routes),
+    TranslateModule.forChild({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient],
+      },
+      defaultLanguage: 'en',
+    }),
   ],
   exports: [
     MenuManagementComponent,

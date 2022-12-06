@@ -4,9 +4,7 @@ import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { SubSink } from 'subsink';
 import Swal from 'sweetalert2';
-import { LoginPageService } from '../login-page/login-page.service';
 import { RegisterPageService } from './register-page.service';
-import { UserNameValidator } from './username.validator';
 
 @Component({
   selector: 'app-register-page',
@@ -42,8 +40,7 @@ export class RegisterPageComponent implements OnInit {
     this.registerForm = this.fb.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
-      // userName: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(8), UserNameValidator.noWhiteSpace]],
-      email: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(8)]]
     })
   }
@@ -52,12 +49,13 @@ export class RegisterPageComponent implements OnInit {
     const payload = this.registerForm.value;
     if(this.registerForm.valid){
       Swal.fire({
-        title: 'Do You Want To Create Account ?',
+        title: this.translate.instant("register.title-1"),
         icon: 'question',
         showCancelButton: true,
+        cancelButtonText: this.translate.instant("cart-dialog.cancel-btn"),
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, create account '
+        confirmButtonText: this.translate.instant("confrim-btn")
       }).then((result)=>{
         if(result.isConfirmed){
           this.subs.sink = this.serviceRegister.createNewUser(payload).subscribe({
@@ -66,7 +64,7 @@ export class RegisterPageComponent implements OnInit {
                 Swal.fire({
                   position: 'center',
                   icon: 'success',
-                  title: 'You Account Has Been Create, You Can Login Now',
+                  title: this.translate.instant("register.title-2"),
                   showConfirmButton: true,
                 }).then(()=>{
                   this.router.navigate(['/login-page']);
@@ -75,7 +73,7 @@ export class RegisterPageComponent implements OnInit {
             },
             error: (error)=>{
                 Swal.fire(
-                  'Something Happend!',
+                  this.translate.instant("other.text-2"),
                   error.message,
                   'error'
                 )

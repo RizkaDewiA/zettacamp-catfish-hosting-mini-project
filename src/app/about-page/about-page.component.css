@@ -1,6 +1,8 @@
 .about-container{
-    background-color:  #E7E7E7;
+    background-color:  #c21010;
+    color: white;
 }
+
 .about-page h1{
     padding: 2rem 0;
     text-align: center;

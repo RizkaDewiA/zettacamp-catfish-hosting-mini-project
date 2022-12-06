@@ -34,7 +34,7 @@
 
 /* side nav */
 mat-sidenav-container {
-  height: 92vh;
+  height: 91vh;
 }
 
 mat-sidenav {
@@ -144,6 +144,19 @@ button:hover {
   width: 32px;
   height: 32px;
   font-size: 32px;
+}
+
+.image-profile img{
+  width: 100px;
+}
+
+.clip-circle{
+  clip-path: circle(50px at center);
+}
+
+.profile-link{
+  width: 80%;
+  text-align: center;
 }
 
 /* footer */

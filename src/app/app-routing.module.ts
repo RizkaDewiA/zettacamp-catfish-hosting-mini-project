@@ -6,7 +6,6 @@ import { StockManagementGuard } from './guard/stock-management.guard';
 import { HomepageRestaurantComponent } from './homepage-restaurant/homepage-restaurant.component';
 import { HomepageUserComponent } from './homepage-restaurant/homepage-user/homepage-user.component';
 import { LandingPageComponent } from './homepage-restaurant/landing-page/landing-page.component';
-import { MenuHiglightComponent } from './homepage-restaurant/menu-higlight/menu-higlight.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home-page', pathMatch: 'full' },
@@ -73,6 +72,10 @@ const routes: Routes = [
       {
         path: 'menu-offer',
         component: HomepageUserComponent
+      },
+      {
+        path: 'profile-page',
+        loadChildren: ()=>import('./profile-page/profile-page.module').then((m)=>m.ProfilePageModule)
       },
       {
         path:'**', redirectTo:"menu-offer", pathMatch:"full"

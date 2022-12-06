@@ -1,5 +1,5 @@
 <div class="top-flex" *ngIf="addNewMenu; else notAddMenu">
-  <h2 mat-dialog-title>Add New Menu</h2>
+  <h2 mat-dialog-title>{{"menu-manage.add-menu" | translate | titlecase}}</h2>
   <button
     [mat-dialog-close]="true"
     matSuffix
@@ -11,7 +11,7 @@
 </div>
 <ng-template #notAddMenu>
   <div class="top-flex">
-    <h2 mat-dialog-title>Edit Menu : {{ dataMenu.recipe_name | titlecase }}</h2>
+    <h2 mat-dialog-title>{{"menu-manage.edit-menu" | translate | titlecase}} : {{ dataMenu?.recipe_name | titlecase }}</h2>
     <button
       [mat-dialog-close]="true"
       matSuffix
@@ -25,15 +25,15 @@
 <mat-dialog-content [formGroup]="formMenu">
   <mat-form-field class="full-width mr-bottom-1" appearance="fill">
     <!-- name field -->
-    <mat-label>Name</mat-label>
+    <mat-label>{{"menu-manage.name" | translate | titlecase}}</mat-label>
     <input type="text" matInput formControlName="recipe_name" />
-    <mat-error *ngIf="this.formMenu.get('recipe_name')?.invalid">
+    <mat-error *ngIf="this.formMenu?.get('recipe_name')?.invalid">
       This field is required !
     </mat-error>
   </mat-form-field>
   <!-- description field -->
   <mat-form-field class="full-width mr-bottom-1" appearance="fill">
-    <mat-label>Description</mat-label>
+    <mat-label>{{"menu-manage.descrip" | translate | titlecase}}</mat-label>
     <textarea matInput formControlName="description"></textarea>
     <!-- <mat-error *ngIf="this.formMenu.get('description')?.invalid">
       This field is required !
@@ -41,7 +41,7 @@
   </mat-form-field>
   <!-- image field -->
   <mat-form-field class="full-width mr-bottom-1" appearance="fill">
-    <mat-label>Image</mat-label>
+    <mat-label>{{"menu-manage.image" | translate | titlecase}}</mat-label>
     <input type="url" matInput formControlName="image" />
     <!-- <mat-error *ngIf="this.formMenu.get('recipe_name')?.invalid">
       This field is required !
@@ -52,7 +52,7 @@
       <td>
         <!-- price field -->
         <mat-form-field class="full-width mr-bottom-1" appearance="fill">
-          <mat-label>Price</mat-label>
+          <mat-label>{{"menu-manage.price" | translate | titlecase}}</mat-label>
           <input type="number" matInput formControlName="price" />
           <mat-error *ngIf="this.formMenu.get('price')?.invalid">
             This field is required !
@@ -62,7 +62,7 @@
       <td>
         <!-- status field -->
         <mat-form-field class="full-width mr-bottom-1" appearance="fill">
-          <mat-label>Status</mat-label>
+          <mat-label>{{"menu-manage.status" | translate | titlecase}}</mat-label>
           <mat-select name="labelStatus" formControlName="status">
             <mat-option *ngFor="let label of labelStatus" [value]="label.value">
               {{ label.viewValue }}
@@ -77,13 +77,13 @@
     <div *ngFor="let item of ingredientss.controls; let i = index">
       <div [formGroupName]="i">
         <mat-label
-          ><h1>Ingredients {{ i + 1 }}</h1></mat-label
+          ><h1>{{"menu-manage.title-ingred" | translate | titlecase}} {{ i + 1 }}</h1></mat-label
         >
         <table>
           <tr>
             <td>
               <mat-form-field class="full-width" appearance="fill">
-                <mat-label>Ingredients Name</mat-label>
+                <mat-label>{{"menu-manage.ingred-name" | translate | titlecase}}</mat-label>
                 <mat-select
                   name="ingerdient_id"
                   formControlName="ingredient_id"
@@ -99,7 +99,7 @@
             </td>
             <td>
               <mat-form-field class="full-width" appearance="fill">
-                <mat-label>Quantity</mat-label>
+                <mat-label>{{"menu-manage.quantity" | translate | titlecase}}</mat-label>
                 <input
                   type="number"
                   matInput
@@ -125,10 +125,10 @@
     (click)="addNewIngredients()"
     type="button"
   >
-    <mat-icon>add</mat-icon> Ingredients
+    <mat-icon>add</mat-icon> {{"menu-manage.title-ingred" | translate | titlecase}}
   </button>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-  <button mat-button mat-dialog-close color="warn">Cancel</button>
-  <button mat-flat-button color="primary" (click)="onSubmit()">Submit</button>
+  <button mat-button mat-dialog-close color="warn">{{"menu-manage.cancel-btn" | translate | titlecase}}</button>
+  <button mat-flat-button color="primary" (click)="onSubmit()">{{"menu-manage.submit-btn" | translate | titlecase}}</button>
 </mat-dialog-actions>

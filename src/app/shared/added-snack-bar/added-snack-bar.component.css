@@ -1,0 +1,23 @@
+.snackbar{
+    display: flex;
+    justify-content: space-between;
+}
+
+.snackbar-link{
+    display: flex;
+    justify-content: space-between;
+    width: 100px;
+    cursor: pointer;
+}
+
+.snackbar-link a {
+    font-weight: 500;
+}
+
+.snackbar-link .see-cart {
+    color: #cfe8a9;
+}
+
+.snackbar-link .close {
+    color: #e64848;
+}

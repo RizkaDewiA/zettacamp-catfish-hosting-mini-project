@@ -1,0 +1,54 @@
+<div class="half-width dp-block-1-2">
+  <mat-card class="flex-profile">
+    <div class="image-profile">
+      <img
+        src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
+      />
+    </div>
+    <mat-card-content class="width-60">
+      <table class="container mr-bottom-1">
+        <tr>
+          <td>
+            <mat-card-subtitle>{{
+              "profile.firstname" | translate | titlecase
+            }}</mat-card-subtitle>
+            <mat-card-title>{{
+              dataUser?.first_name | titlecase
+            }}</mat-card-title>
+          </td>
+          <td>
+            <mat-card-subtitle>{{
+              "profile.lastname" | translate | titlecase
+            }}</mat-card-subtitle>
+            <mat-card-title>{{
+              dataUser?.last_name | titlecase
+            }}</mat-card-title>
+          </td>
+        </tr>
+      </table>
+      <div class="mr-bottom-2">
+        <mat-card-subtitle>{{
+          "profile.email" | translate | titlecase
+        }}</mat-card-subtitle>
+        <mat-card-title>{{ dataUser?.email | titlecase }}</mat-card-title>
+      </div>
+      <div class="mr-bottom-2" *ngIf="dataUser?.role == 'user'">
+        <mat-card-subtitle>{{
+          "profile.balance" | translate | titlecase
+        }}</mat-card-subtitle>
+        <mat-card-title>Rp {{ dataUser?.saldo }}</mat-card-title>
+      </div>
+      <div class="mr-bottom-2">
+        <mat-card-subtitle>{{
+          "profile.status" | translate | titlecase
+        }}</mat-card-subtitle>
+        <mat-card-title
+          [ngStyle]="
+            dataUser?.status == 'active' ? { color: 'green' } : { color: 'red' }
+          "
+          >{{"status."+dataUser?.status | translate | titlecase}}</mat-card-title
+        >
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

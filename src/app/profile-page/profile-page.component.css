@@ -1,0 +1,8 @@
+.image-profile img{
+    width: 150px;
+}
+
+.flex-profile{
+    display: flex;
+    justify-content: space-around;
+}

@@ -67,5 +67,45 @@ export class HomepageRestaurantService {
     localStorage.removeItem(environment.role);
     localStorage.removeItem(environment.usertype); 
   }
+
+  getUserProfile(id:string){
+    return this.apollo.watchQuery({
+      query: gql`
+      query GetOneUser($getOneUserId: ID, $email: String) {
+        getOneUser(id: $getOneUserId, email: $email) {
+          _id
+          email
+          first_name
+          last_name
+          role
+          saldo
+          status
+        }
+      }`,
+      variables: {
+        getOneUserId: id
+      },
+      fetchPolicy: 'network-only'
+    });
+  }
+
+  getOneCart(){
+    return this.apollo.watchQuery({
+      query: gql`
+      query GetOneTransaction{
+        getOneTransaction {
+          id
+          menu {
+            note
+            amount
+            _id
+            recipe_id {
+              recipe_name
+            }
+          }
+        }
+      }`,
+    })
+  }
   
 }

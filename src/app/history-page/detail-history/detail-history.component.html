@@ -1,16 +1,16 @@
-<h2 mat-dialog-title>Code Transaction : order-{{detailsTrans?.id | uppercase}}-menu</h2>
+<h2 mat-dialog-title>{{"dialog-details.code" | translate | titlecase}} : order-{{detailsTrans?.id | uppercase}}-menu</h2>
 <mat-dialog-content class="width-abs-400">
-    <p>Customer : {{detailsTrans?.user_id?.last_name}} {{detailsTrans?.user_id?.first_name}}</p>
-    <p>Order Date : {{detailsTrans?.order_date}}</p>
-    <p>Order Menu : </p>
+    <p>{{"dialog-details.customer" | translate | titlecase}} : {{detailsTrans?.user_id?.last_name}} {{detailsTrans?.user_id?.first_name}}</p>
+    <p>{{"dialog-details.order-date" | translate | titlecase}} : {{detailsTrans?.order_date}}</p>
+    <p>{{"dialog-details.order-menu" | translate | titlecase}} : </p>
     <table class="mr-bottom-1">
         <tr>
-            <th>Image</th>
-            <th>Name</th>
-            <th>Note</th>
-            <th>Price</th>
-            <th>Amount</th>
-            <th>Total Price Each Item</th>
+            <th>{{"table.image" | translate | titlecase}}</th>
+            <th>{{"table.name" | translate | titlecase}}</th>
+            <th>{{"table.note" | translate | titlecase}}</th>
+            <th>{{"table.price" | translate | titlecase}}</th>
+            <th>{{"table.amount" | translate | titlecase}}</th>
+            <th>{{"table.total-item" | translate | titlecase}}</th>
         </tr>
         <tr *ngFor="let menu of detailsTrans?.menu">
             <td *ngIf="menu?.recipe_id?.image != ''; else menuImageNone" ><img class="image-transaction" src="{{menu?.recipe_id?.image}}" alt="image menu"/></td>
@@ -25,15 +25,15 @@
             <td>Rp {{menu?.total_recipe}}</td>
         </tr>
         <tr>
-            <td colspan="5">Total Price</td>
+            <td colspan="5">{{"table.total" | translate | titlecase}}</td>
             <td>Rp {{detailsTrans?.total}}</td>
         </tr>
     </table>
-    <p *ngIf="detailsTrans?.order_status === 'success'; else failed">Order Status : <span class="status-transaction" [ngStyle]="{background:'green'}">{{detailsTrans?.order_status | uppercase}}</span></p>
+    <p *ngIf="detailsTrans?.order_status === 'success'; else failed">{{"dialog-details.order-stat" | translate | titlecase}} : <span class="status-transaction" [ngStyle]="{background:'green'}">{{"status."+detailsTrans?.order_status | translate | uppercase}}</span></p>
     <ng-template #failed>
-        <p>Order Status : <span class="status-transaction" [ngStyle]="{background:'red'}">{{detailsTrans?.order_status | uppercase}}</span></p>
+        <p>{{"dialog-details.order-stat" | translate | titlecase}} : <span class="status-transaction" [ngStyle]="{background:'red'}">{{"status."+detailsTrans?.order_status | translate | uppercase}}</span></p>
     </ng-template>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-    <button mat-button mat-dialog-close color="warn">Close</button>
+    <button mat-button mat-dialog-close color="warn">{{"dialog-details.close-btn" | translate | titlecase}}</button>
 </mat-dialog-actions>

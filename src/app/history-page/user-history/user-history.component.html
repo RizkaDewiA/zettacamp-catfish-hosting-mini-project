@@ -1,10 +1,10 @@
 <div class="container-80 dp-block-1-2 cart-page">
-    <h1>History Transaction</h1>
+    <h1>{{"user-history.title" | translate | titlecase}}</h1>
     <mat-form-field appearance="fill">
-      <mat-label>Status Transaction</mat-label>
+      <mat-label>{{"filter.status-transac" | translate | titlecase}}</mat-label>
       <mat-select [formControl]="statusTransFilter">
         <mat-option *ngFor="let status of statusFilter" [value]="status.value">
-          {{status.viewValue}}
+          {{"option-stat."+status.viewValue | translate | titlecase}}
         </mat-option>
       </mat-select>
     </mat-form-field>
@@ -26,17 +26,17 @@
                 <p>Rp {{ order?.recipe_id?.price }}</p>
               </div>
               <div class="amount">
-                <h4>Amount</h4>
+                <h4>{{"cart.amount" | translate | titlecase}}</h4>
                 <div class="item-amount">
                   <span>{{ order?.amount }}</span>
                 </div>
               </div>
               <div class="item-total">
-                <h4>Total Price</h4>
+                <h4>{{"cart.total-price-item" | translate | titlecase}}</h4>
                 <h1>Rp {{ item?.total }}</h1>
               </div>
               <div class="item-status">
-                <h4>Status</h4>
+                <h4>{{"table.status" | translate | titlecase}}</h4>
                 <mat-icon
                   matSuffix
                   aria-label="Success"
@@ -66,7 +66,7 @@
               *ngIf="indexToShow[i] == 1; else showLess"
               (click)="indexToShow[i] = item?.menu?.length"
             >
-              Show More
+              {{"user-history.sm-btn" | translate | titlecase}}
             </button>
             <button
               mat-flat-button
@@ -74,7 +74,7 @@
               class="pad-tb-lr-5-35"
               (click)="detailsTransaction(item)"
             >
-              Details
+            {{"user-history.details-btn" | translate | titlecase}}
             </button>
           </div>
           <ng-template #onlyItem>
@@ -86,7 +86,7 @@
                   class="pad-tb-lr-5-35"
                   (click)="detailsTransaction(item)"
                 >
-                  Details
+                {{"user-history.details-btn" | translate | titlecase}}
                 </button>
               </div>
             </div>
@@ -97,14 +97,14 @@
               color="warn"
               (click)="indexToShow[i] = 1"
             >
-              Show Less
+            {{"user-history.sl-btn" | translate | titlecase}}
             </button>
           </ng-template>
         </div>
       </mat-card>
     </div>
     <ng-template #transactionNotice>
-      <h1>No Transaction</h1>
+      <h1>{{"user-history.no-trans" | translate | titlecase}}</h1>
     </ng-template>
        <mat-paginator
          class="mr-bottom-2"

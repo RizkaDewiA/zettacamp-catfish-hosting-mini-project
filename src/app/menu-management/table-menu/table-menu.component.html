@@ -1,14 +1,14 @@
 <div class="container-90 dp-block-1-2">
   <div class="search-filter">
     <mat-form-field class="mr-bottom-1" appearance="fill" class="mr-right-1">
-      <mat-label>Menu Name</mat-label>
-      <input type="text" matInput [formControl]="filterMenuName" [(ngModel)]="menuNameFilter" placeholder="search menu here"/>
+      <mat-label>{{"filter.menu" | translate | titlecase}}</mat-label>
+      <input type="text" matInput [formControl]="filterMenuName" [(ngModel)]="menuNameFilter" placeholder="{{'filter.menu-placeholder' | translate | titlecase}}"/>
       <button *ngIf="menuNameFilter" matSuffix mat-icon-button (click)="menuNameFilter=''">
-        clear
+        {{"filter.clear-btn" | translate | titlecase}}
       </button>
     </mat-form-field>
     <mat-form-field appearance="fill">
-      <mat-label>Status Menu</mat-label>
+      <mat-label>{{"filter.status-menu" | translate | titlecase}}</mat-label>
       <mat-select [formControl]="statusMenuFilter">
         <mat-option *ngFor="let status of statusFilter" [value]="status.value">
           {{status.viewValue}}
@@ -18,24 +18,24 @@
   </div>
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
         <ng-container matColumnDef="recipe_name">
-            <th mat-header-cell *matHeaderCellDef>Name</th>
+            <th mat-header-cell *matHeaderCellDef>{{"table.name" | translate | titlecase}}</th>
             <td mat-cell *matCellDef="let element">{{ element?.recipe_name | titlecase }}</td>
         </ng-container>
         
         <ng-container matColumnDef="detail-menu">
-          <th class="th-center" mat-header-cell *matHeaderCellDef>Detail Ingredients</th>
+          <th class="th-center" mat-header-cell *matHeaderCellDef>{{"table.detail-ingred" | translate | titlecase}}</th>
           <td class="th-center" mat-cell *matCellDef="let element">
-                <button mat-flat-button color="detail" (click)="openDetailDialog(element?.id)" matTooltip="Detail Menu">More Detail</button>
+                <button mat-flat-button color="detail" (click)="openDetailDialog(element?.id)" matTooltip="Detail Menu">{{"menu-manage.more-detail" | translate | titlecase}}</button>
           </td>
         </ng-container>
 
       <ng-container matColumnDef="available">
-        <th class="th-center" mat-header-cell *matHeaderCellDef>Available</th>
+        <th class="th-center" mat-header-cell *matHeaderCellDef>{{"table.available" | translate | titlecase}}</th>
         <td class="th-center" mat-cell *matCellDef="let element">{{ element?.available }}</td>
       </ng-container>
 
       <ng-container matColumnDef="menu-highlight">
-        <th class="th-center" mat-header-cell *matHeaderCellDef>Menu Higlight</th>
+        <th class="th-center" mat-header-cell *matHeaderCellDef>{{"table.highlight" | translate | titlecase}}</th>
         <td class="th-center" mat-cell *matCellDef="let element">
           <mat-slide-toggle 
             [matTooltip] = "element.menu_highlight==true?'Active Highlight':'Non Active Highlight'" 
@@ -46,12 +46,12 @@
       </ng-container>
   
       <ng-container matColumnDef="price">
-        <th class="th-center" mat-header-cell *matHeaderCellDef>Price</th>
+        <th class="th-center" mat-header-cell *matHeaderCellDef>{{"table.price" | translate | titlecase}}</th>
         <td class="th-center" mat-cell *matCellDef="let element">{{ element?.price }}</td>
       </ng-container>
 
       <ng-container matColumnDef="special-offer">
-        <th class="th-center" mat-header-cell *matHeaderCellDef>Special Offer</th>
+        <th class="th-center" mat-header-cell *matHeaderCellDef>{{"table.offer" | translate | titlecase}}</th>
         <td class="th-center" mat-cell *matCellDef="let element">
           <mat-slide-toggle 
             [matTooltip] = "element.special_offers==true?'Active Offers':'Non Active Offers'" 
@@ -62,7 +62,7 @@
       </ng-container>
 
       <ng-container matColumnDef="status">
-        <th class="th-center" mat-header-cell *matHeaderCellDef>Status</th>
+        <th class="th-center" mat-header-cell *matHeaderCellDef>{{"table.status" | translate | titlecase}}</th>
         <td class="th-center" mat-cell *matCellDef="let element">
             <div class="status-button">
                 <button 
@@ -70,14 +70,14 @@
                   [matTooltip] = "element.status == 'publish'?'Menu is publish':'Menu is unpublish'" 
                   [color]="element.status == 'publish'? 'publish' : 'unpublish'" 
                   (click)="updateStatus(element?.id, element?.recipe_name, element?.status)">
-                  {{element.status | titlecase}}
+                  {{"menu-manage."+element.status | translate | titlecase}}
                 </button>
             </div>
         </td>
       </ng-container>
   
       <ng-container matColumnDef="actions" class="actions">
-        <th class="th-center" mat-header-cell *matHeaderCellDef>Action</th>
+        <th class="th-center" mat-header-cell *matHeaderCellDef>{{"table.action" | translate | titlecase}}</th>
         <td class="th-center" mat-cell *matCellDef="let element">
           <mat-list class="actions-button">
             <mat-list-item>
@@ -98,7 +98,7 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
       <tr class="mat-row" *matNoDataRow>
         <td class="mat-cell" [attr.colspan]="displayedColumns?.length">
-          No data matching the filter.
+          {{"table.message-notfound" | translate | titlecase}}
         </td>
       </tr>
     </table>

@@ -5,26 +5,27 @@ import { RouterModule, Routes } from '@angular/router';
 import { ListCartComponent } from './list-cart/list-cart.component';
 import { MaterialModule } from '../material/material.module';
 import { DialogCartComponent } from './dialog-cart/dialog-cart.component';
+import { HttpClient } from '@angular/common/http';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { HttpLoaderFactory } from '../app.module';
 
-const routes : Routes = [
-  {path:"", component: CartPageComponent}
-]
+const routes: Routes = [{ path: '', component: CartPageComponent }];
 
 @NgModule({
-  declarations: [
-    CartPageComponent,
-    ListCartComponent,
-    DialogCartComponent,
-  ],
+  declarations: [CartPageComponent, ListCartComponent, DialogCartComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    MaterialModule
+    MaterialModule,
+    TranslateModule.forChild({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient],
+      },
+      defaultLanguage: 'en',
+    }),
   ],
-  exports: [
-    CartPageComponent,
-    ListCartComponent,
-    DialogCartComponent,
-  ]
+  exports: [CartPageComponent, ListCartComponent, DialogCartComponent],
 })
-export class CartPageModule { }
+export class CartPageModule {}
