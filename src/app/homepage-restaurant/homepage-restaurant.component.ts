@@ -57,7 +57,6 @@ export class HomepageRestaurantComponent implements OnInit, OnDestroy {
   }
 
   changeLanguage(lang: any) {
-    console.log(lang);
     if (lang === 'en') {
       this.translate.use('id');
       this.currentLanguage = 'id';

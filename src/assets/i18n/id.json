@@ -341,5 +341,10 @@
   "shared":{
     "text-1": "telah ditambahkan ke keranjang",
     "cart-btn": "lihat kerancang"
+  },
+  "register":{
+    "title-1":"Apakah Anda Ingin Membuat Akun?",
+    "title-2":"Akun Anda Telah Dibuat, Anda Dapat masuk Sekarang",
+    "confrim-btn":"Ya, Buat Akun"
   }
 }
