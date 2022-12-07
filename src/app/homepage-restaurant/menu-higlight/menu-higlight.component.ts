@@ -31,7 +31,7 @@ export class MenuHiglightComponent implements OnInit {
         cancelButtonText: this.translate.instant("login-first.cancel-btn"),
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: this.translate.instant("login-first.confrim-btn")
+        confirmButtonText: this.translate.instant("login-first.confirm-btn")
       }).then((result) => {
         if (result.isConfirmed) {
           this.routes.navigate(['login-page']);
