@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { TranslateService } from '@ngx-translate/core';
+import { Menu } from 'src/app/model/menu.model';
 import { SubSink } from 'subsink';
 import Swal from 'sweetalert2';
 import { DetailMenuComponent } from '../detail-menu/detail-menu.component';
@@ -173,7 +174,7 @@ export class TableMenuComponent implements OnInit, OnDestroy {
   }
 
 
-  deleteMenu(id:string, name:string){
+  deleteMenu(id:Menu, name:string){
     Swal.fire({
       title: this.translate.instant('delete-confrim-menu.title'),
       text: this.translate.instant('delete-confrim-menu.text'),

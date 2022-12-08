@@ -1,6 +1,15 @@
-export interface StockIngredients{
-    id: String,
-    name: String,
-    status: statusStock,
-    stock: Number
+enum StatusIngred {
+    active,
+    deleted
 }
+
+export interface Ingredients {
+    id?: String
+}
+
+export interface Ingred extends Ingredients {
+    name: String,
+    stock: Number,
+    status?: StatusIngred
+}
+

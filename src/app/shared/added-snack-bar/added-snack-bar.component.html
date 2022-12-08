@@ -1,5 +1,5 @@
 <div class="snackbar">
-  <span> {{ notif }} Has Been Added To Cart </span>
+  <span> {{ notif | titlecase }} Has Been Added To Cart </span>
   <div class="snackbar-link">
     <a class="see-cart" (click)="seeCart()">See Cart</a>
     <a class="close" (click)="snackBarRef.dismiss()"

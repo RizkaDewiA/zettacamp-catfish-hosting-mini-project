@@ -20,41 +20,28 @@
       </div>
       <h2>{{"menu-list.title-buy" | translate | titlecase}}</h2>
       <div [formGroup]="cartForm" class="cart-form">
-        <!-- quantity field -->
         <mat-form-field class="cart-counter" appearance="outline">
             <mat-label>{{"menu-manage.quantity" | translate | titlecase}}</mat-label>
-            <input type="number" matInput formControlName="quantity" />
-            <!-- <mat-error *ngIf="this.formMenu.get('quantity')?.invalid">
-              This field is required !
-            </mat-error> -->
+            <input type="number" matInput formControlName="quantity" [readonly]="role == 'admin'"/>
+            <mat-error *ngIf="this.cartForm.get('quantity')?.invalid">
+              {{"cart-dialog.error-message" | translate | titlecase}}
+            </mat-error>
           </mat-form-field>
           <mat-form-field class="cart-message" appearance="outline">
             <mat-label>{{"menu-list.message" | translate | titlecase}}</mat-label>
-            <input type="text" matInput formControlName="message" />
-            <!-- <mat-error *ngIf="this.formMenu.get('quantity')?.invalid">
-              This field is required !
-            </mat-error> -->
+            <input type="text" matInput formControlName="message" [readonly]="role == 'admin'" />
           </mat-form-field>
       </div>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-  <button mat-button (click)="cancelButton()">{{"menu-manage.close-btn" | translate | titlecase}}</button>
+  <button mat-button color="warn" (click)="cancelButton()">{{"menu-manage.close-btn" | translate | titlecase}}</button>
   <button
           mat-flat-button
           color="addcart"
           class="add-cart"
-          *ngIf="role == 'user'; else admin"
+          *ngIf="role == 'user'"
           (click)="addToCart(detailMenu?.id)"
         >
           <mat-icon>add_shopping_cart</mat-icon>
   </button>
-  <ng-template #admin>
-    <button
-            mat-flat-button
-            class="add-cart"
-            disabled="true"
-          >
-            <mat-icon>add_shopping_cart</mat-icon>
-    </button>
-  </ng-template>
 </mat-dialog-actions>

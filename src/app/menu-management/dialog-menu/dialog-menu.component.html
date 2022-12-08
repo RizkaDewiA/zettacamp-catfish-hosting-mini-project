@@ -108,7 +108,7 @@
                 />
               </mat-form-field>
             </td>
-            <td class="delete-button">
+            <td class="delete-button" *ngIf="ingredientss?.length > 1">
               <button mat-flat-button color="warn" (click)="deleteIngred(i)">
                 <mat-icon>delete</mat-icon>
               </button>

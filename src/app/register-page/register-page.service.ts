@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Apollo, gql } from 'apollo-angular';
+import { Register } from '../model/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +9,7 @@ export class RegisterPageService {
 
   constructor(private apollo:Apollo) { }
 
-  createNewUser(dataNewUser:any){
+  createNewUser(dataNewUser:Register){
     return this.apollo.mutate({
       mutation: gql`
       mutation CreateUser($firstName: String, $lastName: String, $email: String, $password: String) {
@@ -23,8 +24,8 @@ export class RegisterPageService {
         }
       }`,
       variables: {
-        firstName: dataNewUser.firstName,
-        lastName: dataNewUser.lastName,
+        firstName: dataNewUser.firstname,
+        lastName: dataNewUser.lastname,
         email: dataNewUser.email,
         password: dataNewUser.password
       }

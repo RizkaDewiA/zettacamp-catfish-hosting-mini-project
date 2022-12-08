@@ -9,12 +9,14 @@
         </button>
       </div>
     </div>
-    <div class="highlight-mode">
-      <button (click)="onLeft('highlight')" matSuffix mat-icon-button class=""><mat-icon>keyboard_arrow_left</mat-icon></button>
-      <div class="width-60 scrolling-wrapper  mr-right-1 mr-left-1" id="highlight">
-        <app-menu-higlight *ngFor="let item of menuHighlight" [itemMenu]="item" class="card mr-bottom-2" ></app-menu-higlight>
+    <div class="absolute">
+      <div class="highlight-mode">
+        <button (click)="onLeft('highlight')" matSuffix mat-icon-button class=""><mat-icon>keyboard_arrow_left</mat-icon></button>
+        <div class="width-absolute scrolling-wrapper  mr-right-1 mr-left-1" id="highlight">
+          <app-menu-higlight *ngFor="let item of menuHighlight" [itemMenu]="item" class="card mr-bottom-2" ></app-menu-higlight>
+        </div>
+        <button (click)="onRight('highlight')" matSuffix mat-icon-button class="mr-left-1"><mat-icon>keyboard_arrow_right</mat-icon></button>
       </div>
-      <button (click)="onRight('highlight')" matSuffix mat-icon-button class="mr-left-1"><mat-icon>keyboard_arrow_right</mat-icon></button>
     </div>
   </div>
 </div>
@@ -22,8 +24,8 @@
   <h2>Special Offer</h2>
   <div class="offer-mode">
     <button (click)="onLeft('offer')" matSuffix mat-icon-button class=""><mat-icon>keyboard_arrow_left</mat-icon></button>
-    <div class="width-70 scrolling-wrapper  mr-right-1 mr-left-1" id="offer">
-        <app-special-offer  *ngFor="let item of menuOffer" [itemMenu]="item"></app-special-offer>
+    <div class="width-80 scrolling-wrapper  mr-right-1 mr-left-1" id="offer">
+        <app-special-offer  *ngFor="let item of menuOffer" [itemMenu]="item" class="card mr-bottom-2"></app-special-offer>
     </div>
     <button (click)="onRight('offer')" matSuffix mat-icon-button class="mr-left-1"><mat-icon>keyboard_arrow_right</mat-icon></button>
   </div>

@@ -60,7 +60,7 @@ export class DialogStockComponent implements OnInit, OnDestroy {
     if (this.id) {
       if (this.formStock.valid) {
         this.subs.sink = this.serviceStock
-          .updateStock(updatedId, updatedValue.name, updatedValue.stock)
+          .updateStock(updatedId, updatedValue)
           .subscribe({
             next: () => {
               Swal.fire({
@@ -100,7 +100,7 @@ export class DialogStockComponent implements OnInit, OnDestroy {
       const stockData = this.formStock.value;
       if (this.formStock.valid) {
         this.subs.sink = this.serviceStock
-          .createNewStock(stockData.name, stockData.stock)
+          .createNewStock(stockData)
           .subscribe({
             next: () => {
               Swal.fire({

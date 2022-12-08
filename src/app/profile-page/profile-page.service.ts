@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Apollo, gql } from 'apollo-angular';
+import { User } from '../model/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +9,7 @@ export class ProfilePageService {
 
   constructor(private apollo:Apollo) { }
 
-  getUserProfile(id:string){
+  getUserProfile(id:User){
     return this.apollo.watchQuery({
       query: gql`
       query GetOneUser($getOneUserId: ID) {

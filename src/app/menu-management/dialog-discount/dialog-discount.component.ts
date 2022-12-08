@@ -31,6 +31,7 @@ export class DialogDiscountComponent implements OnInit, OnDestroy {
   initForm() {
     this.formDiscount = new FormControl('', [
       Validators.min(1),
+      Validators.max(100),
       Validators.required,
     ]);
     if (this.foodData.id_food) {

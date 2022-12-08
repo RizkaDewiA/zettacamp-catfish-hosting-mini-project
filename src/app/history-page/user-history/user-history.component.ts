@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
-import { DetailTransaction } from 'src/app/model/transaction.model';
 import { SubSink } from 'subsink';
 import { DetailHistoryComponent } from '../detail-history/detail-history.component';
 import { HistoryPageService } from '../history-page.service';
@@ -68,8 +67,8 @@ export class UserHistoryComponent implements OnInit {
     });
   }
 
-  imageHasBeenLoaded(data){
-    console.log(data);
+  onImageError(event){
+    event.target.src = "https://images.unsplash.com/photo-1534939561126-855b8675edd7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
   }
 
   filteredStatus(){
@@ -92,7 +91,7 @@ export class UserHistoryComponent implements OnInit {
     this.initCart();
   }
 
-  detailsTransaction(transaction:DetailTransaction){
+  detailsTransaction(transaction:any){
     this.dialog.open(DetailHistoryComponent, {data:transaction});
   }
 

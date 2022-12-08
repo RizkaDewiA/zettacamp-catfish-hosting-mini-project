@@ -14,6 +14,7 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { RegisterPageModule } from './register-page/register-page.module';
 import { CurrReplacePipe } from './pipe/curr-replace.pipe';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { CurrReplacePipe } from './pipe/curr-replace.pipe';
     RegisterPageModule,
     GraphQLModule,
     HttpClientModule,
+    SharedModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

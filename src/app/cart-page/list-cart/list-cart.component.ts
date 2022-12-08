@@ -65,7 +65,12 @@ export class ListCartComponent implements OnInit, OnDestroy {
     this.initCartPending();
   }
 
+  onImageError(event){
+    event.target.src = "https://images.unsplash.com/photo-1534939561126-855b8675edd7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
+  }
+  
   addAmount(id:string){
+    const order_status = "pending";
     this.subs.sink = this.serviceCart.updateAmountPlus(id).subscribe();
     this.initCartPending();
   }

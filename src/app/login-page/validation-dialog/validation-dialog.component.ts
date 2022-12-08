@@ -30,7 +30,7 @@ export class ValidationDialogComponent implements OnInit, OnDestroy {
   onValidation(){
     const payload = this.validationForm.value;
     if(this.validationForm.valid){
-      this.subs.sink = this.serviceValidation.checkValidation(payload.email).subscribe({
+      this.subs.sink = this.serviceValidation.checkValidation(payload).subscribe({
         next: (resp)=>{
           Swal.fire(
             this.translate.instant("validation.success"),

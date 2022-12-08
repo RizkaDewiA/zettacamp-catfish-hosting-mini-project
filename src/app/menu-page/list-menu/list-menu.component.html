@@ -1,36 +1,73 @@
-<div class="width-60 dp-block-1-2">
+<div class="width-70 dp-block-1-2">
   <mat-form-field class="mr-bottom-1" appearance="fill" class="mr-right-1">
-    <mat-label>{{"filter.menu" | translate | titlecase}}</mat-label>
-    <input type="text" matInput [formControl]="filterMenuByName" [(ngModel)]="menuByNameFilter" placeholder="{{'filter.menu-placeholder' | translate | titlecase}}"/>
-    <button *ngIf="menuByNameFilter" matSuffix mat-icon-button (click)="menuByNameFilter=''">
-      {{"filter.clear-btn" | translate | titlecase}}
+    <mat-label>{{ "filter.menu" | translate | titlecase }}</mat-label>
+    <input
+      type="text"
+      matInput
+      [formControl]="filterMenuByName"
+      [(ngModel)]="menuByNameFilter"
+      placeholder="{{ 'filter.menu-placeholder' | translate | titlecase }}"
+    />
+    <button
+      *ngIf="menuByNameFilter"
+      matSuffix
+      mat-icon-button
+      (click)="menuByNameFilter = ''"
+    >
+      {{ "filter.clear-btn" | translate | titlecase }}
     </button>
   </mat-form-field>
   <div *ngIf="menulist; else menuListNone">
-    <div class="flex-container" >
+    <div class="flex-container">
       <mat-card *ngFor="let item of listMenu; let i = index">
         <div class="label-tag" *ngIf="item?.special_offers == true">
-          <p> {{"menu-list.disc-title" | translate | titlecase}} {{item?.discount}} %</p>
+          <p>
+            {{ "menu-list.disc-title" | translate | titlecase }}
+            {{ item?.discount }} %
+          </p>
         </div>
         <div [ngClass]="item?.available == 0 ? 'greyout' : ''">
-          <img *ngIf="item.image != ''; else menuImageNone" class="dp-block" [src]="item?.image" alt="menu image" />
+          <img
+            *ngIf="item.image != ''; else menuImageNone"
+            class="dp-block-bottom-1"
+            [src]="item?.image"
+            alt="menu image"
+            (error)="onImageError($event)"
+          />
           <ng-template #menuImageNone>
-            <img class="dp-block" src="https://images.unsplash.com/photo-1534939561126-855b8675edd7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
-            alt="menu image"/>
+            <img
+              class="dp-block-bottom-1"
+              src="https://images.unsplash.com/photo-1534939561126-855b8675edd7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
+              alt="menu image"
+            />
           </ng-template>
         </div>
-        <mat-card-title>{{ item.recipe_name | titlecase }}</mat-card-title>
+        <mat-card-title>
+          {{ item.recipe_name | titlecase }}
+          <p *ngIf="item?.available < 1"  class="top">{{"menu-list.notif-soldout" | translate | titlecase}}</p>
+        </mat-card-title>
         <div class="group-item">
           <div class="price-item">
-            <mat-card-subtitle>{{"menu-manage.price" | translate | titlecase }}</mat-card-subtitle>
-            <h2> {{ item?.price | currency:"Rp. " }}</h2>
+            <mat-card-subtitle>{{
+              "menu-manage.price" | translate | titlecase
+            }}</mat-card-subtitle>
+            <h2 *ngIf="item?.special_offers === false; else offersOn">{{ item?.price | currency : "Rp. " }}</h2>
+            <ng-template #offersOn>
+              <h2>{{ item?.afterDiscount | currency: "Rp."}}</h2>
+              <p>{{ item?.price | currency: "Rp. " }}</p>
+            </ng-template>
           </div>
           <div class="avail-item">
-          <mat-card-subtitle>{{"table.available" | translate | titlecase}}</mat-card-subtitle>
+            <mat-card-subtitle>{{
+              "table.available" | translate | titlecase
+            }}</mat-card-subtitle>
             <h2>{{ item?.available }}</h2>
           </div>
         </div>
-        <mat-card-actions align="center" *ngIf="item?.available > 0; else stockRunOut">
+        <mat-card-actions
+          align="center"
+          *ngIf="item?.available > 0; else stockRunOut"
+        >
           <button
             mat-flat-button
             color="addcart"
@@ -42,14 +79,9 @@
         </mat-card-actions>
         <ng-template #stockRunOut>
           <mat-card-actions align="center">
-            <button
-              mat-flat-button
-              class="add-cart"
-              disabled="true"
-            >
+            <button mat-flat-button class="add-cart" disabled="true">
               <mat-icon>add_shopping_cart</mat-icon>
             </button>
-            <p class="top">{{"menu-list.notif-soldout" | translate | titlecase}}</p>
           </mat-card-actions>
         </ng-template>
       </mat-card>
@@ -64,8 +96,12 @@
   </div>
   <ng-template #menuListNone>
     <div class="noneList">
-      <img class="none-img" src="../../../assets/svg/undraw_empty_re_opql.svg" alt="image svg"/>
-      <h1>{{"menu-list.notif-no" | translate | titlecase}}</h1>
+      <img
+        class="none-img"
+        src="../../../assets/svg/undraw_empty_re_opql.svg"
+        alt="image svg"
+      />
+      <h1>{{ "menu-list.notif-no" | translate | titlecase }}</h1>
     </div>
   </ng-template>
 </div>

@@ -3,7 +3,6 @@ import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { DetailTransaction } from 'src/app/model/transaction.model';
 import { SubSink } from 'subsink';
 import { DetailHistoryComponent } from '../detail-history/detail-history.component';
 import { HistoryPageService } from '../history-page.service';
@@ -98,7 +97,8 @@ export class AdminHistoryComponent implements OnInit {
     });
   }
   
-  detailsTransaction(transaction:DetailTransaction){
+  detailsTransaction(transaction:any){
+    console.log(transaction);
     this.dialog.open(DetailHistoryComponent, {data:transaction});
   }
 

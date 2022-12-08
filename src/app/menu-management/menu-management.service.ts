@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Apollo, gql } from 'apollo-angular';
 import { Observable } from 'rxjs';
+import { Menu, MenuRecipes } from '../model/menu.model';
+import { Pagination } from '../model/pagination.model';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +25,7 @@ export class MenuManagementService {
     });
   };
 
-  getAllMenu(pagination:any, name:any, status:any){
+  getAllMenu(pagination:Pagination, name:any, status:any){
     // console.log(pagination);
     return this.apollo.watchQuery({
       query: gql`
@@ -57,7 +59,7 @@ export class MenuManagementService {
     });
   }
 
-  getOneMenu(id:string):Observable<any>{
+  getOneMenu(id:Menu):Observable<any>{
     return this.apollo.query({
       query:gql`
       query GetOneRecipes($getOneRecipesId: ID) {
@@ -86,7 +88,7 @@ export class MenuManagementService {
     });
   };
 
-  createNewMenu(name:string, description:string, image:string, ingredients:[], status: string, price:number){
+  createNewMenu(dataRecipes: MenuRecipes){
     return this.apollo.mutate({
       mutation: gql`
       mutation CreateRecipes($recipeName: String, $description: String, $image: String, $ingredients: [ingredientidinput], $status: status_recipe, $price: Int) {
@@ -110,17 +112,17 @@ export class MenuManagementService {
         }
       }`,
       variables:{
-        recipeName:name,
-        ingredients:ingredients,
-        status:status,
-        price:price,
-        image: image,
-        description: description
+        recipeName: dataRecipes.recipe_name,
+        ingredients:dataRecipes.ingredients,
+        status: dataRecipes.status,
+        price: dataRecipes.price,
+        image: dataRecipes.image,
+        description: dataRecipes.description
       }
     });
   };
 
-  updateMenu(id:string, name:string, description:string, image:string, ingredients:[], status: string, price:number):Observable<any>{
+  updateMenu(id: Menu, dataRecipes: MenuRecipes):Observable<any>{
     return this.apollo.mutate({
       mutation: gql`
       mutation UpdateRecipe($updateRecipeId: ID, $status: status_recipe, $recipeName: String, $price: Int, $ingredients: [ingredientidinput], $image: String, $description: String) {
@@ -145,12 +147,12 @@ export class MenuManagementService {
       }`,
       variables:{
         updateRecipeId:id,
-        recipeName:name,
-        ingredients:ingredients,
-        status:status,
-        price:price,
-        image: image,
-        description: description
+        recipeName: dataRecipes.recipe_name,
+        ingredients: dataRecipes.ingredients,
+        status: dataRecipes.status,
+        price: dataRecipes.price,
+        image: dataRecipes.image,
+        description: dataRecipes.description
       }
     })
   }
@@ -207,7 +209,7 @@ export class MenuManagementService {
     })
   }
 
-  deleteMenu(id: string):Observable<any>{
+  deleteMenu(id: Menu):Observable<any>{
     return this.apollo.mutate({
       mutation: gql`
       mutation DeleteRecipe($deleteRecipeId: ID) {

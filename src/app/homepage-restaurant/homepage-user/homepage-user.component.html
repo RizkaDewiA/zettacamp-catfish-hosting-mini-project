@@ -18,7 +18,7 @@
                 </div>
             </ng-template>
         </div>
-        <h1>{{"table.highlight" | translate | titlecase}}</h1>
+        <h1>{{"table.offer" | translate | titlecase}}</h1>
         <div class="width-80 dp-block-1-2">
             <div class="highlight" *ngIf="menuOffer?.length > 0; else noneMenuOffer">
                 <app-special-offer  *ngFor="let item of menuOffer" [itemMenu]="item" class="card mr-bottom-2"></app-special-offer>

@@ -8,6 +8,8 @@ import { PageEvent } from '@angular/material/paginator';
 import Swal from 'sweetalert2';
 import { FormControl } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
+import { Ingredients } from 'src/app/model/ingredients.model';
+import { PaginStock } from 'src/app/model/pagination.model';
 
 @Component({
   selector: 'app-table-stock',
@@ -19,7 +21,7 @@ export class TableStockComponent implements OnInit, OnDestroy {
   dataStock:any = [];
   displayedColumns: string[] = ['name','stock', 'status','actions'];
   dataSource =  new MatTableDataSource(this.dataStock);
-  pagination:any = {
+  pagination:PaginStock = {
     page: 1,
     limit: 10,
     stock: 1
@@ -64,7 +66,7 @@ export class TableStockComponent implements OnInit, OnDestroy {
     })
   }
   
-  openDialog(id:string){
+  openDialog(id:Ingredients){
     const dialogRef = this.dialog.open(DialogStockComponent, {data:id});
     dialogRef.afterClosed().subscribe((hasResult)=>{
       if(hasResult){
@@ -73,7 +75,7 @@ export class TableStockComponent implements OnInit, OnDestroy {
     });
   }
 
-  deleteStock(id:string, name:string){
+  deleteStock(id:Ingredients, name:string){
     Swal.fire({
       title: this.translate.instant('delete-confrim.title'),
       text: this.translate.instant('delete-confrim.text'),

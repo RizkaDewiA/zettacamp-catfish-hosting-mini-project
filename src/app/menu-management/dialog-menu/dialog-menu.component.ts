@@ -8,6 +8,7 @@ import {
 } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
+import { Menu } from 'src/app/model/menu.model';
 import { SubSink } from 'subsink';
 import Swal from 'sweetalert2';
 import { MenuManagementService } from '../menu-management.service';
@@ -35,7 +36,7 @@ export class DialogMenuComponent implements OnInit, OnDestroy {
     private serviceMenu: MenuManagementService,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<DialogMenuComponent>,
-    private translate:TranslateService
+    private translate: TranslateService
   ) {}
 
   ngOnInit(): void {
@@ -48,10 +49,10 @@ export class DialogMenuComponent implements OnInit, OnDestroy {
 
   initForm() {
     this.formMenu = this.fb.group({
-      recipe_name: ['', [Validators.required]],
-      price: ['', [Validators.required, Validators.min(1)]],
+      recipe_name: ['', [Validators.required, Validators.minLength(3)]],
+      price: ['', [Validators.required, Validators.min(100)]],
       image: [''],
-      description: [''],
+      description: ['', [Validators.required, Validators.minLength(3)]],
       status: ['', [Validators.required]],
       ingredients: this.fb.array([]),
     });
@@ -66,7 +67,7 @@ export class DialogMenuComponent implements OnInit, OnDestroy {
     }
   }
 
-  getOnePatchMenu(id: string) {
+  getOnePatchMenu(id: Menu) {
     this.subs.sink = this.serviceMenu.getOneMenu(id).subscribe((resp) => {
       this.dataMenu = resp.data.getOneRecipes;
 
@@ -110,26 +111,20 @@ export class DialogMenuComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
-    const menu = this.formMenu.value;
+    const recipes = this.formMenu.value;
     if (this.id) {
       if (this.formMenu.valid) {
         this.subs.sink = this.serviceMenu
-          .updateMenu(
-            this.id,
-            menu.recipe_name,
-            menu.description,
-            menu.image,
-            menu.ingredients,
-            menu.status,
-            menu.recipe
-          )
+          .updateMenu(this.id, recipes)
           .subscribe({
             next: () => {
               Swal.fire({
                 title: this.translate.instant('menu-update.title'),
                 text: this.translate.instant('menu-update.text'),
                 icon: 'success',
-                confirmButtonText: this.translate.instant('menu-update.confrim-btn'),
+                confirmButtonText: this.translate.instant(
+                  'menu-update.confrim-btn'
+                ),
               }).then(() => {
                 this.dialogRef.close();
               });
@@ -140,9 +135,11 @@ export class DialogMenuComponent implements OnInit, OnDestroy {
                   title: this.translate.instant('alert-error.title'),
                   text: error.message,
                   icon: 'error',
-                  confirmButtonText: this.translate.instant('alert-error.confrim-btn'),
+                  confirmButtonText: this.translate.instant(
+                    'alert-error.confrim-btn'
+                  ),
                 });
-              };
+              }
             },
           });
       } else {
@@ -156,21 +153,16 @@ export class DialogMenuComponent implements OnInit, OnDestroy {
     } else {
       if (this.formMenu.valid) {
         this.subs.sink = this.subs.sink = this.serviceMenu
-          .createNewMenu(
-            menu.recipe_name,
-            menu.description,
-            menu.image,
-            menu.ingredients,
-            menu.status,
-            menu.price
-          )
+          .createNewMenu(recipes)
           .subscribe({
             next: () => {
               Swal.fire({
                 title: this.translate.instant('menu-added.title'),
                 text: this.translate.instant('menu-added.text'),
                 icon: 'success',
-                confirmButtonText: this.translate.instant('menu-added.confrim-btn'),
+                confirmButtonText: this.translate.instant(
+                  'menu-added.confrim-btn'
+                ),
               }).then(() => {
                 this.dialogRef.close();
               });
@@ -181,9 +173,11 @@ export class DialogMenuComponent implements OnInit, OnDestroy {
                   title: this.translate.instant('alert-error.title'),
                   text: error.message,
                   icon: 'error',
-                  confirmButtonText: this.translate.instant('alert-error.confrim-btn'),
+                  confirmButtonText: this.translate.instant(
+                    'alert-error.confrim-btn'
+                  ),
                 });
-              };
+              }
             },
           });
       } else {

@@ -15,7 +15,7 @@ export class ProfilePageComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     const user_id = JSON.parse(localStorage.getItem(environment.user_id));
-    this.subs.sink = this.userProfile.getUserProfile(user_id).valueChanges.subscribe((resp)=>{
+    this.subs.sink = this.userProfile.getUserProfile(user_id).valueChanges.subscribe((resp:any)=>{
       this.dataUser = resp?.data;
       this.dataUser = this.dataUser?.getOneUser[0];
     });

@@ -4,25 +4,29 @@
   </div>
   <div [ngClass]="itemMenu?.available == 0 ? 'greyout' : ''">
     <img
-      *ngIf="itemMenu?.image != ''; else menuImageNone"
+      *ngIf="itemMenu?.image != ''; else menuImageNone" 
       class="dp-block-1-2"
-      src="{{ itemMenu?.image }}"
+      [src]="itemMenu?.image"
       alt="menu image"
+      (error)="onImageError($event)"
     />
     <ng-template #menuImageNone>
       <img
-        class="dp-block"
+        class="dp-block-1-2"
         src="https://images.unsplash.com/photo-1534939561126-855b8675edd7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
         alt="menu image"
       />
     </ng-template>
   </div>
-  <mat-card-title>{{ itemMenu?.recipe_name | titlecase }}</mat-card-title>
+  <mat-card-title>
+    {{ itemMenu?.recipe_name | titlecase }}
+    <p *ngIf="itemMenu?.available < 1"  class="top">{{"menu-list.notif-soldout" | translate | titlecase}}</p>
+  </mat-card-title>
   <div class="group-item">
     <div class="price-item">
       <mat-card-subtitle>{{"table.price" | translate | titlecase}}</mat-card-subtitle>
-      <h2>{{ itemMenu?.price | currency: "Rp. " }}</h2>
-      <ng-template></ng-template>
+      <h2>{{ itemMenu?.afterDiscount | currency: "Rp."}}</h2>
+      <p>{{ itemMenu?.price | currency: "Rp. " }}</p>
     </div>
     <div class="avail-item">
       <mat-card-subtitle>{{"table.available" | translate | titlecase}}</mat-card-subtitle>
@@ -47,7 +51,6 @@
       <button mat-flat-button class="add-cart" disabled="true">
         <mat-icon>add_shopping_cart</mat-icon>
       </button>
-      <p class="top">{{"menu-list.notif-soldout" | translate | titlecase}}</p>
     </mat-card-actions>
   </ng-template>
 </mat-card>

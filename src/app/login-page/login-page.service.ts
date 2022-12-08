@@ -3,7 +3,7 @@ import { Apollo, gql } from 'apollo-angular';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { EmailPassword } from '../model/email-pass.model';
+import { UserLogin } from '../model/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -12,11 +12,11 @@ export class LoginPageService {
 
   constructor(private apollo:Apollo) { }
 
-  loginUser(email: string, password:string):Observable<any>{
+  loginUser(loginData:UserLogin):Observable<any>{
     return this.apollo.mutate({
       mutation: gql`
       mutation{
-        login (email: "${email}", password: "${password}"){
+        login (email: "${loginData.email}", password: "${loginData.password}"){
           token,
           role,
           id,
@@ -36,7 +36,7 @@ export class LoginPageService {
     ) 
   }
 
-  checkValidation(email:string):Observable<any>{
+  checkValidation(data:UserLogin):Observable<any>{
     return this.apollo.query({
       query: gql`
       query GetOneUser($email: String) {
@@ -48,12 +48,12 @@ export class LoginPageService {
         }
       }`,
       variables: {
-        email: email
+        email: data.email
       }
     })
   }
 
-  resetPassword(data: EmailPassword){
+  resetPassword(resetData: UserLogin){
     return this.apollo.mutate({
       mutation: gql`
       mutation ForgetPassword($email: String, $password: String) {
@@ -65,8 +65,8 @@ export class LoginPageService {
         }
       }`,
       variables: {
-        email: data.email,
-        password: data.password,
+        email: resetData.email,
+        password: resetData.password,
       }
     });
   }

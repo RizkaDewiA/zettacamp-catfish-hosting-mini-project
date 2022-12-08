@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Pagination } from 'src/app/model/pagination.model';
 import { SubSink } from 'subsink';
 import { HomepageRestaurantService } from '../homepage-restaurant.service';
 
@@ -9,7 +10,7 @@ import { HomepageRestaurantService } from '../homepage-restaurant.service';
 })
 export class HomepageUserComponent implements OnInit {
   private subs = new SubSink();
-  pagination = {
+  pagination:Pagination = {
     page: 1,
     limit: 100
   }

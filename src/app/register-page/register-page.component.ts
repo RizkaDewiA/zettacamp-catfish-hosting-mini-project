@@ -38,8 +38,8 @@ export class RegisterPageComponent implements OnInit {
 
   initFormGroup(){
     this.registerForm = this.fb.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
+      firstname: ['', Validators.required],
+      lastname: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(8)]]
     })
@@ -55,7 +55,7 @@ export class RegisterPageComponent implements OnInit {
         cancelButtonText: this.translate.instant("cart-dialog.cancel-btn"),
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: this.translate.instant("confrim-btn")
+        confirmButtonText: this.translate.instant("register.confrim-btn")
       }).then((result)=>{
         if(result.isConfirmed){
           this.subs.sink = this.serviceRegister.createNewUser(payload).subscribe({

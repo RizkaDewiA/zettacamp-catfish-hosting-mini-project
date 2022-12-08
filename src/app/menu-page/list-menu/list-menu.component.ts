@@ -13,6 +13,8 @@ import {
 import Swal from 'sweetalert2';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AddedSnackBarComponent } from 'src/app/shared/added-snack-bar/added-snack-bar.component';
+import { Pagination } from 'src/app/model/pagination.model';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-list-menu',
@@ -23,7 +25,7 @@ export class ListMenuComponent implements OnInit, OnDestroy {
   private subs = new SubSink();
   listMenu: any;
   menulist: boolean = true;
-  pagination = {
+  pagination: Pagination = {
     page: 1,
     limit: 10,
   };
@@ -35,6 +37,7 @@ export class ListMenuComponent implements OnInit, OnDestroy {
   menuByNameFilter = '';
   resultMenuFilter: any;
   durationInSeconds: number = 5;
+  role: any;
 
   constructor(
     private serviceMenu: MenuPageService,
@@ -47,6 +50,7 @@ export class ListMenuComponent implements OnInit, OnDestroy {
     this.getDataMenu();
     this.getCounterQuan();
     this.searchMenu();
+    this.role = JSON.parse(localStorage?.getItem(environment.role));
   }
 
   getCounterQuan() {
@@ -92,16 +96,29 @@ export class ListMenuComponent implements OnInit, OnDestroy {
     }
   }
 
+  onImageError(event){
+    event.target.src = "https://images.unsplash.com/photo-1534939561126-855b8675edd7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80";
+  }
+
   searchMenu() {
     this.filterMenuByName.valueChanges.subscribe((result) => {
       console.log(result);
-      this.resultMenuFilter = result.toLowerCase();
+      this.resultMenuFilter = result;
       this.getDataMenu();
     });
   }
 
   addToCart(id: string) {
-    const dialogRef = this.dialog.open(DialogDetailMenuComponent, { data: id });
+    let state:boolean;
+    if(this.role == "admin"){
+      state = false;
+    }else{
+      state = true;
+    }
+    const dialogRef = this.dialog.open(DialogDetailMenuComponent, { 
+      data: id,
+      autoFocus: state
+    });
     dialogRef.afterClosed().subscribe((resp) => {
       if(resp != null){
         this.snack.openFromComponent(AddedSnackBarComponent, {

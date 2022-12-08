@@ -32,7 +32,11 @@ export class DialogDetailMenuComponent implements OnInit, OnDestroy {
     this.role = JSON.parse(localStorage?.getItem(environment.role));
     this.subs.sink = this.serviceMenu?.getOneMenu(this.data)?.subscribe({
         next: (resp) => {
-        this.detailMenu = resp?.data?.getOneRecipes;},
+        this.detailMenu = resp?.data?.getOneRecipes;
+        if(this.detailMenu?.available){
+          this.cartForm.get('quantity').addValidators(Validators.max(this.detailMenu?.available));
+        }
+      },
         error: (error)=>{
           if(error?.message){
             Swal.fire({
@@ -60,14 +64,14 @@ export class DialogDetailMenuComponent implements OnInit, OnDestroy {
 
   getCounterQuan() {
     this.cartForm = this.fb?.group({
-      quantity: [null, [Validators.min(1)]],
+      quantity: ['', [Validators.required, Validators.min(1)]],
       message: [''],
     });
   }
 
   addToCart(id: string) {
     const quanValue = this.cartForm?.value;
-    if (quanValue?.quantity != null && this.cartForm?.valid) {
+    if (this.cartForm?.valid) {
       const menuOrder = {
         recipe_id : id,
         amount: quanValue?.quantity,

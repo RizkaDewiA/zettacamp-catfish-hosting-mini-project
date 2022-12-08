@@ -85,12 +85,20 @@
     color: black;
 }
 
+.absolute{
+    position: absolute;
+    left: 50%;
+}
+
+.width-absolute{
+    width: 600px;
+}
+
 .scrolling-wrapper{
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
     overflow-x: scroll;
-    overflow-y: hidden;
 }
 
 .scrolling-wrapper::-webkit-scrollbar{

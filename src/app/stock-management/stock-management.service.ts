@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Apollo, gql } from 'apollo-angular';
 import { Observable } from 'rxjs';
+import { Ingred, Ingredients} from '../model/ingredients.model';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ export class StockManagementService {
 
   constructor(private apollo:Apollo) { }
 
-  getAllStock(pagination:any, searchStockName:any){
+  getAllStock(pagination:any, searchStockName:string){
     // console.log(pagination);
     return this.apollo.watchQuery({
       query:gql`
@@ -37,7 +38,7 @@ export class StockManagementService {
   };
   
 
-  getOneStock(id:any):Observable<any>{
+  getOneStock(id:Ingredients):Observable<any>{
     // console.log(id);
     return this.apollo.query({
       query: gql`
@@ -55,7 +56,7 @@ export class StockManagementService {
     });
   };
 
-  createNewStock(name:string, stock:number):Observable<any>{
+  createNewStock(data:Ingred):Observable<any>{
     // console.log(name, stock);
     return this.apollo.mutate({
       mutation: gql`
@@ -68,13 +69,13 @@ export class StockManagementService {
         }
       }`,
       variables:{
-        name : name,
-        stock : stock
+        name : data.name,
+        stock : data.stock
       }
     });
   };
 
-  updateStock(id:string, name:string, stock:number):Observable<any>{
+  updateStock(id:Ingredients, data:Ingred):Observable<any>{
     // console.log(id, stock);
     return this.apollo.mutate({
       mutation: gql`
@@ -88,14 +89,14 @@ export class StockManagementService {
       }`,
       variables:{
         updateIngredientsId: id,
-        name: name, 
-        stock: stock
+        name: data.name, 
+        stock: data.stock
       }
     });
   };
 
   //delete belum jadi
-  deleteStock(id:string):Observable<any>{
+  deleteStock(id:Ingredients):Observable<any>{
     // console.log(id);
     return this.apollo.mutate({
       mutation: gql`

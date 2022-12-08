@@ -1,11 +1,12 @@
 mat-card {
   width: 300px;
-  height: 440px;
-  flex: 0 0 30.333333%;
+  height: 450px;
+  flex: 0 0 29.333333%;
   border-radius: 0.5rem;
   box-shadow: 0 2px 4px 0 rgba(120, 149, 178, 0.2),
     2px 2px 6px 0 rgba(232, 223, 202, 0.3);
   margin-bottom: 2rem;
+  padding: 0;
 }
 
 mat-card:hover {
@@ -19,6 +20,11 @@ mat-card-title {
   height: 60px;
 }
 
+mat-card-title p {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
 mat-card-content {
   height: 100px;
   padding: 0 10px;
@@ -27,8 +33,11 @@ mat-card-content {
 }
 
 img {
-  width: 270px;
-  height: 180px;
+  object-fit: cover;
+  width: 100%;
+  height: 200px;
+  border-top-right-radius: 0.5rem;
+  border-top-left-radius: 0.5rem;
 }
 
 .flex-container {
@@ -50,6 +59,7 @@ img {
   display: flex;
   justify-content: space-between;
   padding: 0 1rem;
+  height: 100px;
 }
 
 .counter {
@@ -90,18 +100,29 @@ img {
 .label-tag{
   padding: 0rem 1rem;
   position: absolute;
+  width: 180px;
+  top: 180px;
   background-color: gold;
   z-index: 1;
-  border-radius: 5px;
-  left: 10px;
-  top: 10px;
+  border-radius: 20px 0;
+  margin: 0;
 }
-/*  */
+
 .label-tag p{
   font-weight: 500;
   padding: 0.5rem 0;
+  text-align: center;
 }
 
 ::ng-deep .my-custom-container-class{
   width: 1000px;
+}
+
+.price-item h2{
+  margin: 0;
+}
+
+.price-item p{
+  text-decoration: line-through;
+  text-decoration-color: red;
 }

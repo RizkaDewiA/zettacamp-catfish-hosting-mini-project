@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Apollo, gql } from 'apollo-angular';
 import { Observable } from 'rxjs';
+import { AddCart, Menu } from '../model/menu.model';
+import { Pagination } from '../model/pagination.model';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +11,7 @@ export class MenuPageService {
 
   constructor(private apollo:Apollo) { }
 
-  getAllMenuNow(pagination:any, filterMenu:any){
+  getAllMenuNow(pagination:Pagination, filterMenu:any){
     return this.apollo.watchQuery({
       query: gql`
       query GetAllRecipesNoToken($limit: Int, $status: status_recipe, $page: Int, $recipeName: String) {
@@ -25,6 +27,7 @@ export class MenuPageService {
             special_offers
             menu_highlight
             discount
+            afterDiscount
           }
           count_publish
         }
@@ -39,7 +42,7 @@ export class MenuPageService {
     });
   };
 
-  getOneMenu(id:string):Observable<any>{
+  getOneMenu(id:Menu):Observable<any>{
     return this.apollo.query({
       query:gql`
       query GetOneRecipes($getOneRecipesId: ID) {
@@ -60,6 +63,8 @@ export class MenuPageService {
           status
           description
           image
+          special_offers
+          afterDiscount
         }
       }`,
       variables:{
@@ -68,7 +73,7 @@ export class MenuPageService {
     });
   };
 
-  addCart(addMenu:any):Observable<any>{
+  addCart(addMenu:AddCart):Observable<any>{
     return this.apollo.mutate({
       mutation: gql`
       mutation AddCart($menu: [trans_menuInput]) {

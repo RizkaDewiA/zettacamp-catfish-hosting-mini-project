@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Apollo, gql } from 'apollo-angular';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { Pagination } from '../model/pagination.model';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class HomepageRestaurantService {
 
   constructor(private apollo:Apollo) { }
 
-  getMenuHighlight(pagination:any, highlight:boolean){
+  getMenuHighlight(pagination:Pagination, highlight:boolean){
     return this.apollo.watchQuery({
       query: gql`
       query GetAllRecipesNoToken($menuHighlight: Boolean, $limit: Int, $page: Int) {
@@ -31,11 +32,12 @@ export class HomepageRestaurantService {
         menuHighlight: highlight, 
         limit: pagination.limit, 
         page: pagination.page
-      }
+      },
+      fetchPolicy: "network-only"
     })
   }
 
-  getMenuOffer(pagination:any, offer:boolean){
+  getMenuOffer(pagination:Pagination, offer:boolean){
     return this.apollo.watchQuery({
       query: gql`
       query GetAllRecipesNoToken($specialOffers: Boolean, $limit: Int, $page: Int) {
@@ -50,6 +52,7 @@ export class HomepageRestaurantService {
             status
             id
             discount
+            afterDiscount
           }
         }
       }`,
@@ -57,7 +60,8 @@ export class HomepageRestaurantService {
         specialOffers: offer, 
         limit: pagination.limit, 
         page: pagination.page
-      }
+      },
+      fetchPolicy: "network-only"
     });
   }
 
@@ -105,6 +109,7 @@ export class HomepageRestaurantService {
           }
         }
       }`,
+      fetchPolicy:'network-only'
     })
   }
   

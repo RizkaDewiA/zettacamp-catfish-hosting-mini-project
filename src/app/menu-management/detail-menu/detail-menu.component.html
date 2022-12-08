@@ -4,7 +4,7 @@
     <p>{{dataMenu?.description}}</p>
     <h2>{{"menu-manage.image" | translate | titlecase}}</h2>
     <div class="menu">
-        <img [src]="dataMenu?.image" alt="image menu">
+        <img [src]="dataMenu?.image" alt="image menu" (error)="onImageError($event)">
     </div>
     <div class="table-ingre">
         <table>
@@ -16,7 +16,7 @@
           </tr>
           <tr *ngFor="let item of dataMenu?.ingredients">
             <td>
-              <p>{{ item?.ingredient_id?.name }}</p>
+              <p>{{ item?.ingredient_id?.name | titlecase }}</p>
             </td>
             <td class="i-stock">
               <p>{{ item?.ingredient_id?.stock }}</p>

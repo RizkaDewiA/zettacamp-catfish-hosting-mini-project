@@ -37,19 +37,19 @@
                     <mat-label>{{"title.firstname" | translate | titlecase}}</mat-label>
                     <input
                       matInput
-                      formControlName="firstName"
+                      formControlName="firstname"
                       required
                     />
-                    <mat-error *ngIf="this.registerForm.get('firstName').invalid">{{"cart-dialog.error-message" | translate | titlecase}}</mat-error>
+                    <mat-error *ngIf="this.registerForm.get('firstname').invalid">{{"cart-dialog.error-message" | translate | titlecase}}</mat-error>
                   </mat-form-field>
                   <mat-form-field appearance="outline">
                     <mat-label>{{"title.lastname" | translate | titlecase}}</mat-label>
                     <input
                       matInput
-                      formControlName="lastName"
+                      formControlName="lastname"
                       required
                     />
-                    <mat-error *ngIf="this.registerForm.get('lastName').invalid">{{"cart-dialog.error-message" | translate | titlecase}}</mat-error>
+                    <mat-error *ngIf="this.registerForm.get('lastname').invalid">{{"cart-dialog.error-message" | translate | titlecase}}</mat-error>
                   </mat-form-field>
                     <mat-form-field appearance="outline">
                       <mat-label>{{"title.email" | translate | titlecase}}</mat-label>
