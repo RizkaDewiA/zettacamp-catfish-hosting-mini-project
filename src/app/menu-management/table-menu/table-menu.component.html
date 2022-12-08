@@ -11,7 +11,7 @@
       <mat-label>{{"filter.status-menu" | translate | titlecase}}</mat-label>
       <mat-select [formControl]="statusMenuFilter">
         <mat-option *ngFor="let status of statusFilter" [value]="status.value">
-          {{status.viewValue}}
+          {{"option-stat."+status.viewValue | translate | titlecase}}
         </mat-option>
       </mat-select>
     </mat-form-field>

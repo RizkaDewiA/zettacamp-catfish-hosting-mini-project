@@ -27,25 +27,28 @@
     <!-- name field -->
     <mat-label>{{"menu-manage.name" | translate | titlecase}}</mat-label>
     <input type="text" matInput formControlName="recipe_name" />
-    <mat-error *ngIf="this.formMenu?.get('recipe_name')?.invalid">
-      This field is required !
+    <mat-error *ngIf="this.formMenu.controls.recipe_name.hasError('required')">
+      {{"cart-dialog.error-message" | translate | titlecase}}
+    </mat-error>
+    <mat-error *ngIf="this.formMenu.controls.recipe_name.hasError('minlength')">
+      {{"menu-error.error-length-recipe" | translate | titlecase}}
     </mat-error>
   </mat-form-field>
   <!-- description field -->
   <mat-form-field class="full-width mr-bottom-1" appearance="fill">
     <mat-label>{{"menu-manage.descrip" | translate | titlecase}}</mat-label>
     <textarea matInput formControlName="description"></textarea>
-    <!-- <mat-error *ngIf="this.formMenu.get('description')?.invalid">
-      This field is required !
-    </mat-error> -->
+    <mat-error *ngIf="this.formMenu.controls.description.hasError('required')">
+      {{"cart-dialog.error-message" | translate | titlecase}}
+    </mat-error>
+    <mat-error *ngIf="this.formMenu.controls.description.hasError('minlength')">
+      {{"menu-error.error-length-desc" | translate | titlecase}}
+    </mat-error>
   </mat-form-field>
   <!-- image field -->
   <mat-form-field class="full-width mr-bottom-1" appearance="fill">
     <mat-label>{{"menu-manage.image" | translate | titlecase}}</mat-label>
     <input type="url" matInput formControlName="image" />
-    <!-- <mat-error *ngIf="this.formMenu.get('recipe_name')?.invalid">
-      This field is required !
-    </mat-error> -->
   </mat-form-field>
   <table class="full-width" cellspacing="0">
     <tr>
@@ -54,8 +57,11 @@
         <mat-form-field class="full-width mr-bottom-1" appearance="fill">
           <mat-label>{{"menu-manage.price" | translate | titlecase}}</mat-label>
           <input type="number" matInput formControlName="price" />
-          <mat-error *ngIf="this.formMenu.get('price')?.invalid">
-            This field is required !
+          <mat-error *ngIf="this.formMenu.controls.price.hasError('required')">
+            {{"cart-dialog.error-message" | translate | titlecase}}
+          </mat-error>
+          <mat-error *ngIf="this.formMenu.controls.price.hasError('min')">
+            {{"menu-error.error-price" | translate | titlecase}}
           </mat-error>
         </mat-form-field>
       </td>
@@ -68,6 +74,9 @@
               {{ label.viewValue }}
             </mat-option>
           </mat-select>
+          <mat-error *ngIf="this.formMenu.controls.status.hasError('required')">
+            {{"cart-dialog.error-message" | translate | titlecase}}
+          </mat-error>
         </mat-form-field>
       </td>
     </tr>
@@ -79,7 +88,7 @@
         <mat-label
           ><h1>{{"menu-manage.title-ingred" | translate | titlecase}} {{ i + 1 }}</h1></mat-label
         >
-        <table>
+        <table class="mr-bottom-1">
           <tr>
             <td>
               <mat-form-field class="full-width" appearance="fill">
@@ -95,6 +104,9 @@
                     {{ inger?.name | titlecase }}
                   </mat-option>
                 </mat-select>
+                <mat-error *ngIf="this.ingredientss.at(i).get('ingredient_id').hasError('required')">
+                  {{"cart-dialog.error-message" | translate | titlecase}}
+                </mat-error>
               </mat-form-field>
             </td>
             <td>
@@ -106,6 +118,12 @@
                   name="stock_used"
                   formControlName="stock_used"
                 />
+                <mat-error *ngIf="this.ingredientss.at(i).get('stock_used').hasError('required')">
+                  {{"cart-dialog.error-message" | translate | titlecase}}
+                </mat-error>
+                <mat-error *ngIf="this.ingredientss.at(i).get('stock_used').hasError('min')">
+                  {{"menu-error.error-min-ingred" | translate | titlecase}}
+                </mat-error>
               </mat-form-field>
             </td>
             <td class="delete-button" *ngIf="ingredientss?.length > 1">
@@ -129,6 +147,6 @@
   </button>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-  <button mat-button mat-dialog-close color="warn">{{"menu-manage.cancel-btn" | translate | titlecase}}</button>
-  <button mat-flat-button color="primary" (click)="onSubmit()">{{"menu-manage.submit-btn" | translate | titlecase}}</button>
+  <button type="button" mat-button mat-dialog-close color="warn">{{"menu-manage.cancel-btn" | translate | titlecase}}</button>
+  <button type="submit" mat-flat-button color="primary" (click)="onSubmit()">{{"menu-manage.submit-btn" | translate | titlecase}}</button>
 </mat-dialog-actions>

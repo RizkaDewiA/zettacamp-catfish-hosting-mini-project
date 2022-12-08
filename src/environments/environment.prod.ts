@@ -1,6 +1,6 @@
 export const environment = {
   production: false,
-  apiUrl: 'https://tired-petticoat-slug.cyclic.app',
+  apiUrl: 'http://api.team-7.zettacamp-upn.zetta-demo.space/graphql',
   tokenKey: 'token',
   user_id: 'user_id',
   role: 'role',

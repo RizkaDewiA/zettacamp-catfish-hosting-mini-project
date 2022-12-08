@@ -40,8 +40,9 @@ export class DialogMenuComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.subs.sink = this.serviceMenu.getAllStock().subscribe((resp) => {
-      this.allIngredients = resp.data.getAllIngredients.data;
+    this.subs.sink = this.serviceMenu.getAllStock().valueChanges.subscribe((resp) => {
+      this.allIngredients = resp?.data;
+      this.allIngredients = this.allIngredients?.getAllIngredients?.data;
     });
 
     this.initForm();
@@ -52,7 +53,7 @@ export class DialogMenuComponent implements OnInit, OnDestroy {
       recipe_name: ['', [Validators.required, Validators.minLength(3)]],
       price: ['', [Validators.required, Validators.min(100)]],
       image: [''],
-      description: ['', [Validators.required, Validators.minLength(3)]],
+      description: ['', [Validators.required, Validators.minLength(30)]],
       status: ['', [Validators.required]],
       ingredients: this.fb.array([]),
     });

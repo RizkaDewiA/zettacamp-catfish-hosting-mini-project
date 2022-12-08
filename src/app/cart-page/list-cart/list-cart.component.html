@@ -1,167 +1,151 @@
 <div class="container-80 dp-block-1-2 cart-page">
-  <h1>{{"cart.title-purchase" | translate | titlecase}}</h1>
-  <!-- Pending -->
-  <mat-accordion class="mr-bottom-1">
-    <mat-expansion-panel
-      (opened)="panelOpenState = true"
-      (closed)="panelOpenState = true"
-      [expanded]="true"
-    >
-      <mat-expansion-panel-header>
-        <mat-panel-title> {{"cart.title-status" | translate | titlecase}} </mat-panel-title>
-        <mat-panel-description>
-          {{"cart.title-transaction" | translate | titlecase}}
-        </mat-panel-description>
-      </mat-expansion-panel-header>
+  <h1>{{ "cart.title-purchase" | translate | titlecase }}</h1>
+  <div class="divided">
+    <mat-card class="cart">
       <div *ngIf="tempCondition > 0; else pendingNotice">
-        <div class="list-item">
-          <div *ngFor="let order of cartListPending?.menu; let j = index">
-            <div class="item mr-bottom-1 mr-top-1" *ngIf="order.recipe_id.status == 'publish'; else unpublishMenu">
-              <img [src]="order?.recipe_id?.image" alt="menu image" (error)="onImageError($event)"/>
-              <div class="item-detail">
-                <h3>{{ order?.recipe_id?.recipe_name | titlecase }}</h3>
-                <p>{{ order?.recipe_id?.price | currency: "Rp. " }}</p>
-                <p><b>{{"cart.note" | translate}}</b> : {{ order?.note }}</p>
-              </div>
-              <div class="amount">
-                <h4>{{"cart.amount" | translate | titlecase}}</h4>
-                <div class="item-amount">
-                  <div [matTooltip]="order?.amount == 1 ? 'reach limit':'minus'">
-                    <button
-                      matSuffix
-                      mat-icon-button
-                      [ngStyle]="order?.amount == 1 ? {color: 'grey'} : { color: 'blue' }"
-                      [disabled]="order?.amount == 1"
-                      (click)="minAmount(order?._id)"
-                    >
-                      <mat-icon>remove</mat-icon>
-                    </button>
-                  </div>
-                  <span>{{ order?.amount }}</span>
-                  <div [matTooltip]="order?.amount >= order?.recipe_id?.available? 'reach limit':'plus'">
-                    <button
-                      matSuffix
-                      mat-icon-button
-                      [ngStyle]="order?.amount >= order?.recipe_id?.available ? {color: 'grey'}:{ color: 'blue' }"
-                      [disabled]="order?.amount >= order?.recipe_id?.available"
-                      (click)="addAmount(order?._id)"
-                    >
-                      <mat-icon>add</mat-icon>
-                    </button>
-                  </div>
-                </div>
-              </div>
-              <div class="item-total">
-                <h4>{{"cart.total-price-item" | translate | titlecase}}</h4>
-                <h1>{{ order?.total_recipe | currency: 'Rp ' : 'symbol' : '3.0'}}</h1>
-              </div>
-              <div class="order-button">
-                <button
-                  mat-flat-button
-                  color="edit"
-                  matTooltip="Edit Note"
-                  (click)="editCartDialog(order?._id)"
+        <div *ngFor="let order of cartListPending?.menu; let j = index">
+          <div class="item mr-bottom-1 mr-top-1">
+            <div class="image">
+              <img
+                [src]="order?.recipe_id?.image"
+                alt="menu image"
+                [ngClass]="
+                  order.recipe_id.status == 'unpublish' ? 'greyout' : ''
+                "
+                (error)="onImageError($event)"
+              />
+            </div>
+            <div class="item-detail">
+              <h3>{{ order?.recipe_id?.recipe_name | titlecase }}</h3>
+              <p>{{ order?.recipe_id?.price | currency : "Rp. " }}</p>
+              <p class="note">
+                <b>{{ "cart.note" | translate }}</b> : {{ order?.note }}
+              </p>
+            </div>
+            <div
+              class="amount"
+              [ngClass]="order.recipe_id.status == 'unpublish' ? 'greyout' : ''"
+            >
+              <h4>{{ "cart.amount" | translate | titlecase }}</h4>
+              <div class="item-amount">
+                <div
+                  [matTooltip]="order?.amount == 1 ? 'reach limit' : 'minus'"
                 >
-                  <mat-icon>edit</mat-icon>
-                </button>
-                <button
-                  mat-flat-button
-                  color="warn"
-                  matTooltip="Delete"
-                  (click)="
-                    deleteCart(order?._id, order?.recipe_id?.recipe_name)
+                  <button
+                    type="button"
+                    matSuffix
+                    mat-icon-button
+                    [ngStyle]="
+                      order?.amount == 1 ? { color: 'grey' } : { color: 'blue' }
+                    "
+                    [disabled]="
+                      order?.amount == 1 ||
+                      order?.recipe_id?.status == 'unpublish'
+                    "
+                    (click)="minAmount(order?._id)"
+                  >
+                    <mat-icon>remove</mat-icon>
+                  </button>
+                </div>
+                <span>{{ order?.amount }}</span>
+                <div
+                  [matTooltip]="
+                    order?.amount >= order?.recipe_id?.available
+                      ? 'reach limit'
+                      : 'plus'
                   "
                 >
-                  <mat-icon>delete</mat-icon>
-                </button>
+                  <button
+                    type="button"
+                    matSuffix
+                    mat-icon-button
+                    [ngStyle]="
+                      order?.amount >= order?.recipe_id?.available
+                        ? { color: 'grey' }
+                        : { color: 'blue' }
+                    "
+                    [disabled]="
+                      order?.amount >= order?.recipe_id?.available ||
+                      order?.recipe_id?.status == 'unpublish'
+                    "
+                    (click)="addAmount(order?._id)"
+                  >
+                    <mat-icon>add</mat-icon>
+                  </button>
+                </div>
               </div>
             </div>
-            <ng-template #unpublishMenu>
-              <div class="item mr-bottom-1 mr-top-1">
-                <img class="greyout" src="{{ order?.recipe_id?.image }}" alt="menu image" />
-                <div class="item-detail grayout">
-                  <h3>{{ order?.recipe_id?.recipe_name | titlecase }}</h3>
-                  <p>{{ order?.recipe_id?.price | currency: "Rp. "}}</p>
-                  <p><b>{{"cart.note" | translate}}</b> : {{ order?.note }}</p>
-                </div>
-                <div class="amount grayout">
-                  <h4>{{"cart.amount" | translate | titlecase}}</h4>
-                  <div class="item-amount grayout">
-                    <button
-                      matSuffix
-                      mat-icon-button
-                      [ngStyle]="{ color: 'grey' }"
-                      matTooltip="minus"
-                      disabled="true"
-                    >
-                      <mat-icon>remove</mat-icon>
-                    </button>
-                    <span>{{ order.amount }}</span>
-                    <button
-                      matSuffix
-                      mat-icon-button
-                      [ngStyle]="{ color: 'grey' }"
-                      matTooltip="plus"
-                      disabled="true"
-                    >
-                      <mat-icon>add</mat-icon>
-                    </button>
-                  </div>
-                </div>
-                <div class="item-total">
-                  <h4>{{"cart.total-price-item" | translate | titlecase}}</h4>
-                  <h1>{{ order?.total_recipe | currency: "Rp. " }}</h1>
-                </div>
-                <div class="order-button">
-                  <button
-                    mat-flat-button
-                    matTooltip="Edit Note"
-                    [disabled]="true"
-                  >
-                    <mat-icon>edit</mat-icon>
-                  </button>
-                  <button
-                    mat-flat-button
-                    color="warn"
-                    matTooltip="Delete"
-                    (click)="
-                      deleteCart(order?._id, order?.recipe_id?.recipe_name)
-                    "
-                  >
-                    <mat-icon>delete</mat-icon>
-                  </button>
-                </div>
-              </div>
-            </ng-template>
-            <mat-divider></mat-divider>
+            <div class="item-total">
+              <h4>{{ "cart.total-price-item" | translate | titlecase }}</h4>
+              <h1>
+                {{ order?.total_recipe | currency : "Rp " : "symbol" : "3.0" }}
+              </h1>
+            </div>
+            <div class="order-button">
+              <button
+                type="button"
+                mat-flat-button
+                color="edit"
+                matTooltip="Edit Note"
+                [disabled]="
+                  order?.recipe_id?.status == 'unpublish' ? true : false
+                "
+                [ngClass]="
+                  order?.recipe_id?.status == 'unpublish' ? 'greyout' : ''
+                "
+                (click)="editCartDialog(order?._id)"
+              >
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button
+                type="button"
+                mat-flat-button
+                color="warn"
+                matTooltip="Delete"
+                (click)="deleteCart(order?._id, order?.recipe_id?.recipe_name)"
+              >
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
           </div>
-        </div>
-        <div class="order-bar">
-          <h1><small><sup>{{"cart.total-price" | translate | titlecase}}</sup></small> {{ cartListPending?.total | currency: "Rp. " }}</h1>
-          <button
-            mat-flat-button
-            color="primary"
-            matTooltip="Order"
-            (click)="orderNow()"
-          >
-          {{"cart.order-btn" | translate | titlecase}}
-          </button>
+          <mat-divider></mat-divider>
         </div>
       </div>
-      <ng-template #pendingNotice>
-        <div class="none">
-          <img src="../../../assets/svg/undraw_empty_cart_co35.svg" alt="image svg"/>
-          <h1>{{"cart.status-transaction" | translate | titlecase}}</h1>
+    </mat-card>
+    <mat-card class="mr-bottom-1 payment">
+      <mat-card-title class="mr-bottom-1">Order Summary</mat-card-title>
+      <div class="payment-flex">
+        <div class="payment-item">
+          <mat-card-subtitle>Total Order</mat-card-subtitle>
+          <h1>
+            {{ cartListPending?.menu?.length }}
+          </h1>
         </div>
-      </ng-template>
-    </mat-expansion-panel>
-  </mat-accordion>
-  <mat-paginator
-    class="mr-bottom-2"
-    [length]="tempCondition"
-    [pageSizeOptions]="[10]"
-    [pageSize]="pagination?.limit"
-    [pageIndex]="pagination?.page - 1"
-    (page)="handlePagePending($event)"
-  ></mat-paginator>
+        <div class="payment-price">
+          <mat-card-subtitle>Total Price</mat-card-subtitle>
+          <h1>
+            {{ cartListPending?.total | currency : "Rp. " }}
+          </h1>
+        </div>
+      </div>
+      <button
+        mat-flat-button
+        color="primary"
+        matTooltip="Order"
+        (click)="orderNow()"
+        type="button"
+      >
+        {{ "cart.order-btn" | translate | titlecase }}
+      </button>
+    </mat-card>
   </div>
+  <ng-template #pendingNotice>
+    <div class="none">
+      <img
+        src="../../../assets/svg/undraw_empty_cart_co35.svg"
+        alt="image svg"
+      />
+      <h1>{{ "cart.status-transaction" | translate | titlecase }}</h1>
+    </div>
+  </ng-template>
+</div>

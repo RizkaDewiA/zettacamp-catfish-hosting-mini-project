@@ -46,6 +46,7 @@ h2 {
 .cart-form{
     display: flex;
     justify-content: space-around;
+    height: 100px;
 }
 
 .cart-counter {

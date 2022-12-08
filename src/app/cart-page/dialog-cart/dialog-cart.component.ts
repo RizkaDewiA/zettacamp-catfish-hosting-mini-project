@@ -33,7 +33,7 @@ export class DialogCartComponent implements OnInit, OnDestroy {
 
   initForm() {
     this.formCart = this.fb.group({
-      note: ['']
+      note: ['', [Validators.maxLength(100)]]
     });
 
     if (this.data.id_recipe) {

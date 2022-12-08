@@ -75,6 +75,7 @@
                         (click)="hide = !hide"
                         [attr.aria-label]="'Hide password'"
                         [attr.aria-pressed]="hide"
+                        type="button"
                       >
                         <mat-icon>{{
                           hide ? "visibility_off" : "visibility"
@@ -82,7 +83,7 @@
                       </button>
                     </mat-form-field>
                     <mat-card-actions align="center">
-                      <button mat-flat-button class="color-rest login-button" (click)="onSubmit()">{{"title.register-btn" | translate | titlecase}}</button>
+                      <button type="submit" mat-flat-button class="color-rest login-button" (click)="onSubmit()">{{"title.register-btn" | translate | titlecase}}</button>
                     </mat-card-actions>
                   </form>
                   <mat-card-actions align="center">

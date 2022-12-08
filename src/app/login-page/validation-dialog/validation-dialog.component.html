@@ -14,6 +14,6 @@
     </form>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-    <button mat-button (click)="onCancel()">{{"login-first.cancel-btn" | translate | titlecase}}</button>
-    <button mat-flat-button color="primary" (click)="onValidation()">{{"validation.next-btn" | translate | titlecase}}</button>
+    <button type="button" mat-button (click)="onCancel()">{{"login-first.cancel-btn" | translate | titlecase}}</button>
+    <button type="submit" mat-flat-button color="primary" (click)="onValidation()">{{"validation.next-btn" | translate | titlecase}}</button>
 </mat-dialog-actions>

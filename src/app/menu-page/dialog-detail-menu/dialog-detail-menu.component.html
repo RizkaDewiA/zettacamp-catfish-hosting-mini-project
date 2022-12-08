@@ -21,10 +21,16 @@
       <h2>{{"menu-list.title-buy" | translate | titlecase}}</h2>
       <div [formGroup]="cartForm" class="cart-form">
         <mat-form-field class="cart-counter" appearance="outline">
-            <mat-label>{{"menu-manage.quantity" | translate | titlecase}}</mat-label>
+            <mat-label>{{"menu-manage.quantity-buy" | translate | titlecase}}</mat-label>
             <input type="number" matInput formControlName="quantity" [readonly]="role == 'admin'"/>
-            <mat-error *ngIf="this.cartForm.get('quantity')?.invalid">
+            <mat-error *ngIf="this.cartForm.controls.quantity.hasError('required')">
               {{"cart-dialog.error-message" | translate | titlecase}}
+            </mat-error>
+            <mat-error *ngIf="this.cartForm.controls.quantity.hasError('max')">
+              {{"cart-dialog.error-max" | translate | titlecase}}
+            </mat-error>
+            <mat-error *ngIf="this.cartForm.controls.quantity.hasError('min')">
+              {{"cart-dialog.error-min" | translate | titlecase}}
             </mat-error>
           </mat-form-field>
           <mat-form-field class="cart-message" appearance="outline">
@@ -34,9 +40,8 @@
       </div>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-  <button mat-button color="warn" (click)="cancelButton()">{{"menu-manage.close-btn" | translate | titlecase}}</button>
-  <button
-          mat-flat-button
+  <button type="button" mat-button color="warn" (click)="cancelButton()">{{"menu-manage.close-btn" | translate | titlecase}}</button>
+  <button type="submit" mat-flat-button
           color="addcart"
           class="add-cart"
           *ngIf="role == 'user'"

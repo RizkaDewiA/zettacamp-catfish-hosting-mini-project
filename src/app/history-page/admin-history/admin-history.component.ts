@@ -59,8 +59,9 @@ export class AdminHistoryComponent implements OnInit {
         this.totalSize= failed;
       }else if(order_status == null){
         this.totalSize = failed + success;
+        // this.totalSize = resp?.data?.getHistory?.count_total;
       }
-      console.log(order_status);
+      console.log(resp);
     });
   }
 

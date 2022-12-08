@@ -58,8 +58,14 @@
   "cart-dialog": {
     "title-dialog": "edit catatan",
     "error-message": "bagian ini diperlukan",
+    "error-min": "pesanan kurang dari ketersediaan kami",
+    "error-max": "pesanan melebihi ketersediaan kami",
+    "error-maxLength": "exceeds 100 characters",
     "cancel-btn": "batalkan",
     "submit-btn": "simpan"
+  },
+  "stock-dialog":{
+    "error-min": "stok tidak boleh minus"
   },
   "stock-manage": {
     "add-btn": "tambahkan",
@@ -180,7 +186,14 @@
     "close-btn": "tutup",
     "quantity-used": "jumlah yang digunakan",
     "title-discount": "perbaharui diskon",
-    "amount": "jumlah"
+    "amount": "jumlah",
+    "quantity-buy": "jumlah beli"
+  },
+  "menu-error": {
+    "error-min-ingred" : "jumlah bahan digunakan tidak boleh mines",
+    "error-length-desc" : "min. 30 karakter",
+    "error-length-recipe": "min. 3 karakter",
+    "error-price": "min. harga 100"
   },
   "status": {
     "active":"aktif",
@@ -295,7 +308,9 @@
   "option-stat": {
     "all": "semua",
     "success": "berhasil",
-    "failed": "gagal"
+    "failed": "gagal",
+    "publish": "diterbitkan",
+    "unpublish": "tidak diterbitkan"
   },
   "none":{
     "highlight": "tidak ada sorot menu",

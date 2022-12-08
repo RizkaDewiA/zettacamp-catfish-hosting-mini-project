@@ -39,9 +39,9 @@ export class TableMenuComponent implements OnInit, OnDestroy {
 
   //filter status
   statusFilter:any = [
-    {viewValue: "All", value: "none"},
-    {viewValue: "Publish", value:"publish"},
-    {viewValue: "Unpublish", value:"unpublish"}
+    {viewValue: "all", value: "none"},
+    {viewValue: "publish", value:"publish"},
+    {viewValue: "unpublish", value:"unpublish"}
   ]
 
   statusMenuFilter = new FormControl('');

@@ -53,6 +53,7 @@
                     <button
                       mat-icon-button
                       matSuffix
+                      type="button"
                       (click)="hide = !hide"
                       [attr.aria-label]="'Hide password'"
                       [attr.aria-pressed]="hide"
@@ -63,7 +64,7 @@
                     </button>
                   </mat-form-field>
                   <mat-card-actions align="center">
-                    <button mat-flat-button class="color-rest login-button" (click)="onSubmit()">{{"home-page.login" | translate | titlecase}}</button>
+                    <button type="submit" mat-flat-button class="color-rest login-button" (click)="onSubmit()">{{"home-page.login" | translate | titlecase}}</button>
                   </mat-card-actions>
                   <mat-card-actions class="forgot-pass" align="center">
                     <a (click)="forgotPassword()">{{"other.text-3" | translate | titlecase}} ?</a>

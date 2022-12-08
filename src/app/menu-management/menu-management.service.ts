@@ -11,17 +11,18 @@ export class MenuManagementService {
 
   constructor(private apollo:Apollo) { }
 
-  getAllStock():Observable<any>{
-    return this.apollo.query({
+  getAllStock(){
+    return this.apollo.watchQuery({
       query:gql`
       query GetAllIngredients{
-        getAllIngredients(page: 1, limit: 100, stock: 1) {
+        getAllIngredients(page: 1, limit: 1000, stock: 1) {
           data {
             id
             name
           }
         }
-      }`
+      }`,
+      fetchPolicy: 'network-only'
     });
   };
 

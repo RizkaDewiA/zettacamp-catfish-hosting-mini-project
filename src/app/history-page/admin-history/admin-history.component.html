@@ -41,7 +41,7 @@
                 <mat-label >{{"filter.status" | translate | titlecase}}</mat-label>
                 <mat-select [formControl]="statusTransFilter">
                   <mat-option *ngFor="let status of statusFilter" [value]="status.value">
-                    {{"option-stat"+status.viewValue | translate | titlecase}}
+                    {{"option-stat."+status.viewValue | translate | titlecase}}
                   </mat-option>
                 </mat-select>
               </mat-form-field>
