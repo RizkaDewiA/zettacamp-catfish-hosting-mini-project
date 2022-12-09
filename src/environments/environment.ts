@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   apiUrl: 'https://tired-petticoat-slug.cyclic.app',
+  // apiUrl: '',
   tokenKey: 'token',
   user_id: 'user_id',
   role: 'role',

@@ -93,8 +93,9 @@ img {
 }
 
 .none-img{
-  width: 50%;
+  width: 100%;
   height: 30vh;
+  object-fit: contain;
 }
 
 .label-tag{
