@@ -136,3 +136,14 @@ img {
   text-decoration: line-through;
   text-decoration-color: red;
 }
+
+.reload ::ng-deep .mat-progress-spinner circle,
+.mat-spinner circle {
+  stroke: #c21010;
+}
+
+.reload {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}

@@ -27,7 +27,7 @@ const routes: Routes = [
     path: 'main-page',
     component: HomepageRestaurantComponent,
     children: [
-      { path: '', redirectTo: 'history-page', pathMatch: 'full' },
+      { path: '', redirectTo: 'menu-offer', pathMatch: 'full' },
       {
         path: 'menu-page',
         loadChildren: () =>

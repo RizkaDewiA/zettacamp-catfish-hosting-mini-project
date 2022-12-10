@@ -38,6 +38,7 @@ export class ListMenuComponent implements OnInit, OnDestroy {
   resultMenuFilter: any;
   durationInSeconds: number = 5;
   role: any;
+  menureload:boolean=true;
 
   constructor(
     private serviceMenu: MenuPageService,
@@ -72,6 +73,7 @@ export class ListMenuComponent implements OnInit, OnDestroy {
           this.listMenu = menu?.getAllRecipesNoToken?.data_recipes;
           this.totalSize = menu?.getAllRecipesNoToken?.count_publish;
           this.initStatusListMenu();
+          this.menureload = false
           // console.log(this.listMenu);
         },
         error: () => {

@@ -17,82 +17,87 @@
       {{ "filter.clear-btn" | translate | titlecase }}
     </button>
   </mat-form-field>
-  <div *ngIf="menulist; else menuListNone">
-    <div class="flex-container">
-      <mat-card *ngFor="let item of listMenu; let i = index">
-        <div class="label-tag" *ngIf="item?.menu_highlight == true">
-          <p>{{"table.highlight" | translate | titlecase}}</p>
-        </div>
-        <div [ngClass]="item?.available == 0 ? 'greyout' : ''">
-          <img
-            *ngIf="item.image != ''; else menuImageNone"
-            class="dp-block-bottom-1"
-            [src]="item?.image"
-            alt="menu image"
-            (error)="onImageError($event)"
-          />
-          <ng-template #menuImageNone>
+  <div *ngIf="menureload; else menuShow" class="reload">
+    <mat-spinner></mat-spinner>
+  </div>
+  <ng-template #menuShow> 
+    <div *ngIf="menulist; else menuListNone">
+      <div class="flex-container">
+        <mat-card *ngFor="let item of listMenu; let i = index">
+          <div class="label-tag" *ngIf="item?.menu_highlight == true">
+            <p>{{"table.highlight" | translate | titlecase}}</p>
+          </div>
+          <div [ngClass]="item?.available == 0 ? 'greyout' : ''">
             <img
+              *ngIf="item.image != ''; else menuImageNone"
               class="dp-block-bottom-1"
-              src="https://images.unsplash.com/photo-1534939561126-855b8675edd7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
+              [src]="item?.image"
               alt="menu image"
+              (error)="onImageError($event)"
             />
-          </ng-template>
-        </div>
-        <mat-card-title>
-          {{ item.recipe_name | titlecase }}
-          <p *ngIf="item?.available < 1"  class="top">{{"menu-list.notif-soldout" | translate | titlecase}}</p>
-        </mat-card-title>
-        <div class="group-item">
-          <div class="price-item" *ngIf="item?.special_offers === false; else offersOn">
-            <mat-card-subtitle>{{"menu-manage.price" | translate | titlecase}}</mat-card-subtitle>
-            <h2>{{ item?.price | currReplace }}</h2>
+            <ng-template #menuImageNone>
+              <img
+                class="dp-block-bottom-1"
+                src="https://images.unsplash.com/photo-1534939561126-855b8675edd7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
+                alt="menu image"
+              />
+            </ng-template>
           </div>
-          <ng-template #offersOn>
-            <div class="price-item">
-              <mat-card-subtitle>{{"table.price" | translate | titlecase}}</mat-card-subtitle>
-              <h2>{{ item?.afterDiscount | currReplace}}</h2>
-              <label class="discount">{{item?.discount}} %</label>
-              <label class="price">{{ item?.price | currReplace }}</label>
+          <mat-card-title>
+            {{ item.recipe_name | titlecase }}
+            <p *ngIf="item?.available < 1"  class="top">{{"menu-list.notif-soldout" | translate | titlecase}}</p>
+          </mat-card-title>
+          <div class="group-item">
+            <div class="price-item" *ngIf="item?.special_offers === false; else offersOn">
+              <mat-card-subtitle>{{"menu-manage.price" | translate | titlecase}}</mat-card-subtitle>
+              <h2>{{ item?.price | currReplace }}</h2>
             </div>
-          </ng-template>
-          <div class="avail-item">
-            <mat-card-subtitle>{{
-              "table.available" | translate | titlecase
-            }}</mat-card-subtitle>
-            <h2>{{ item?.available }}</h2>
+            <ng-template #offersOn>
+              <div class="price-item">
+                <mat-card-subtitle>{{"table.price" | translate | titlecase}}</mat-card-subtitle>
+                <h2>{{ item?.afterDiscount | currReplace}}</h2>
+                <label class="discount">{{item?.discount}} %</label>
+                <label class="price">{{ item?.price | currReplace }}</label>
+              </div>
+            </ng-template>
+            <div class="avail-item">
+              <mat-card-subtitle>{{
+                "table.available" | translate | titlecase
+              }}</mat-card-subtitle>
+              <h2>{{ item?.available }}</h2>
+            </div>
           </div>
-        </div>
-        <mat-card-actions
-          align="center"
-          *ngIf="item?.available > 0; else stockRunOut"
-        >
-          <button
-            mat-flat-button
-            color="addcart"
-            class="add-cart"
-            (click)="addToCart(item?.id)"
+          <mat-card-actions
+            align="center"
+            *ngIf="item?.available > 0; else stockRunOut"
           >
-            <mat-icon>add_shopping_cart</mat-icon>
-          </button>
-        </mat-card-actions>
-        <ng-template #stockRunOut>
-          <mat-card-actions align="center">
-            <button mat-flat-button class="add-cart" disabled="true">
+            <button
+              mat-flat-button
+              color="addcart"
+              class="add-cart"
+              (click)="addToCart(item?.id)"
+            >
               <mat-icon>add_shopping_cart</mat-icon>
             </button>
           </mat-card-actions>
-        </ng-template>
-      </mat-card>
+          <ng-template #stockRunOut>
+            <mat-card-actions align="center">
+              <button mat-flat-button class="add-cart" disabled="true">
+                <mat-icon>add_shopping_cart</mat-icon>
+              </button>
+            </mat-card-actions>
+          </ng-template>
+        </mat-card>
+      </div>
+      <mat-paginator
+        [length]="totalSize"
+        [pageSizeOptions]="[10]"
+        [pageSize]="pagination?.limit"
+        [pageIndex]="pagination?.page - 1"
+        (page)="handlePage($event)"
+      ></mat-paginator>
     </div>
-    <mat-paginator
-      [length]="totalSize"
-      [pageSizeOptions]="[10]"
-      [pageSize]="pagination?.limit"
-      [pageIndex]="pagination?.page - 1"
-      (page)="handlePage($event)"
-    ></mat-paginator>
-  </div>
+  </ng-template>
   <ng-template #menuListNone>
     <div class="noneList">
       <img
