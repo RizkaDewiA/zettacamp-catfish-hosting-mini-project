@@ -9,7 +9,9 @@
 }
 
 .item img {
-    width: 100px;
+    width: 160px;
+    object-fit: cover;
+    border-radius: 10px;
 }
 
 .item-detail{
@@ -35,6 +37,15 @@
 
 .item-total{
     width: 200px;
+}
+
+.item-total h1{
+    padding: 0;
+    margin: 0;
+}
+
+.item-all h1, .price-all h1{
+    padding: 0;
 }
 
 .item-status{
@@ -109,4 +120,10 @@
 img{
     width: 100px;
     height: 100px;
+}
+
+.allofthem{
+    width: 80%;
+    display: flex;
+    justify-content: space-around;
 }

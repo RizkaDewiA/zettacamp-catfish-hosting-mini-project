@@ -3,7 +3,7 @@
     <h1 class="label">{{"user-history.title" | translate | titlecase}}</h1>
     <mat-card class="balance-card">
       <mat-card-subtitle>{{"admin-history.balance" | translate | titlecase}}</mat-card-subtitle>
-      <mat-card-title>Rp {{balanceAdmin}}</mat-card-title>
+      <mat-card-title>{{balanceAdmin | currReplace}}</mat-card-title>
     </mat-card>
   </div>
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
@@ -32,7 +32,7 @@
 
       <ng-container matColumnDef="total_price">
         <th class="th-center" mat-header-cell *matHeaderCellDef>{{"admin-history.price" | translate | titlecase}}</th>
-        <td class="th-center" mat-cell *matCellDef="let element">{{ element.total }}</td>
+        <td class="th-center" mat-cell *matCellDef="let element">{{ element.total | currReplace }}</td>
       </ng-container>
   
       <ng-container matColumnDef="status">

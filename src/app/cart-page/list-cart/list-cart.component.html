@@ -17,7 +17,7 @@
             </div>
             <div class="item-detail">
               <h3>{{ order?.recipe_id?.recipe_name | titlecase }}</h3>
-              <p>{{ order?.recipe_id?.price | currency : "Rp. " }}</p>
+              <p>{{ order?.recipe_id?.price | currReplace }}</p>
               <p class="note">
                 <b>{{ "cart.note" | translate }}</b> : {{ order?.note }}
               </p>
@@ -78,7 +78,7 @@
             <div class="item-total">
               <h4>{{ "cart.total-price-item" | translate | titlecase }}</h4>
               <h1>
-                {{ order?.total_recipe | currency : "Rp " : "symbol" : "3.0" }}
+                {{ order?.total_recipe | currReplace }}
               </h1>
             </div>
             <div class="order-button">
@@ -113,18 +113,18 @@
       </div>
     </mat-card>
     <mat-card class="mr-bottom-1 payment">
-      <mat-card-title class="mr-bottom-1">Order Summary</mat-card-title>
+      <mat-card-title class="mr-bottom-1">{{"order.order-summary" | translate | titlecase}}</mat-card-title>
       <div class="payment-flex">
         <div class="payment-item">
-          <mat-card-subtitle>Total Order</mat-card-subtitle>
+          <mat-card-subtitle>{{"order.total" | translate | titlecase}}</mat-card-subtitle>
           <h1>
             {{ cartListPending?.menu?.length }}
           </h1>
         </div>
         <div class="payment-price">
-          <mat-card-subtitle>Total Price</mat-card-subtitle>
+          <mat-card-subtitle>{{"cart.total-price" | translate | titlecase}}</mat-card-subtitle>
           <h1>
-            {{ cartListPending?.total | currency : "Rp. " }}
+            {{ cartListPending?.total | currReplace }}
           </h1>
         </div>
       </div>
@@ -134,6 +134,7 @@
         matTooltip="Order"
         (click)="orderNow()"
         type="button"
+        [disabled]="cartListPending?.menu?.length == 0"
       >
         {{ "cart.order-btn" | translate | titlecase }}
       </button>

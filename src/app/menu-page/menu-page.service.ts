@@ -64,6 +64,7 @@ export class MenuPageService {
           description
           image
           special_offers
+          discount
           afterDiscount
         }
       }`,

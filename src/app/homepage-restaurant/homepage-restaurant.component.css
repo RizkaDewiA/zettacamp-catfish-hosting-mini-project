@@ -45,6 +45,7 @@ mat-sidenav {
 .nav-list ul {
   display: flex;
   justify-content: space-around;
+  align-items: center;
 }
 
 .nav-list ul li, .user ul li {

@@ -20,11 +20,8 @@
   <div *ngIf="menulist; else menuListNone">
     <div class="flex-container">
       <mat-card *ngFor="let item of listMenu; let i = index">
-        <div class="label-tag" *ngIf="item?.special_offers == true">
-          <p>
-            {{ "menu-list.disc-title" | translate | titlecase }}
-            {{ item?.discount }} %
-          </p>
+        <div class="label-tag" *ngIf="item?.menu_highlight == true">
+          <p>{{"table.highlight" | translate | titlecase}}</p>
         </div>
         <div [ngClass]="item?.available == 0 ? 'greyout' : ''">
           <img
@@ -47,16 +44,18 @@
           <p *ngIf="item?.available < 1"  class="top">{{"menu-list.notif-soldout" | translate | titlecase}}</p>
         </mat-card-title>
         <div class="group-item">
-          <div class="price-item">
-            <mat-card-subtitle>{{
-              "menu-manage.price" | translate | titlecase
-            }}</mat-card-subtitle>
-            <h2 *ngIf="item?.special_offers === false; else offersOn">{{ item?.price | currency : "Rp. " }}</h2>
-            <ng-template #offersOn>
-              <h2>{{ item?.afterDiscount | currency: "Rp."}}</h2>
-              <p>{{ item?.price | currency: "Rp. " }}</p>
-            </ng-template>
+          <div class="price-item" *ngIf="item?.special_offers === false; else offersOn">
+            <mat-card-subtitle>{{"menu-manage.price" | translate | titlecase}}</mat-card-subtitle>
+            <h2>{{ item?.price | currReplace }}</h2>
           </div>
+          <ng-template #offersOn>
+            <div class="price-item">
+              <mat-card-subtitle>{{"table.price" | translate | titlecase}}</mat-card-subtitle>
+              <h2>{{ item?.afterDiscount | currReplace}}</h2>
+              <label class="discount">{{item?.discount}} %</label>
+              <label class="price">{{ item?.price | currReplace }}</label>
+            </div>
+          </ng-template>
           <div class="avail-item">
             <mat-card-subtitle>{{
               "table.available" | translate | titlecase

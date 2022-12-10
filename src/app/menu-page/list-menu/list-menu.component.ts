@@ -72,9 +72,9 @@ export class ListMenuComponent implements OnInit, OnDestroy {
           this.listMenu = menu?.getAllRecipesNoToken?.data_recipes;
           this.totalSize = menu?.getAllRecipesNoToken?.count_publish;
           this.initStatusListMenu();
-          console.log(this.listMenu);
+          // console.log(this.listMenu);
         },
-        error: (error: any) => {
+        error: () => {
           this.menulist = false;
         },
       });
@@ -102,7 +102,7 @@ export class ListMenuComponent implements OnInit, OnDestroy {
 
   searchMenu() {
     this.filterMenuByName.valueChanges.subscribe((result) => {
-      console.log(result);
+      // console.log(result);
       this.resultMenuFilter = result;
       this.getDataMenu();
     });

@@ -1,6 +1,6 @@
 <mat-card>
-  <div class="label-tag">
-    <p> {{"menu-list.disc-title" | translate | titlecase}} {{itemMenu?.discount}} %</p>
+  <div class="label-tag" *ngIf="itemMenu?.menu_highlight == true">
+    <p>{{"table.highlight" | translate | titlecase}}</p>
   </div>
   <div [ngClass]="itemMenu?.available == 0 ? 'greyout' : ''">
     <img
@@ -25,8 +25,9 @@
   <div class="group-item">
     <div class="price-item">
       <mat-card-subtitle>{{"table.price" | translate | titlecase}}</mat-card-subtitle>
-      <h2>{{ itemMenu?.afterDiscount | currency: "Rp."}}</h2>
-      <p>{{ itemMenu?.price | currency: "Rp. " }}</p>
+      <h2>{{ itemMenu?.afterDiscount | currReplace}}</h2>
+      <label class="discount">{{itemMenu?.discount}} %</label>
+      <label class="price">{{ itemMenu?.price | currReplace }}</label>
     </div>
     <div class="avail-item">
       <mat-card-subtitle>{{"table.available" | translate | titlecase}}</mat-card-subtitle>

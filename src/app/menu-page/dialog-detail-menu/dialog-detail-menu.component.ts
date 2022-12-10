@@ -88,11 +88,19 @@ export class DialogDetailMenuComponent implements OnInit, OnDestroy {
           });
         },
         error: (error)=>{
-          Swal.fire(
-            this.translate?.instant('alert-menu-fail.title'),
-            error?.message ,
-            'error',
-          );
+          if(error.message.includes("ada")){
+            Swal.fire(
+              this.translate?.instant('alert-menu-fail.title'),
+              this.translate?.instant('alert-menu-fail.text-1'),
+              'error',
+            );
+          }else{
+            Swal.fire(
+              this.translate?.instant('alert-menu-fail.title'),
+              error?.message ,
+              'error',
+            );
+          }
         }
       });  
     } else {

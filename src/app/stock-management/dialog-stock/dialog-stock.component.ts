@@ -38,8 +38,8 @@ export class DialogStockComponent implements OnInit, OnDestroy {
 
   initForm() {
     this.formStock = this.fb.group({
-      name: ['', [Validators.required]],
-      stock: ['', [Validators.required, Validators.min(1)]],
+      name: ['', [Validators.required, Validators.pattern('^[a-zA-Z ]*$')]],
+      stock: ['', [Validators.required, Validators.min(1), Validators.pattern('^[0-9]*$')]],
     });
 
     if (this.data) {
@@ -53,7 +53,6 @@ export class DialogStockComponent implements OnInit, OnDestroy {
     }
   }
 
-  //kurang swal untuk error server and server
   onSubmit() {
     const updatedId = this.id;
     const updatedValue = this.formStock.value;

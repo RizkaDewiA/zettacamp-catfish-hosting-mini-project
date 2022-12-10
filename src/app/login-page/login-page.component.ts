@@ -35,7 +35,28 @@ export class LoginPageComponent implements OnInit, OnDestroy {
     setTimeout(() => {
       this.loginreload = false;
     }, 500);
+    this.initLanguage();
     this.initFormGroup();
+  }
+
+  initLanguage(){
+    let lang = JSON?.parse(localStorage?.getItem('locale'));
+    if(lang) {
+      this.translate.setDefaultLang(lang);
+      this.translate.use(lang);
+      this.currentLanguage = lang;
+      if(lang == 'id'){
+        this.srcImages = 'https://cdn-icons-png.flaticon.com/512/3053/3053985.png';
+      }else{
+        this.srcImages = 'https://cdn-icons-png.flaticon.com/512/323/323329.png';
+      }
+    } else {
+      this.translate.setDefaultLang('en');
+      this.translate.use('en');
+      localStorage.setItem('locale', JSON.stringify('en'));
+      this.currentLanguage = 'en';
+      this.srcImages = 'https://cdn-icons-png.flaticon.com/512/323/323329.png';
+    }
   }
 
   initFormGroup(){
@@ -64,7 +85,6 @@ export class LoginPageComponent implements OnInit, OnDestroy {
 
   onSubmit(){
     const payload = this.loginForm.value;
-    // console.log(payload.email);
     if(this.loginForm.valid){
       this.subs.sink = this.serviceLogin.loginUser(payload).subscribe({
         next: (resp) => {
@@ -106,15 +126,18 @@ export class LoginPageComponent implements OnInit, OnDestroy {
     }
   }
 
-  changeLanguage(lang:any) {
-    if (lang === 'en') {
+  changeLanguage(lang: any) {
+    if (lang == 'en') {
       this.translate.use('id');
       this.currentLanguage = 'id';
-      this.srcImages = "https://cdn-icons-png.flaticon.com/512/3053/3053985.png";
+      localStorage.setItem('locale', JSON.stringify('id'));
+      this.srcImages =
+        'https://cdn-icons-png.flaticon.com/512/3053/3053985.png';
     } else {
       this.translate.use('en');
       this.currentLanguage = 'en';
-      this.srcImages = "https://cdn-icons-png.flaticon.com/512/323/323329.png";
+      localStorage.setItem('locale', JSON.stringify('en'));
+      this.srcImages = 'https://cdn-icons-png.flaticon.com/512/323/323329.png';
     }
   }
 

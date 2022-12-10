@@ -116,3 +116,21 @@ img {
 ::ng-deep .my-custom-container-class{
   width: 1000px;
 }
+
+.price-item h2{
+  margin: 0;
+}
+
+.price-item .discount{
+  background-color: rgba(230, 72, 72, 0.3);
+  color: #c21010;
+  border-radius: 5px;
+  padding: 3px;
+  margin-right: 10px;
+  font-size: 0.8rem;
+}
+
+.price-item .price{
+  text-decoration: line-through;
+  text-decoration-color: red;
+}

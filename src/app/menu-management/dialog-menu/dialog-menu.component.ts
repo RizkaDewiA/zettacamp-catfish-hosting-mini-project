@@ -1,11 +1,5 @@
 import { Component, OnInit, Inject, OnDestroy } from '@angular/core';
-import {
-  FormArray,
-  FormControl,
-  FormBuilder,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormArray,FormBuilder,FormGroup,Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import { Menu } from 'src/app/model/menu.model';
@@ -31,6 +25,8 @@ export class DialogMenuComponent implements OnInit, OnDestroy {
     { value: 'unpublish', viewValue: 'Unpublish' },
   ];
 
+  tempIngred = []
+
   constructor(
     private fb: FormBuilder,
     private serviceMenu: MenuManagementService,
@@ -46,6 +42,7 @@ export class DialogMenuComponent implements OnInit, OnDestroy {
     });
 
     this.initForm();
+    
   }
 
   initForm() {
@@ -65,7 +62,15 @@ export class DialogMenuComponent implements OnInit, OnDestroy {
     } else {
       this.id == null;
       this.addNewIngredients();
-    }
+    } 
+
+    this.formMenu.get('ingredients').valueChanges.subscribe((res:any)=>{
+      res.forEach((element:any)=>{
+        if(element.ingredient_id != "" ){
+          this.tempIngred.push(element.ingredient_id);
+        }
+      });
+    });
   }
 
   getOnePatchMenu(id: Menu) {

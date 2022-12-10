@@ -20,17 +20,22 @@ export class LandingPageComponent implements OnInit, OnDestroy {
   menuHighlight:any;
   menuOffer:any;
 
+  menureloadhigh:boolean=true;
+  menureloadoffer:boolean=true;
+
   constructor(private router:Router, private serviceHomepage:HomepageRestaurantService) { }
 
   ngOnInit(): void {
     this.subs.sink = this.serviceHomepage.getMenuHighlight(this.pagination, this.highlight).valueChanges.subscribe((res)=>{
       this.menuHighlight = res?.data;
       this.menuHighlight = this.menuHighlight?.getAllRecipesNoToken.data_recipes.filter((stat)=>stat.status == 'publish');
+      this.menureloadhigh = false;
     });
 
     this.subs.sink = this.serviceHomepage.getMenuOffer(this.pagination, this.offer).valueChanges.subscribe((res)=>{
       this.menuOffer = res?.data;
       this.menuOffer = this.menuOffer?.getAllRecipesNoToken.data_recipes.filter((stat)=>stat.status == 'publish');
+      this.menureloadoffer = false;
     });
   }
 

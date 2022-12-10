@@ -33,6 +33,8 @@ export class HistoryPageService {
                 recipe_name
                 price
                 image
+                discount
+                afterDiscount
               }
               total_recipe
             }
@@ -81,6 +83,8 @@ export class HistoryPageService {
                   recipe_name
                   status
                   price
+                  discount
+                  afterDiscount
                 }
                 note
                 _id

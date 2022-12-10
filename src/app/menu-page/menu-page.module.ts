@@ -8,6 +8,8 @@ import { DialogDetailMenuComponent } from './dialog-detail-menu/dialog-detail-me
 import { HttpClient } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { HttpLoaderFactory } from '../app.module';
+import { CurrReplacePipe } from '../pipe/curr-replace.pipe';
+import { SharedPipeModule } from '../pipe/shared-pipe.module';
 
 const routes : Routes = [
   {path:"", component: MenuPageComponent}
@@ -31,6 +33,7 @@ const routes : Routes = [
       },
       defaultLanguage: 'en',
     }),
+    SharedPipeModule
   ],
   exports: [
     MenuPageComponent,

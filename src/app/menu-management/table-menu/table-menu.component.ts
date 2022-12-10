@@ -161,7 +161,12 @@ export class TableMenuComponent implements OnInit, OnDestroy {
   
   onUpdateOffer(id:string, status:any, amount: number, foodName:string){
     if(status.checked == true){
-      this.dialog.open(DialogDiscountComponent, {data:{id_food:id, status:status.checked, defaultAmount:amount, name:foodName}});
+      const dialogRef = this.dialog.open(DialogDiscountComponent, {data:{id_food:id, status:status.checked, defaultAmount:amount, name:foodName}});
+      dialogRef.afterClosed().subscribe((res:any)=>{
+        if(res.message == 'cancel'){
+          status.source.checked = !status.source.checked;
+        }
+      })
     }else if(status.checked == false){
       this.subs.sink = this.serviceMenu.updateSpecialOffer(id, status.checked, amount).subscribe(()=>{
           Swal.fire(

@@ -47,7 +47,7 @@
   
       <ng-container matColumnDef="price">
         <th class="th-center" mat-header-cell *matHeaderCellDef>{{"table.price" | translate | titlecase}}</th>
-        <td class="th-center" mat-cell *matCellDef="let element">{{ element?.price }}</td>
+        <td class="th-center" mat-cell *matCellDef="let element">{{ element?.price | currReplace}}</td>
       </ng-container>
 
       <ng-container matColumnDef="special-offer">

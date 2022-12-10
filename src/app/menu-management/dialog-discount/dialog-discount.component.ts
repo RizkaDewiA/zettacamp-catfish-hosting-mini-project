@@ -74,6 +74,10 @@ export class DialogDiscountComponent implements OnInit, OnDestroy {
     }
   }
 
+  onCancel(){
+    this.dialogRef.close({message: 'cancel'});
+  }
+
   ngOnDestroy(): void {
     this.subs.unsubscribe();
   }

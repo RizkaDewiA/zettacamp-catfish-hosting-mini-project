@@ -17,19 +17,19 @@ export class HomepageRestaurantComponent implements OnInit, OnDestroy {
   opened: boolean = false;
   landingPage: boolean = false;
   menuAllow: UserType;
-  currentLanguage = 'en';
-  srcImages: string = 'https://cdn-icons-png.flaticon.com/512/323/323329.png';
+  currentLanguage:any;
+  srcImages: string;
   userData:any;
   badgeLength:any;
 
   constructor(private router: Router, private translate: TranslateService, private serviceHomepage: HomepageRestaurantService) {
     translate.addLangs(['en', 'id']);
-    translate.setDefaultLang('en');
   }
 
   ngOnInit(): void {
     const token = localStorage.getItem(environment.tokenKey);
     const usertype = JSON.parse(localStorage.getItem(environment.usertype));
+    this.initLanguage();
     if (token == null) {
       this.landingPage = true;
     } else if (token !== null) {
@@ -38,6 +38,26 @@ export class HomepageRestaurantComponent implements OnInit, OnDestroy {
       this.initUserData();
       this.badgeCart();
       this.router.navigate(['main-page']);
+    }
+  }
+
+  initLanguage(){
+    let lang = JSON?.parse(localStorage?.getItem('locale'));
+    if(lang) {
+      this.translate.setDefaultLang(lang);
+      this.translate.use(lang);
+      this.currentLanguage = lang;
+      if(lang == 'id'){
+        this.srcImages = 'https://cdn-icons-png.flaticon.com/512/3053/3053985.png';
+      }else{
+        this.srcImages = 'https://cdn-icons-png.flaticon.com/512/323/323329.png';
+      }
+    } else {
+      this.translate.setDefaultLang('en');
+      this.translate.use('en');
+      localStorage.setItem('locale', JSON.stringify('en'));
+      this.currentLanguage = 'en';
+      this.srcImages = 'https://cdn-icons-png.flaticon.com/512/323/323329.png';
     }
   }
 
@@ -57,20 +77,26 @@ export class HomepageRestaurantComponent implements OnInit, OnDestroy {
   }
 
   changeLanguage(lang: any) {
-    if (lang === 'en') {
+    if (lang == 'en') {
       this.translate.use('id');
       this.currentLanguage = 'id';
+      localStorage.setItem('locale', JSON.stringify('id'));
       this.srcImages =
         'https://cdn-icons-png.flaticon.com/512/3053/3053985.png';
     } else {
       this.translate.use('en');
       this.currentLanguage = 'en';
+      localStorage.setItem('locale', JSON.stringify('en'));
       this.srcImages = 'https://cdn-icons-png.flaticon.com/512/323/323329.png';
     }
   }
 
   loginPage() {
     this.router.navigate(['/login-page']);
+  }
+
+  registerPage() {
+    this.router.navigate(['/register-page']);
   }
 
   logoutPage() {

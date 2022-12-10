@@ -6,7 +6,7 @@
 .snackbar-link{
     display: flex;
     justify-content: space-between;
-    width: 100px;
+    width: 150px;
     cursor: pointer;
 }
 

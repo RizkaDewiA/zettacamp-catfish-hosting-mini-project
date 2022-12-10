@@ -9,6 +9,7 @@ import { AdminHistoryComponent } from './admin-history/admin-history.component';
 import { HttpClient } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { HttpLoaderFactory } from '../app.module';
+import { SharedPipeModule } from '../pipe/shared-pipe.module';
 
 const routes : Routes = [
   {path:"", component: HistoryPageComponent}
@@ -33,6 +34,7 @@ const routes : Routes = [
       },
       defaultLanguage: 'en',
     }),
+    SharedPipeModule
   ],
   exports: [
     HistoryPageComponent,

@@ -4,6 +4,7 @@
     "menu": "menu kami",
     "about": "tentang kami",
     "login": "masuk",
+    "register": "daftar",
     "order-now": "pesan sekarang",
     "see-our-menu": "lihat menu kami"
   },
@@ -173,7 +174,7 @@
     "submit-btn": "kirim",
     "name": "nama",
     "descrip": "deskripsi",
-    "image": "photo",
+    "image": "gambar",
     "price": "harga",
     "status": "status",
     "title-ingred": "bahan",
@@ -275,7 +276,8 @@
   },
   "alert-menu-fail": {
     "title": "Oh tidak.....",
-    "text": "Anda harus mengisi jumlah pesanan"
+    "text": "Anda harus mengisi jumlah pesanan",
+    "text-1": "Menu sudah ada di keranjang"
   },
   "alert-saldo": {
     "title" : "Cek Saldo",
@@ -355,11 +357,15 @@
   },
   "shared":{
     "text-1": "telah ditambahkan ke keranjang",
-    "cart-btn": "lihat kerancang"
+    "cart-btn": "lihat keranjang"
   },
   "register":{
     "title-1":"Apakah Anda Ingin Membuat Akun?",
     "title-2":"Akun Anda Telah Dibuat, Anda Dapat masuk Sekarang",
     "confrim-btn":"Ya, Buat Akun"
+  },
+  "order": {
+    "order-summary": "ringkasan pemesanan",
+    "total": "total pemesanan"
   }
 }

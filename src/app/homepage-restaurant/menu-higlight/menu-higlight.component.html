@@ -1,5 +1,5 @@
 <mat-card>
-  <div class="label-tag">
+  <div class="label-tag" *ngIf="itemMenu?.menu_highlight == true">
     <p>{{"table.highlight" | translate | titlecase}}</p>
   </div>
   <div [ngClass]="itemMenu?.available == 0 ? 'greyout' : ''">
@@ -23,10 +23,18 @@
     <p *ngIf="itemMenu?.available < 1"  class="top">{{"menu-list.notif-soldout" | translate | titlecase}}</p>
   </mat-card-title>
   <div class="group-item">
-    <div class="price-item">
+    <div class="price-item" *ngIf="itemMenu?.special_offers == false; else hasOffer">
       <mat-card-subtitle>{{"table.price" | translate | titlecase}}</mat-card-subtitle>
-      <h2> {{ itemMenu?.price | currency:"Rp. " }}</h2>
+      <h2> {{ itemMenu?.price | currReplace }}</h2>
     </div>
+    <ng-template #hasOffer>
+      <div class="price-item">
+        <mat-card-subtitle>{{"table.price" | translate | titlecase}}</mat-card-subtitle>
+        <h2>{{ itemMenu?.afterDiscount | currReplace}}</h2>
+        <label class="discount">{{itemMenu?.discount}} %</label>
+        <label class="price">{{ itemMenu?.price | currReplace }}</label>
+      </div>
+    </ng-template>
     <div class="avail-item">
       <mat-card-subtitle>{{"table.available" | translate | titlecase}}</mat-card-subtitle>
       <h2>{{ itemMenu?.available }}</h2>

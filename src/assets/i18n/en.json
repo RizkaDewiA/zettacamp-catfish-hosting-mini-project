@@ -4,6 +4,7 @@
     "menu": "menu",
     "about": "about",
     "login": "login",
+    "register": "register",
     "order-now": "order now",
     "see-our-menu": "see our menu"
   },
@@ -171,7 +172,7 @@
     "add-menu": "add new menu",
     "edit-menu": "edit menu",
     "submit-btn": "submit",
-    "name": "nama",
+    "name": "name",
     "descrip": "description",
     "image": "image",
     "price": "price",
@@ -275,7 +276,8 @@
   },
   "alert-menu-fail": {
     "title": "Oops...",
-    "text": "You have to fill the quantity"
+    "text": "You have to fill the quantity",
+    "text-1": "Menu is already in cart"
   },
   "alert-saldo": {
     "title" : "Check saldo",
@@ -361,5 +363,9 @@
     "title-1":"Do You Want To Create Account ?",
     "title-2":"Your Account Has Been Create, You Can Login Now",
     "confrim-btn":"Yes, create account"
+  },
+  "order": {
+    "order-summary": "order summary",
+    "total": "total order"
   }
 }

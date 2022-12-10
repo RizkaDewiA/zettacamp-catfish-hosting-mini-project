@@ -33,6 +33,7 @@ export class UserHistoryComponent implements OnInit {
   }
 
   totalPrice:number = 0;
+  totalItem = [];
 
   indexToShow = [];
 
@@ -47,9 +48,6 @@ export class UserHistoryComponent implements OnInit {
     const order_status = this.status;
     this.subs.sink = this.serviceHistory?.getAllCartStatus(this.pagination, order_status)?.valueChanges?.subscribe((resp:any)=>{
       this.cartList = resp?.data?.getAllTransaction?.data_transaction?.filter((stat)=>stat?.order_status == 'success' || stat?.order_status == 'failed');
-      this.cartList.forEach((element)=>{
-        console.log(element);
-      })
       const failed = resp?.data?.getAllTransaction?.count_failed;
       const success = resp?.data?.getAllTransaction?.count_success;
       if(order_status == "success"){
@@ -59,11 +57,22 @@ export class UserHistoryComponent implements OnInit {
       }else if(order_status == null){
         this.lengthCart = failed + success;
       }
-      this.cartList.forEach(()=>{
-        this.indexToShow.push(1);
-      })
+      
+      let tempAmount = [];
+      let temp = [];
 
-      console.log(resp);
+      this.cartList.forEach((element)=>{
+        tempAmount = element.menu.map((res)=>{
+          return res.amount;
+        })
+        temp.push(tempAmount);
+        this.indexToShow.push(1);
+      });
+
+      temp.forEach((element)=>{
+        let a = element.reduce((a,b)=> a+b, 0);
+        this.totalItem.push(a);
+      })
     });
   }
 

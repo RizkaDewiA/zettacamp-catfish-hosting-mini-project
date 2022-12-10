@@ -29,6 +29,9 @@
     <mat-error *ngIf="this.formStock.controls.name.hasError('required')">
       {{"cart-dialog.error-message" | translate | titlecase}}
     </mat-error>
+    <mat-error *ngIf="this.formStock.controls.name.hasError('pattern')">
+      please fill not use special character
+    </mat-error>
   </mat-form-field>
   <mat-form-field class="full-width mr-bottom-1" appearance="fill">
     <mat-label>{{"stock-manage.amount-stock" | translate | titlecase}}</mat-label>

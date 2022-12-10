@@ -25,6 +25,9 @@ export class HomepageRestaurantService {
             price
             status
             id
+            special_offers
+            discount
+            afterDiscount
           }
         }
       }`,
@@ -53,6 +56,7 @@ export class HomepageRestaurantService {
             id
             discount
             afterDiscount
+            menu_highlight
           }
         }
       }`,

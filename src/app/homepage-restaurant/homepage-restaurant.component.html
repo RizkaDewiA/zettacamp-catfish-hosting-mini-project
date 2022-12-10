@@ -28,6 +28,15 @@
             {{ "home-page.login" | translate | titlecase }}
           </button>
         </li>
+        <li>
+          <button
+            mat-flat-button
+            class="login color-secondary"
+            (click)="registerPage()"
+          >
+            {{ "home-page.register" | translate | titlecase }}
+          </button>
+        </li>
         <li class="language">
           <a *ngIf="currentLanguage" (click)="changeLanguage(currentLanguage)"
             ><img [src]="srcImages"

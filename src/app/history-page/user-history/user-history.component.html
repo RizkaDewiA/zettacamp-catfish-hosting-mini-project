@@ -23,7 +23,7 @@
               </ng-template>
               <div class="item-detail">
                 <h3>{{ order?.recipe_id?.recipe_name | titlecase }}</h3>
-                <p>Rp {{ order?.recipe_id?.price }}</p>
+                <p>{{ order?.recipe_id?.price | currReplace}}</p>
               </div>
               <div class="amount">
                 <h4>{{"cart.amount" | translate | titlecase}}</h4>
@@ -33,7 +33,7 @@
               </div>
               <div class="item-total">
                 <h4>{{"cart.total-price-item" | translate | titlecase}}</h4>
-                <h1>Rp {{ order?.total_recipe }}</h1>
+                <h1>{{ order?.total_recipe | currReplace }}</h1>
               </div>
               <div class="item-status">
                 <h4>{{"table.status" | translate | titlecase}}</h4>
@@ -54,6 +54,17 @@
             <mat-divider></mat-divider>
           </div>
         </ng-container>
+        <div class="more-button width-40 dp-block mr-top-1">
+          <div class="item-all">
+            <mat-card-subtitle>Total Item</mat-card-subtitle>
+            <h1>{{totalItem[i]}}</h1>
+          </div>
+          <div class="price-all">
+            <mat-card-subtitle>Total Price</mat-card-subtitle>
+            <h1>{{item?.total | currReplace}}</h1>
+          </div>
+        </div>
+        <mat-divider class="mr-bottom-1"></mat-divider>
         <div class="width-40 dp-block">
           <div
             class="more-button mr-top-1 mr-bottom-1"

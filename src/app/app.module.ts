@@ -13,13 +13,12 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { RegisterPageModule } from './register-page/register-page.module';
-import { CurrReplacePipe } from './pipe/curr-replace.pipe';
 import { SharedModule } from './shared/shared.module';
+import { SharedPipeModule } from './pipe/shared-pipe.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CurrReplacePipe,
   ],
   imports: [
     BrowserModule,
@@ -33,6 +32,7 @@ import { SharedModule } from './shared/shared.module';
     GraphQLModule,
     HttpClientModule,
     SharedModule,
+    SharedPipeModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

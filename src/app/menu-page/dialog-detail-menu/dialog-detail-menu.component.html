@@ -2,41 +2,51 @@
 <mat-dialog-content class="detail-menu">
     <h2>{{"menu-manage.descrip" | translate | titlecase}}</h2>
     <p>{{detailMenu?.description}}</p>
-    <div class="group-item">
+    <div class="group-item mr-bottom-1">
         <div class="ingre-item">
             <h2>{{"menu-manage.title-ingred" | translate | titlecase}}</h2>
             <div *ngFor="let item of detailMenu?.ingredients">
                 <p>&ensp;{{item?.ingredient_id?.name | titlecase}}</p>
             </div>
         </div>
-        <div class="price-item">
+        <div class="price-item" *ngIf="detailMenu?.special_offers === false; else offersOn">
           <h2>{{"menu-manage.price" | translate | titlecase}}</h2>
-          <p>Rp {{ detailMenu?.price }}</p>
+          <p>{{ detailMenu?.price | currReplace }}</p>
         </div>
+        <ng-template #offersOn>
+          <div class="price-item">
+            <h2>{{"menu-manage.price" | translate | titlecase}}</h2>
+            <p>{{ detailMenu?.afterDiscount | currReplace}}</p>
+            <label class="discount">{{detailMenu?.discount}} %</label>
+            <label class="price">{{ detailMenu?.price | currReplace }}</label>
+          </div>
+        </ng-template>
         <div class="avail-item">
           <h2>{{"table.available" | translate | titlecase}}</h2>
           <p>{{ detailMenu?.available }}</p>
         </div>
       </div>
-      <h2>{{"menu-list.title-buy" | translate | titlecase}}</h2>
-      <div [formGroup]="cartForm" class="cart-form">
-        <mat-form-field class="cart-counter" appearance="outline">
-            <mat-label>{{"menu-manage.quantity-buy" | translate | titlecase}}</mat-label>
-            <input type="number" matInput formControlName="quantity" [readonly]="role == 'admin'"/>
-            <mat-error *ngIf="this.cartForm.controls.quantity.hasError('required')">
-              {{"cart-dialog.error-message" | translate | titlecase}}
-            </mat-error>
-            <mat-error *ngIf="this.cartForm.controls.quantity.hasError('max')">
-              {{"cart-dialog.error-max" | translate | titlecase}}
-            </mat-error>
-            <mat-error *ngIf="this.cartForm.controls.quantity.hasError('min')">
-              {{"cart-dialog.error-min" | translate | titlecase}}
-            </mat-error>
-          </mat-form-field>
-          <mat-form-field class="cart-message" appearance="outline">
-            <mat-label>{{"menu-list.message" | translate | titlecase}}</mat-label>
-            <input type="text" matInput formControlName="message" [readonly]="role == 'admin'" />
-          </mat-form-field>
+      <div *ngIf="role == 'user'">
+        <h2>{{"menu-list.title-buy" | translate | titlecase}}</h2>
+        <div [formGroup]="cartForm" class="cart-form">
+          <mat-form-field class="cart-counter" appearance="outline">
+              <mat-label>{{"menu-manage.quantity-buy" | translate | titlecase}}</mat-label>
+              <input type="number" matInput formControlName="quantity"/>
+              <mat-error *ngIf="this.cartForm.controls.quantity.hasError('required')">
+                {{"cart-dialog.error-message" | translate | titlecase}}
+              </mat-error>
+              <mat-error *ngIf="this.cartForm.controls.quantity.hasError('max')">
+                {{"cart-dialog.error-max" | translate | titlecase}}
+              </mat-error>
+              <mat-error *ngIf="this.cartForm.controls.quantity.hasError('min')">
+                {{"cart-dialog.error-min" | translate | titlecase}}
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field class="cart-message" appearance="outline">
+              <mat-label>{{"menu-list.message" | translate | titlecase}}</mat-label>
+              <input type="text" matInput formControlName="message"/>
+            </mat-form-field>
+        </div>
       </div>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
