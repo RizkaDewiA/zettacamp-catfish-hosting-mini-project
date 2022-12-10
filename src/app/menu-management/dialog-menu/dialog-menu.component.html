@@ -63,6 +63,9 @@
           <mat-error *ngIf="this.formMenu.controls.price.hasError('min')">
             {{"menu-error.error-price" | translate | titlecase}}
           </mat-error>
+          <mat-error *ngIf="this.formMenu.controls.price.hasError('pattern')">
+            {{"pattern.number" | translate | titlecase}}
+          </mat-error>
         </mat-form-field>
       </td>
       <td>
@@ -125,6 +128,9 @@
                 </mat-error>
                 <mat-error *ngIf="this.ingredientss.at(i).get('stock_used').hasError('min')">
                   {{"menu-error.error-min-ingred" | translate | titlecase}}
+                </mat-error>
+                <mat-error *ngIf="this.ingredientss.at(i).get('stock_used').hasError('pattern')">
+                  {{"pattern.number" | translate | titlecase}}
                 </mat-error>
               </mat-form-field>
             </td>

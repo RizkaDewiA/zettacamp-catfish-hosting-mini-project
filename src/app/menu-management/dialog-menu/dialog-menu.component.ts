@@ -48,7 +48,7 @@ export class DialogMenuComponent implements OnInit, OnDestroy {
   initForm() {
     this.formMenu = this.fb.group({
       recipe_name: ['', [Validators.required, Validators.minLength(3)]],
-      price: ['', [Validators.required, Validators.min(100)]],
+      price: ['', [Validators.required, Validators.min(100),Validators.pattern('^[0-9]*$')]],
       image: [''],
       description: ['', [Validators.required, Validators.minLength(30)]],
       status: ['', [Validators.required]],
@@ -108,7 +108,7 @@ export class DialogMenuComponent implements OnInit, OnDestroy {
   newIngredients(): FormGroup {
     return this.fb.group({
       ingredient_id: ['', [Validators.required]],
-      stock_used: ['', [Validators.required, Validators.min(1)]],
+      stock_used: ['', [Validators.required, Validators.min(1), Validators.pattern('^[0-9]*$')]],
     });
   }
 

@@ -41,6 +41,9 @@
               <mat-error *ngIf="this.cartForm.controls.quantity.hasError('min')">
                 {{"cart-dialog.error-min" | translate | titlecase}}
               </mat-error>
+              <mat-error *ngIf="this.cartForm.controls.quantity.hasError('pattern')">
+                {{"pattern.text" | translate | titlecase}}
+              </mat-error>
             </mat-form-field>
             <mat-form-field class="cart-message" appearance="outline">
               <mat-label>{{"menu-list.message" | translate | titlecase}}</mat-label>

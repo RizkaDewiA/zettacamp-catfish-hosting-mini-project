@@ -367,5 +367,9 @@
   "order": {
     "order-summary": "order summary",
     "total": "total order"
+  },
+  "pattern": {
+    "number" : "don't use decimal or dot",
+    "text" : "don't use special character"
   }
 }

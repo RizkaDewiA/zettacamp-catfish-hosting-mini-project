@@ -64,7 +64,7 @@ export class DialogDetailMenuComponent implements OnInit, OnDestroy {
 
   getCounterQuan() {
     this.cartForm = this.fb?.group({
-      quantity: ['', [Validators.required, Validators.min(1)]],
+      quantity: ['', [Validators.required, Validators.min(1), Validators.pattern('^[0-9]*$')]],
       message: ['', [Validators.maxLength(100)]],
     });
   }

@@ -367,5 +367,9 @@
   "order": {
     "order-summary": "ringkasan pemesanan",
     "total": "total pemesanan"
+  },
+  "pattern": {
+    "number" : "jangan menggunakan desimal atau titik",
+    "text" : "jangan menggunakan karakter spesial"
   }
 }
