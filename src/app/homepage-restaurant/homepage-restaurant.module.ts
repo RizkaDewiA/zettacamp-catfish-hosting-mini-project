@@ -23,8 +23,8 @@ import { SharedPipeModule } from '../pipe/shared-pipe.module';
     CommonModule,
     MaterialModule,
     RouterModule,
-    TranslateModule.forChild({
-      extend: true
+    TranslateModule.forRoot({
+      extend: true,
     }),
     AboutPageModule,
     SharedPipeModule
