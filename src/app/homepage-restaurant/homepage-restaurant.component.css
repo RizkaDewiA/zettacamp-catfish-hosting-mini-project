@@ -42,6 +42,15 @@ mat-sidenav {
   overflow-x: none;
 }
 
+.flex-container{
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav-list {
+  width: 40%;
+}
+
 .nav-list ul {
   display: flex;
   justify-content: space-around;

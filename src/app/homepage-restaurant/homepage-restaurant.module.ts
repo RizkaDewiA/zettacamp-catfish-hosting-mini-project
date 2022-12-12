@@ -11,9 +11,6 @@ import { HomepageUserComponent } from './homepage-user/homepage-user.component';
 import { AboutPageModule } from '../about-page/about-page.module';
 import { SharedPipeModule } from '../pipe/shared-pipe.module';
 
-// const routes : Routes = [
-//   {path:"", component:HomepageRestaurantComponent}
-// ]
 @NgModule({
   declarations: [
     HomepageRestaurantComponent,
