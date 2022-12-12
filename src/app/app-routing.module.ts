@@ -27,7 +27,7 @@ const routes: Routes = [
     path: 'main-page',
     component: HomepageRestaurantComponent,
     children: [
-      { path: '', redirectTo: 'menu-offer', pathMatch: 'full' },
+      { path: '', redirectTo: 'menu_offer', pathMatch: 'full' },
       {
         path: 'menu-page',
         loadChildren: () =>
@@ -70,7 +70,7 @@ const routes: Routes = [
           canActivate:[MenuManagementGuard]
       },
       {
-        path: 'menu-offer',
+        path: 'menu_offer',
         component: HomepageUserComponent
       },
       {

@@ -38,6 +38,8 @@ export class HomepageRestaurantComponent implements OnInit, OnDestroy {
       this.initUserData();
       this.badgeCart();
       this.router.navigate(['main-page']);
+      console.log(this.menuAllow);
+      
     }
   }
 

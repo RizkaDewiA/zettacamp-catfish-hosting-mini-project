@@ -77,11 +77,11 @@ mat-sidenav {
   transition: all 0.3s ease-in-out;
 }
 
-.nav-list a:hover {
+.nav-list a:hover, .nav-list a.active {
   background-position: 0;
 }
 
-.nav-list a:hover::before {
+.nav-list a:hover::before, .nav-list a.active::before {
   width: 100%;
 }
 
@@ -103,8 +103,7 @@ mat-sidenav {
   color: #c21010;
 }
 
-.user a:focus,
-.about-info a:focus {
+.user a.active, .about-info a.active{
   color: #c21010;
 }
 

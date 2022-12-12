@@ -10,12 +10,12 @@
     <div class="nav-list" id="home-page">
       <ul>
         <li>
-          <a [routerLink]="['landing-page']">{{
+          <a [routerLink]="['landing-page']" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">{{
             "home-page.home" | translate | titlecase
           }}</a>
         </li>
         <li>
-          <a [routerLink]="['menu-page']">{{
+          <a [routerLink]="['menu-page']" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">{{
             "sub-menu.Menu" | translate | titlecase
           }}</a>
         </li>
@@ -119,7 +119,7 @@
         <h1>Indonesian Cuisine</h1>
       </div>
       <div class="about-info">
-        <a [routerLink]="['about-page']"><mat-icon>info</mat-icon></a>
+        <a [routerLink]="['about-page']" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"><mat-icon>info</mat-icon></a>
       </div>
       <div class="language-other">
         <a *ngIf="currentLanguage" (click)="changeLanguage(currentLanguage)"
@@ -133,20 +133,20 @@
         <div class="image-profile">
           <img class="clip-circle dp-block" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"/>
           <div class="dp-block-1 profile-link">
-            <a [routerLink]="['profile-page']">{{userData?.first_name | titlecase}} {{userData?.last_name | titlecase}}</a>
+            <a [routerLink]="['profile-page']" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">{{userData?.first_name | titlecase}} {{userData?.last_name | titlecase}}</a>
             <p *ngIf="userData?.role == 'user'">{{"profile.balance" | translate | titlecase}} <label>Rp {{userData?.saldo}}</label></p>
           </div>
         </div>
         <ul class="pd-left-right-1">
           <li *ngFor="let menu of menuAllow">
             <div *ngIf="menu?.slug == 'cart-page'; else noBadge">
-              <a [routerLink]="[menu?.slug]">
+              <a [routerLink]="[menu?.slug]" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
                 <mat-icon class="mr-right-1"  [matBadge]="badgeLength">shopping_cart</mat-icon>
                 {{ "sub-menu." + menu?.name | translate | titlecase }}
               </a>
             </div>
             <ng-template #noBadge>
-              <a [routerLink]="[menu?.slug]">
+              <a [routerLink]="[menu?.slug]" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: false }">
                 <mat-icon class="mr-right-1">{{ menu?.icon_name }}</mat-icon>
                 {{ "sub-menu." + menu?.name | translate | titlecase }}
               </a>

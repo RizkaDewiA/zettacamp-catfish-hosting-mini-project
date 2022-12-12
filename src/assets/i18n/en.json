@@ -130,26 +130,26 @@
   "stock-update": {
     "title": "Updated",
     "text": "Stock Has Been Updated",
-    "confrim-btn": "Oke"
+    "confrim-btn": "Ok"
   },
   "stock-added": {
     "title": "Success",
     "text": "Stock Has Been Added",
-    "confrim-btn": "Oke"
+    "confrim-btn": "Ok"
   },
   "stock-minus": {
     "title": "Error!",
     "text": "Stock Cannot Minus!",
-    "confrim-btn": "Oke"
+    "confrim-btn": "Ok"
   },
   "stock-invalid": {
     "title": "Error!",
     "text": "Stock Invalid",
-    "confrim-btn": "Oke"
+    "confrim-btn": "Ok"
   },
   "alert-error":{
     "title": "Error!",
-    "confrim-btn": "Oke"
+    "confrim-btn": "Ok"
   },
   "delete-confrim": {
     "title":"Are you sure want to delete this stock?",
@@ -204,17 +204,17 @@
   "menu-update": {
     "title": "Updated",
     "text": "Menu Has Been Updated",
-    "confrim-btn": "Oke"
+    "confrim-btn": "Ok"
   },
   "menu-added": {
     "title": "Success",
     "text": "Menu Has Been Added",
-    "confrim-btn": "Oke"
+    "confrim-btn": "Ok"
   },
   "menu-invalid": {
     "title": "Error!",
     "text": "Menu Invalid",
-    "confrim-btn": "Oke"
+    "confrim-btn": "Ok"
   },
   "delete-confrim-menu": {
     "title":"Are you sure want to delete this menu?",
@@ -245,7 +245,7 @@
   "discount-invalid": {
     "title": "Error!",
     "text": "Discount Invalid",
-    "confrim-btn": "Oke"
+    "confrim-btn": "Ok"
   },
   "update-status": {
     "title": "Change Status",
