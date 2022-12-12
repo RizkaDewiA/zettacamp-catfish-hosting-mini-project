@@ -37,9 +37,7 @@ export class HomepageRestaurantComponent implements OnInit, OnDestroy {
       this.menuAllow = usertype.filter((resp) => resp.view === true);
       this.initUserData();
       this.badgeCart();
-      this.router.navigate(['main-page']);
-      console.log(this.menuAllow);
-      
+      this.router.navigate(['main-page']); 
     }
   }
 

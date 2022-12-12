@@ -13,10 +13,10 @@
       <div class="highlight-mode">
         <button (click)="onLeft('highlight')" matSuffix mat-icon-button class=""><mat-icon>keyboard_arrow_left</mat-icon></button>
         <div class="width-absolute scrolling-wrapper mr-right-1 mr-left-1" id="highlight">
-          <div *ngIf="menureloadhigh; else menuShow" class="high">
+          <div *ngIf="menureloadhigh; else menuShowHigh" class="high">
             <mat-spinner></mat-spinner>
           </div>
-          <ng-template #menuShow>
+          <ng-template #menuShowHigh>
             <app-menu-higlight *ngFor="let item of menuHighlight" [itemMenu]="item" class="card mr-bottom-2" ></app-menu-higlight>
           </ng-template>
         </div>
@@ -29,11 +29,11 @@
   <h2>{{"table.offer" | translate | titlecase}}</h2>
   <div class="offer-mode">
     <button (click)="onLeft('offer')" matSuffix mat-icon-button class=""><mat-icon>keyboard_arrow_left</mat-icon></button>
-    <div class="width-80 scrolling-wrapper  mr-right-1 mr-left-1" id="offer">
-      <div *ngIf="menureloadoffer; else menuShow" class="offer">
+    <div class="scrolling-wrapper  mr-right-1 mr-left-1" id="offer" [ngClass]="menuOffer.length > 4? 'width-80':''">
+      <div *ngIf="menureloadoffer; else menuShowOffer" class="offer">
         <mat-spinner></mat-spinner>
       </div>
-      <ng-template #menuShow>
+      <ng-template #menuShowOffer>
         <app-special-offer  *ngFor="let item of menuOffer" [itemMenu]="item" class="card mr-bottom-2"></app-special-offer>
       </ng-template>
     </div>
