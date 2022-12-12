@@ -117,15 +117,25 @@
       <div class="payment-flex">
         <div class="payment-item">
           <mat-card-subtitle>{{"order.total" | translate | titlecase}}</mat-card-subtitle>
-          <h1>
-            {{ cartListPending?.menu?.length }}
+          <h1 *ngIf="cartListPending?.menu?.length < 1; else noMenu">
+            0
           </h1>
+          <ng-template #noMenu>
+            <h1>
+              {{ cartListPending?.menu?.length }}
+            </h1>
+          </ng-template>
         </div>
         <div class="payment-price">
           <mat-card-subtitle>{{"cart.total-price" | translate | titlecase}}</mat-card-subtitle>
-          <h1>
-            {{ cartListPending?.total | currReplace }}
+          <h1 *ngIf="cartListPending?.menu?.length < 1; else noPrice">
+            Rp 0
           </h1>
+          <ng-template #noPrice>
+            <h1>
+              {{ cartListPending?.total | currReplace }}
+            </h1>
+          </ng-template>
         </div>
       </div>
       <button
@@ -134,7 +144,7 @@
         matTooltip="Order"
         (click)="orderNow()"
         type="button"
-        [disabled]="cartListPending?.menu?.length == 0"
+        [disabled]="cartListPending?.menu?.length < 1 "
       >
         {{ "cart.order-btn" | translate | titlecase }}
       </button>
