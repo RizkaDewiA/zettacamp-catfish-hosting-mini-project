@@ -2,9 +2,15 @@
 <mat-dialog-content>
     <mat-form-field class="full-width mr-bottom-1" appearance="fill">
         <mat-label>{{"menu-manage.amount" | translate | titlecase}}</mat-label>
-        <input type="number" matInput [formControl] = "formDiscount" />
-        <mat-error *ngIf="this.formDiscount.invalid">
-          This field is required !
+        <input type="number" matInput [formControl] = "formDiscount"/>
+        <mat-error *ngIf="this.formDiscount.hasError('required')">
+          {{"cart-dialog.error-message" | translate | titlecase}}
+        </mat-error>
+        <mat-error *ngIf="this.formDiscount.hasError('min')">
+          {{"pattern.disc-min" | translate | titlecase}}
+        </mat-error>
+        <mat-error *ngIf="this.formDiscount.hasError('max')">
+          {{"pattern.disc-max" | translate | titlecase}}
         </mat-error>
       </mat-form-field>
 </mat-dialog-content>

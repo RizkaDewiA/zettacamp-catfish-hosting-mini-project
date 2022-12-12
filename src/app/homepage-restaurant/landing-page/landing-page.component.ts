@@ -36,8 +36,6 @@ export class LandingPageComponent implements OnInit, OnDestroy {
       this.menuOffer = res?.data;
       this.menuOffer = this.menuOffer?.getAllRecipesNoToken.data_recipes.filter((stat)=>stat.status == 'publish');
       this.menureloadoffer = false;
-      console.log(this.menuOffer);
-      
     });
   }
 

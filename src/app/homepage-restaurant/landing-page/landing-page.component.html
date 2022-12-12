@@ -29,7 +29,7 @@
   <h2>{{"table.offer" | translate | titlecase}}</h2>
   <div class="offer-mode">
     <button (click)="onLeft('offer')" matSuffix mat-icon-button class=""><mat-icon>keyboard_arrow_left</mat-icon></button>
-    <div class="scrolling-wrapper  mr-right-1 mr-left-1" id="offer" [ngClass]="menuOffer.length > 4? 'width-80':''">
+    <div class="scrolling-wrapper  mr-right-1 mr-left-1" id="offer" [ngClass]="menuOffer?.length > 4? 'width-80':''">
       <div *ngIf="menureloadoffer; else menuShowOffer" class="offer">
         <mat-spinner></mat-spinner>
       </div>

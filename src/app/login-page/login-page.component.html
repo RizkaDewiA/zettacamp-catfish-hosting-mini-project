@@ -40,7 +40,9 @@
                       formControlName="email"
                       required
                     />
-                    <mat-error *ngIf="this.loginForm.get('email').invalid">{{"mat-error.fill-email" | translate | titlecase}}</mat-error>
+                    <mat-error *ngIf="this.loginForm.controls.email.hasError('required')">
+                      {{"mat-error.fill-email" | translate | titlecase}}
+                    </mat-error>
                   </mat-form-field>
                   <mat-form-field appearance="outline">
                     <mat-label>{{"title.password" | translate | titlecase}}</mat-label>
@@ -49,7 +51,15 @@
                       formControlName="password"
                       [type]="hide ? 'password' : 'text'"
                     />
-                    <mat-error *ngIf="this.loginForm.get('password').invalid">{{"mat-error.fill-password" | translate | titlecase}}</mat-error>
+                    <mat-error *ngIf="this.loginForm.controls.password.hasError('required')">
+                      {{"mat-error.fill-password" | translate | titlecase}}
+                    </mat-error>
+                    <mat-error *ngIf="this.loginForm.controls.password.hasError('maxlength')">
+                      {{"pattern.pass-max" | translate | titlecase}}
+                    </mat-error>
+                    <mat-error *ngIf="this.loginForm.controls.password.hasError('minlength')">
+                      {{"pattern.pass-min" | translate | titlecase}}
+                    </mat-error>
                     <button
                       mat-icon-button
                       matSuffix

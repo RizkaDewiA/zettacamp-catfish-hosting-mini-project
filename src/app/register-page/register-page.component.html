@@ -40,7 +40,15 @@
                       formControlName="firstname"
                       required
                     />
-                    <mat-error *ngIf="this.registerForm.get('firstname').invalid">{{"cart-dialog.error-message" | translate | titlecase}}</mat-error>
+                    <mat-error *ngIf="this.registerForm.controls.firstname.hasError('required')">
+                      {{"cart-dialog.error-message" | translate | titlecase}}
+                    </mat-error>
+                    <mat-error *ngIf="this.registerForm.controls.firstname.hasError('maxlength')">
+                      {{"pattern.name-max-30" | translate | titlecase}}
+                    </mat-error>
+                    <mat-error *ngIf="this.registerForm.controls.firstname.hasError('pattern')">
+                      {{"pattern.text" | translate | titlecase}}
+                    </mat-error>
                   </mat-form-field>
                   <mat-form-field appearance="outline">
                     <mat-label>{{"title.lastname" | translate | titlecase}}</mat-label>
@@ -49,7 +57,15 @@
                       formControlName="lastname"
                       required
                     />
-                    <mat-error *ngIf="this.registerForm.get('lastname').invalid">{{"cart-dialog.error-message" | translate | titlecase}}</mat-error>
+                    <mat-error *ngIf="this.registerForm.controls.lastname.hasError('required')">
+                      {{"cart-dialog.error-message" | translate | titlecase}}
+                    </mat-error>
+                    <mat-error *ngIf="this.registerForm.controls.lastname.hasError('maxlength')">
+                      {{"pattern.name-max-30" | translate | titlecase}}
+                    </mat-error>
+                    <mat-error *ngIf="this.registerForm.controls.lastname.hasError('pattern')">
+                      {{"pattern.text" | translate | titlecase}}
+                    </mat-error>
                   </mat-form-field>
                     <mat-form-field appearance="outline">
                       <mat-label>{{"title.email" | translate | titlecase}}</mat-label>
@@ -59,7 +75,9 @@
                         formControlName="email"
                         required
                       />
-                      <mat-error *ngIf="this.registerForm.get('email').invalid">{{"mat-error.fill-email" | translate | titlecase}}</mat-error>
+                      <mat-error *ngIf="this.registerForm.controls.email.hasError('required')">
+                        {{"mat-error.fill-email" | translate | titlecase}}
+                      </mat-error>
                     </mat-form-field>
                     <mat-form-field appearance="outline">
                       <mat-label>{{"title.password" | translate | titlecase}}</mat-label>
@@ -68,7 +86,15 @@
                         formControlName="password"
                         [type]="hide ? 'password' : 'text'"
                       />
-                      <mat-error *ngIf="this.registerForm.get('password').invalid">{{"mat-error.fill-password" | translate | titlecase}}</mat-error>
+                      <mat-error *ngIf="this.registerForm.controls.password.hasError('required')">
+                        {{"mat-error.fill-password" | translate | titlecase}}
+                      </mat-error>
+                      <mat-error *ngIf="this.registerForm.controls.password.hasError('maxlength')">
+                        {{"pattern.pass-max" | translate | titlecase}}
+                      </mat-error>
+                      <mat-error *ngIf="this.registerForm.controls.password.hasError('minlength')">
+                        {{"pattern.pass-min" | translate | titlecase}}
+                      </mat-error>
                       <button
                         mat-icon-button
                         matSuffix

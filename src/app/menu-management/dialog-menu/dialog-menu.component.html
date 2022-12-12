@@ -33,6 +33,9 @@
     <mat-error *ngIf="this.formMenu.controls.recipe_name.hasError('minlength')">
       {{"menu-error.error-length-recipe" | translate | titlecase}}
     </mat-error>
+    <mat-error *ngIf="this.formMenu.controls.recipe_name.hasError('pattern')">
+      {{"pattern.text" | translate | titlecase}}
+    </mat-error>
   </mat-form-field>
   <!-- description field -->
   <mat-form-field class="full-width mr-bottom-1" appearance="fill">

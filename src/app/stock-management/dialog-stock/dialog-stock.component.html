@@ -29,6 +29,9 @@
     <mat-error *ngIf="this.formStock.controls.name.hasError('required')">
       {{"cart-dialog.error-message" | translate | titlecase}}
     </mat-error>
+    <mat-error *ngIf="this.formStock.controls.name.hasError('minlength')">
+      {{"pattern.name-min" | translate | titlecase}}
+    </mat-error>
     <mat-error *ngIf="this.formStock.controls.name.hasError('pattern')">
       {{"pattern.text" | translate | titlecase}}
     </mat-error>

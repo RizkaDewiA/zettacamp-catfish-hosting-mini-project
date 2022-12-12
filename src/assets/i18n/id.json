@@ -103,7 +103,8 @@
     "detail-ingred": "detail bahan",
     "available": "tersedia",
     "highlight": "sorot menu",
-    "offer": "penawaran istimewa"
+    "offer": "penawaran istimewa",
+    "discount": "diskon"
   },
   "user-history": {
     "title": "riwayat transaksi",
@@ -194,7 +195,7 @@
     "error-min-ingred" : "jumlah bahan digunakan tidak boleh mines",
     "error-length-desc" : "min. 30 karakter",
     "error-length-recipe": "min. 3 karakter",
-    "error-price": "min. harga 100"
+    "error-price": "min. harga 1000"
   },
   "status": {
     "active":"aktif",
@@ -370,6 +371,13 @@
   },
   "pattern": {
     "number" : "jangan menggunakan desimal atau titik",
-    "text" : "jangan menggunakan karakter spesial"
+    "text" : "jangan menggunakan karakter spesial",
+    "name-min": "min. panjang karakter 3",
+    "name-max": "max. panjang karakter 100",
+    "disc-min": "min. diskon adalah 1",
+    "disc-max": "max. diskon adalah 100",
+    "name-max-30": "max. panjang karakter 30",
+    "pass-min": "min. panjang karakter 5",
+    "pass-max": "max. panjang karakter 8"
   }
 }

@@ -47,8 +47,8 @@ export class DialogMenuComponent implements OnInit, OnDestroy {
 
   initForm() {
     this.formMenu = this.fb.group({
-      recipe_name: ['', [Validators.required, Validators.minLength(3)]],
-      price: ['', [Validators.required, Validators.min(100),Validators.pattern('^[0-9]*$')]],
+      recipe_name: ['', [Validators.required, Validators.minLength(3), Validators.pattern('^[a-zA-Z ]*$')]],
+      price: ['', [Validators.required, Validators.min(1000),Validators.pattern('^[0-9]*$')]],
       image: [''],
       description: ['', [Validators.required, Validators.minLength(30)]],
       status: ['', [Validators.required]],

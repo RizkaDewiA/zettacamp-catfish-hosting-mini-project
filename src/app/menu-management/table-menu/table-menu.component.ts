@@ -20,7 +20,7 @@ import { MenuManagementService } from '../menu-management.service';
 export class TableMenuComponent implements OnInit, OnDestroy {
   private subs = new SubSink();
   dataMenu:any = [];
-  displayedColumns: string[] = ['recipe_name', 'detail-menu','available', 'menu-highlight', 'price', 'special-offer','status', 'actions'];
+  displayedColumns: string[] = ['recipe_name', 'detail-menu','available', 'menu-highlight', 'price', 'discount', 'special-offer','status', 'actions'];
   dataSource =  new MatTableDataSource(this.dataMenu);
   pagination = {
     page: 1,

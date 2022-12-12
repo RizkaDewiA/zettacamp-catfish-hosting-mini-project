@@ -38,7 +38,7 @@ export class DialogStockComponent implements OnInit, OnDestroy {
 
   initForm() {
     this.formStock = this.fb.group({
-      name: ['', [Validators.required, Validators.pattern('^[a-zA-Z ]*$')]],
+      name: ['', [Validators.required, Validators.minLength(3), Validators.pattern('^[a-zA-Z ]*$')]],
       stock: ['', [Validators.required, Validators.min(1), Validators.pattern('^[0-9]*$')]],
     });
 

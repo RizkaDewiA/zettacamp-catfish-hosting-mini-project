@@ -103,7 +103,8 @@
     "detail-ingred": "detail ingredients",
     "available": "available",
     "highlight": "menu highlight",
-    "offer": "special offer"
+    "offer": "special offer",
+    "discount": "discount"
   },
   "user-history": {
     "title": "history transaction",
@@ -192,9 +193,9 @@
   },
   "menu-error": {
     "error-min-ingred" : "amount ingredients used can't minus",
-    "error-length-desc" : "min. characters is 30",
-    "error-length-recipe": "min. characters is 3",
-    "error-price": "min. price is 100"
+    "error-length-desc" : "min. length characters is 30",
+    "error-length-recipe": "min. length characters is 3",
+    "error-price": "min. price is 1000"
   },
   "status": {
     "active":"active",
@@ -370,6 +371,13 @@
   },
   "pattern": {
     "number" : "don't use decimal or dot",
-    "text" : "don't use special character"
+    "text" : "don't use special character",
+    "name-min": "min. length character is 3",
+    "name-max": "max. length character is 100",
+    "disc-min": "min. discount is 1",
+    "disc-max": "max. discount is 100",
+    "name-max-30": "max. length character is 30",
+    "pass-min": "min. length character is 5",
+    "pass-max": "max. length character is 8"
   }
 }
