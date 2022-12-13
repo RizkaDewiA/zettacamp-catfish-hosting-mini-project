@@ -6,6 +6,7 @@ import { MaterialModule } from '../material/material.module';
 import { HttpClient } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { HttpLoaderFactory } from '../app.module';
+import { SharedPipeModule } from '../pipe/shared-pipe.module';
 
 const routes : Routes = [
   {path:"", component:ProfilePageComponent}
@@ -27,6 +28,7 @@ const routes : Routes = [
       },
       defaultLanguage: 'en',
     }),
+    SharedPipeModule
   ],
   exports: [
     ProfilePageComponent

@@ -36,7 +36,7 @@
         <mat-card-subtitle>{{
           "profile.balance" | translate | titlecase
         }}</mat-card-subtitle>
-        <mat-card-title>Rp {{ dataUser?.saldo }}</mat-card-title>
+        <mat-card-title>{{ dataUser?.saldo | currReplace }}</mat-card-title>
       </div>
       <div class="mr-bottom-2">
         <mat-card-subtitle>{{
