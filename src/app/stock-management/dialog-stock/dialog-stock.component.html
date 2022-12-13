@@ -24,7 +24,7 @@
 </ng-template>
 <mat-dialog-content [formGroup]="formStock">
   <mat-form-field class="full-width mr-bottom-1" appearance="fill">
-    <mat-label>{{"stock-manage.name-stock" | translate | titlecase}}</mat-label>
+    <mat-label>{{"menu-manage.ingred-name" | translate | titlecase}}</mat-label>
     <input type="text" matInput formControlName="name" />
     <mat-error *ngIf="this.formStock.controls.name.hasError('required')">
       {{"cart-dialog.error-message" | translate | titlecase}}

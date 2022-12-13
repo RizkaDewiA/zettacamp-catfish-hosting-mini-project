@@ -52,7 +52,7 @@
 
       <ng-container matColumnDef="discount">
         <th class="th-center" mat-header-cell *matHeaderCellDef>{{"table.discount" | translate | titlecase}}</th>
-        <td class="th-center" mat-cell *matCellDef="let element">{{ element?.discount }}</td>
+        <td class="th-center" mat-cell *matCellDef="let element">{{ element?.discount }} %</td>
       </ng-container>
 
       <ng-container matColumnDef="special-offer">

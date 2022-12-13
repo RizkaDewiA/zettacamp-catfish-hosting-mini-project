@@ -1,7 +1,7 @@
 <div class="container-80 dp-block-1-2">
   <div class="search-filter">
     <mat-form-field class="mr-bottom-1" appearance="fill">
-      <mat-label>{{"filter.stock" | translate | titlecase}}</mat-label>
+      <mat-label>{{"menu-manage.ingred-name" | translate | titlecase}}</mat-label>
       <input type="text" matInput [formControl]="filterStockName" [(ngModel)]="stockNameFilter" placeholder="{{ 'filter.stock-placeholder' | translate | titlecase}}"/>
       <button *ngIf="stockNameFilter" matSuffix mat-icon-button (click)="stockNameFilter=''">
         {{"filter.clear-btn" | translate | titlecase}}
