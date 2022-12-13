@@ -378,6 +378,7 @@
     "disc-max": "max. diskon adalah 100",
     "name-max-30": "max. panjang karakter 30",
     "pass-min": "min. panjang karakter 5",
-    "pass-max": "max. panjang karakter 8"
+    "pass-max": "max. panjang karakter 8",
+    "email": "isi dengan format email yang benar"
   }
 }

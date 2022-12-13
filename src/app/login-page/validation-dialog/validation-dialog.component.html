@@ -12,6 +12,9 @@
             <mat-error *ngIf="this.validationForm.controls.email.hasError('required')">
               {{"mat-error.fill-email" | translate | titlecase}}
             </mat-error>
+            <mat-error *ngIf="this.validationForm.controls.email.hasError('email')">
+              {{"pattern.email" | translate | titlecase}}
+            </mat-error>
           </mat-form-field>
     </form>
 </mat-dialog-content>

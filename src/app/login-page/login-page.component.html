@@ -43,6 +43,9 @@
                     <mat-error *ngIf="this.loginForm.controls.email.hasError('required')">
                       {{"mat-error.fill-email" | translate | titlecase}}
                     </mat-error>
+                    <mat-error *ngIf="this.loginForm.controls.email.hasError('email')">
+                      {{"pattern.email" | translate | titlecase}}
+                    </mat-error>
                   </mat-form-field>
                   <mat-form-field appearance="outline">
                     <mat-label>{{"title.password" | translate | titlecase}}</mat-label>

@@ -378,6 +378,7 @@
     "disc-max": "max. discount is 100",
     "name-max-30": "max. length character is 30",
     "pass-min": "min. length character is 5",
-    "pass-max": "max. length character is 8"
+    "pass-max": "max. length character is 8",
+    "email": "fill with the correct email format"
   }
 }
