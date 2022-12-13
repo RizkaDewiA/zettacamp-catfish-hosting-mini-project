@@ -1,4 +1,4 @@
-<mat-card>
+<mat-card [id]="itemMenu?.id">
   <div class="label-tag" *ngIf="itemMenu?.menu_highlight == true">
     <p>{{"table.highlight" | translate | titlecase}}</p>
   </div>

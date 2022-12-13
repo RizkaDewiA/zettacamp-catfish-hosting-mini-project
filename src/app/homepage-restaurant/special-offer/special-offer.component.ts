@@ -15,26 +15,47 @@ import Swal from 'sweetalert2';
 })
 export class SpecialOfferComponent implements OnInit {
   @Input() itemMenu: any;
+  durationInSeconds: number = 5;
+  role: any;
+  tempId:string;
+  category:any;
+
   constructor(
     private routes: Router,
     private dialog: MatDialog,
     private snack: MatSnackBar,
     private translate: TranslateService
   ) {}
-  durationInSeconds: number = 5;
-  role: any;
 
   ngOnInit(): void {
     this.role = JSON.parse(localStorage?.getItem(environment.role));
+    this.tempId = JSON.parse(localStorage.getItem('tempIdFood'));
+    this.category = JSON.parse(localStorage.getItem('category'));
+    if(this.role == 'user' && this.category == 'offer'){
+      this.scroll(this.tempId);
+    }
   }
 
   onImageError(event){
     event.target.src = "https://images.unsplash.com/photo-1534939561126-855b8675edd7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
   }
 
+  scroll(id){
+    let el = document?.getElementById(id);
+    el?.scrollIntoView();
+    el?.classList.add('glow');
+    setTimeout(()=>{
+      el?.classList?.remove('glow');
+      localStorage.removeItem('tempIdFood');
+      localStorage.removeItem('category');
+    }, 5000);
+  }
+
   addToCart(id: string) {
     const token = localStorage.getItem(environment.tokenKey);
     if (token == null) {
+      localStorage.setItem('tempIdFood', JSON.stringify(id));
+      localStorage.setItem('category', JSON.stringify('offer'));
       Swal.fire({
         title: this.translate.instant('login-first.title'),
         text: this.translate.instant('login-first.text'),
@@ -47,18 +68,15 @@ export class SpecialOfferComponent implements OnInit {
       }).then((result) => {
         if (result.isConfirmed) {
           this.routes.navigate(['login-page']);
+        } else {
+          localStorage.removeItem('tempIdFood');
+          localStorage.removeItem('category');
         }
       });
     } else if (token !== null) {
-      let state: boolean;
-      if (this.role == 'admin') {
-        state = false;
-      } else {
-        state = true;
-      }
       const dialogRef = this.dialog.open(DialogDetailMenuComponent, {
         data: id,
-        autoFocus: state
+        autoFocus: true
       });
       dialogRef.afterClosed().subscribe((resp) => {
         if (resp != null) {
