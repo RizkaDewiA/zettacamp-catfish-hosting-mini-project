@@ -25,7 +25,7 @@ export class DialogDiscountComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.foodData = this.data;
     this.initForm();
-    console.log(this.foodData.status);
+    // console.log(this.foodData.status);
   }
 
   initForm() {

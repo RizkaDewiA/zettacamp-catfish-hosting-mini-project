@@ -103,7 +103,7 @@ export class ListCartComponent implements OnInit, OnDestroy {
               this.router.navigate(['main-page/history-page']);
             },
             error: (error)=>{
-              console.log(error);
+              // console.log(error);
               if(error.message.includes('unpublish')){
                 Swal.fire(
                   this.translate.instant("confrim-order.title-error"),

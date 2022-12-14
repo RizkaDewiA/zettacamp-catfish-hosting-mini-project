@@ -61,7 +61,7 @@ export class AdminHistoryComponent implements OnInit {
         this.totalSize = failed + success;
         // this.totalSize = resp?.data?.getHistory?.count_total;
       }
-      console.log(resp);
+      // console.log(resp);
     });
   }
 
@@ -99,7 +99,7 @@ export class AdminHistoryComponent implements OnInit {
   }
   
   detailsTransaction(transaction:any){
-    console.log(transaction);
+    // console.log(transaction);
     this.dialog.open(DetailHistoryComponent, {data:transaction});
   }
 

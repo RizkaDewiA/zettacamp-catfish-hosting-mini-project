@@ -27,7 +27,6 @@ export class MenuManagementService {
   };
 
   getAllMenu(pagination:Pagination, name:any, status:any){
-    // console.log(pagination);
     return this.apollo.watchQuery({
       query: gql`
       query GetAllRecipes($page: Int, $limit: Int, $recipeName: String, $status: status_recipe){
@@ -191,7 +190,6 @@ export class MenuManagementService {
   }
 
   updateSpecialOffer(id: string, offer: boolean, discount: number):Observable<any>{
-    console.log(discount);
     return this.apollo.mutate({
       mutation: gql `
       mutation UpdateRecipe($updateRecipeId: ID, $specialOffers: Boolean, $discount: Int) {

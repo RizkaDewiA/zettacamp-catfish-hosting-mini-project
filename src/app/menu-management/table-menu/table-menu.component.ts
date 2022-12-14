@@ -52,7 +52,7 @@ export class TableMenuComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.getData();
     this.searchMenu();
-    console.log(this.checked_highlight);
+    // console.log(this.checked_highlight);
   }
 
   getData(){
