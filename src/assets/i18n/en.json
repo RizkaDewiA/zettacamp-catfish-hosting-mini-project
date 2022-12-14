@@ -384,5 +384,6 @@
   "warning":{
     "warn":"Warning!",
     "text":"Your image still empty, but you still be able to update it!"
-  }
+  },
+  "place-name": "search last name here"
 }

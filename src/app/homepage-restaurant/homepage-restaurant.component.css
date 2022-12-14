@@ -159,9 +159,9 @@ button:hover {
   width: 100px;
 }
 
-.clip-circle{
+/* .clip-circle{
   clip-path: circle(50px at center);
-}
+} */
 
 .profile-link{
   width: 80%;

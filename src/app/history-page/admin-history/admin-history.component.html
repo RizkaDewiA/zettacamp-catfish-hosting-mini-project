@@ -11,7 +11,7 @@
         <th class="option" mat-header-cell *matHeaderCellDef>
             <mat-form-field class="mr-bottom-1" class="mr-right-1">
                 <mat-label>{{"filter.lastname" | translate | titlecase}}</mat-label>
-                <input type="text" matInput [formControl]="filterTransName" [(ngModel)]="transNameFilter" placeholder="search last name here"/>
+                <input type="text" matInput [formControl]="filterTransName" [(ngModel)]="transNameFilter" placeholder="{{'place-name' | translate}}"/>
                 <button *ngIf="transNameFilter" matSuffix mat-icon-button (click)="transNameFilter=''">
                   {{"filter.clear-btn" | translate | titlecase}}
                 </button>

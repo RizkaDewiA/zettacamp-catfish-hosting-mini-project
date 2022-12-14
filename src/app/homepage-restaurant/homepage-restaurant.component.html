@@ -130,8 +130,8 @@
     <!-- after login for usertype -->
     <mat-sidenav-container class="user">
       <mat-sidenav [(opened)]="opened" mode="side">
-        <div class="image-profile">
-          <img class="clip-circle dp-block" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"/>
+        <div class="image-profile mr-top-1">
+          <img class="dp-block" src="../../assets/svg/undraw_pic_profile_re_7g2h.svg" alt="profile image"/>
           <div class="dp-block-1 profile-link">
             <a [routerLink]="['profile-page']" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">{{userData?.first_name | titlecase}} {{userData?.last_name | titlecase}}</a>
             <p *ngIf="userData?.role == 'user'">{{"profile.balance" | translate | titlecase}} <label>{{userData?.saldo | currReplace}}</label></p>

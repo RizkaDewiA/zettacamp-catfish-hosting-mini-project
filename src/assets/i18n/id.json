@@ -384,5 +384,6 @@
   "warning":{
     "warn":"Peringatan!",
     "text":"Gambar Anda masih kosong, tetapi Anda masih dapat memperbaruinya!"
-  }
+  },
+  "place-name": "cari nama akhiran"
 }
