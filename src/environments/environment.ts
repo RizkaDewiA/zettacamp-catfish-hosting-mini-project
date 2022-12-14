@@ -4,9 +4,9 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://bf34-103-236-192-220.ap.ngrok.io',
+  // apiUrl: 'https://bf34-103-236-192-220.ap.ngrok.io',
   // apiUrl: 'https://tired-petticoat-slug.cyclic.app',
-  // apiUrl: '',
+  apiUrl: 'https://api.team-7.zettacamp-upn.zetta-demo.space/graphql',
   tokenKey: 'token',
   user_id: 'user_id',
   role: 'role',

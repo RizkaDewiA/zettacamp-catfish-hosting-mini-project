@@ -72,7 +72,7 @@ export class LoginPageService {
   }
 
   userLogin(data:any){
-    console.log(data);
+    // console.log(data);
     localStorage.setItem(environment.tokenKey, JSON.stringify(data.login.token));
     localStorage.setItem(environment.user_id, JSON.stringify(data.login.id));
     localStorage.setItem(environment.role, JSON.stringify(data.login.role));

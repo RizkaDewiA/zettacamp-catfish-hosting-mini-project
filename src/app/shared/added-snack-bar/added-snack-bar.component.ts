@@ -14,7 +14,6 @@ export class AddedSnackBarComponent implements OnInit {
 
   ngOnInit(): void {
     this.notif = this.data.data.recipe_name;
-    this.notif = this.notif.toUpperCase();
   }
 
   seeCart(){

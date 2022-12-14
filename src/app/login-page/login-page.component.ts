@@ -114,7 +114,7 @@ export class LoginPageComponent implements OnInit, OnDestroy {
               'error'
             )
           } else {
-            console.log(error.message)
+            // console.log(error.message)
             Swal.fire(
               this.translate.instant("other.text-2"),
               error.message,

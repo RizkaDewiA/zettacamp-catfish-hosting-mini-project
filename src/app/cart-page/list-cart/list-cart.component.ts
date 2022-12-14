@@ -7,6 +7,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { DialogCartComponent } from '../dialog-cart/dialog-cart.component';
 import { environment } from 'src/environments/environment';
 import { TranslateService } from '@ngx-translate/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-list-cart',
@@ -35,7 +36,7 @@ export class ListCartComponent implements OnInit, OnDestroy {
   indexToShowSuccess = [];
   indexToShowFailed = [];
 
-  constructor(private serviceCart:CartPageService, private dialog:MatDialog, private translate:TranslateService) { }
+  constructor(private serviceCart:CartPageService, private dialog:MatDialog, private translate:TranslateService, private router:Router) { }
 
   ngOnInit(): void {
     this.initCartPending();
@@ -70,7 +71,6 @@ export class ListCartComponent implements OnInit, OnDestroy {
   }
   
   addAmount(id:string){
-    const order_status = "pending";
     this.subs.sink = this.serviceCart.updateAmountPlus(id).subscribe();
     this.initCartPending();
   }
@@ -100,6 +100,7 @@ export class ListCartComponent implements OnInit, OnDestroy {
                 'success'
               ),
               this.initCartPending();
+              this.router.navigate(['main-page/history-page']);
             },
             error: (error)=>{
               console.log(error);
