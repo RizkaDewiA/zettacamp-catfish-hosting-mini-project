@@ -19,7 +19,11 @@
 }
 
 .menu img {
-    width: 200px;
+    width: 300px;
+    height: 200px;
+    object-fit: fill;
+    object-position: 100% 0;
+    border-radius: 10px;
     margin-bottom: 1.5rem;
 }
 

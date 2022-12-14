@@ -380,5 +380,9 @@
     "pass-min": "min. panjang karakter 5",
     "pass-max": "max. panjang karakter 8",
     "email": "isi dengan format email yang benar"
+  },
+  "warning":{
+    "warn":"Peringatan!",
+    "text":"Gambar Anda masih kosong, tetapi Anda masih dapat memperbaruinya!"
   }
 }

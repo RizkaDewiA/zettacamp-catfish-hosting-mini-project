@@ -132,7 +132,17 @@ export class DialogMenuComponent implements OnInit, OnDestroy {
                   'menu-update.confrim-btn'
                 ),
               }).then(() => {
-                this.dialogRef.close();
+                if(recipes.image == ""){
+                  Swal.fire(
+                    this.translate.instant('warning.warn'),
+                    this.translate.instant('warning.text'),
+                    'warning'
+                  ).then(()=>{
+                    this.dialogRef.close();
+                  });
+                }else{
+                  this.dialogRef.close();
+                }
               });
             },
             error: (error) => {
@@ -170,7 +180,17 @@ export class DialogMenuComponent implements OnInit, OnDestroy {
                   'menu-added.confrim-btn'
                 ),
               }).then(() => {
-                this.dialogRef.close();
+                if(recipes.image == ""){
+                  Swal.fire(
+                    this.translate.instant('warning.warn'),
+                    this.translate.instant('warning.text'),
+                    'warning'
+                  ).then(()=>{
+                    this.dialogRef.close();
+                  });
+                }else{
+                  this.dialogRef.close();
+                }
               });
             },
             error: (error) => {
